@@ -1,5 +1,3 @@
-# template.rb
-
 # 1. Configuration Wizard
 puts "\n🚀 Rails 8 Master Template Wizard"
 puts "========================================================"
@@ -30,7 +28,7 @@ load_partial 'gems'
 load_partial 'testing'
 load_partial 'ui'
 load_partial 'auth'
-load_partial 'stripe' # <--- Added this
+load_partial 'stripe'
 load_partial 'ai'
 load_partial 'finalize'
 
