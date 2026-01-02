@@ -1,6 +1,4 @@
-def source_paths
-  [__dir__]
-end
+# template.rb
 
 # ==============================================================================
 # 1. Wizard / User Configuration
@@ -24,7 +22,7 @@ install_rag    = yes?("    Add RAG Tools (Ferrum, Readability, Pgvector)?")
 # ==============================================================================
 puts "\n📦  Defining Gems..."
 
-# FIXED: Use gem_group instead of group
+# Use gem_group for specific environments
 gem_group :development, :test do
   gem 'rspec-rails', '~> 7.0'
   gem 'factory_bot_rails', '~> 6.0'
