@@ -1,16 +1,20 @@
 # Rails 8 Application Template - Setup & Features
 
-This project was initialized using a custom Rails 8 template designed to accelerate development by scaffolding a modern testing suite, authentication system, and UI foundations.
+This project was initialized using a custom Rails 8 template designed to accelerate development by scaffolding a modern testing suite, authentication system, AI service integrations, and UI foundations.
 
 ## 🚀 Quick Start
 
-To generate a new application using this template:
+**Option A: Using the Windows Batch Script (Recommended for WSL)**
+If you are on Windows using WSL, use the provided `create_rails_app.bat` script. This handles IP detection and database startup automatically.
+
+**Option B: Manual Generation**
+To generate a new application manually using the template:
 
 ```bash
-rails new my_app_name -m template.rb --css=tailwind
+rails new my_app_name -m template.rb -d postgresql --css=tailwind
 ```
 
-> **Note:** The flag `--css=tailwind` is **required** as the generated views utilize Tailwind CSS utility classes.
+> **Note:** The flags `-d postgresql` and `--css=tailwind` are **required**.
 
 After the installation completes:
 
@@ -19,107 +23,119 @@ cd my_app_name
 bin/dev
 ```
 
+---
+
+## ⚠️ Post-Installation & Manual Configuration
+
+While the template automates 90% of the work, there are specific secrets and external tools you must configure manually depending on the options you selected during generation.
+
+### 1. 🔑 Configure Credentials (If using Gemini AI)
+If you selected **Google Gemini**, the application expects your API key to be encrypted in the Rails credentials file.
+
+1.  Open the credentials editor:
+    ```bash
+    EDITOR="nano" bin/rails credentials:edit
+    ```
+2.  Add your key under a `google` key:
+    ```yaml
+    google:
+      gemini_key: "YOUR_ACTUAL_API_KEY_HERE"
+    ```
+3.  Save and exit.
+
+### 2. 🦙 Start Local AI Server (If using Local Llama)
+If you selected **Local AI**, the Rails app expects to connect to a server running on your Windows Host.
+
+1.  Open a PowerShell terminal on **Windows**.
+2.  Navigate to your `llama-server.exe` directory.
+3.  Run the server on port **8080** allowing external connections:
+    ```powershell
+    ./llama-server.exe -m path/to/your/model.gguf --port 8080 --host 0.0.0.0
+    ```
+4.  *(Optional)* If using RAG/Embeddings, run a second instance on port **8081**:
+    ```powershell
+    ./llama-server.exe -m path/to/your/model.gguf --embedding --port 8081 --host 0.0.0.0
+    ```
+
+### 3. ⚙️ Verify RSpec Configuration
+Occasionally, the template injection into `config/application.rb` may fail if the file structure varies. Open `config/application.rb` and ensure this block exists inside `class Application < Rails::Application`:
+
+```ruby
+config.generators do |g|
+  g.test_framework :rspec,
+    fixtures: true,
+    view_specs: false,
+    helper_specs: false,
+    routing_specs: false,
+    request_specs: true
+  g.fixture_replacement :factory_bot, dir: "spec/factories"
+end
+```
+
+---
+
 ## ✨ Features Overview
 
-### 1. 🛠 Technology Stack
-*   **Ruby on Rails 8.0+**
-*   **Tailwind CSS** (Styling)
-*   **RSpec** (Testing Framework)
-*   **FactoryBot** (Test Data)
-*   **Rubocop** (Linting & Formatting)
+### 1. 🤖 AI Integration (New)
+Depending on your selection, you have ready-to-use Service classes in `app/services/`:
+*   **Gemini:** `GoogleGeminiService` for connecting to Google's API.
+*   **Local LLM:** `LocalLlmService` configured to talk to your Windows host from inside WSL (handles IP resolution automatically).
+*   **RAG Tools:** Setup for `pgvector` and `Ferrum` (headless browser) for building context-aware AI apps.
 
 ### 2. 🔐 Authentication System
-The template generates a robust authentication system based on the native Rails 8 `generate authentication` command, with several enhancements:
-
-*   **Native Sessions:** Uses Rails 8 `Current` attributes and Session handling.
-*   **Registration:** A fully functional `RegistrationsController` and view for new user sign-ups (not included in default Rails 8).
-*   **Email Verification (Optional):**
-    *   Database schema for `confirmed_at` and `confirmation_token`.
-    *   `UserMailer` configured to send confirmation links.
-    *   Middleware logic to restrict access to unconfirmed users.
-*   **Helper Methods:**
-    *   `current_user` available in controllers and views.
-    *   `allow_unauthenticated_access` macro for controllers.
+*   **Native Sessions:** Uses Rails 8 `Current` attributes.
+*   **Registration:** Fully functional `RegistrationsController`.
+*   **Helper Methods:** `current_user` and `allow_unauthenticated_access`.
 
 ### 3. 🎨 UI & Layout
-A polished, responsive layout is pre-configured:
-*   **Application Layout:** Includes a sticky footer and responsive container.
-*   **Navigation Menu:** A dynamic `_menu.html.erb` partial that automatically toggles links based on the user's sign-in state.
-*   **Flash Messages:** A `_flash.html.erb` partial that styles success (notice) and error (alert) messages using Tailwind colors.
-*   **Landing Page:** A `HomeController` with a styled welcome index.
+*   **Tailwind CSS:** Pre-configured with a build pipeline.
+*   **Components:** Responsive Navigation Menu (`_menu.html.erb`) and Flash Messages (`_flash.html.erb`).
 
-### 4. 📧 Email Testing
-*   **Letter Opener Web:** configured for the Development environment.
-*   Emails sent by the application (like confirmation links) are intercepted and viewable in the browser.
-*   **Access:** Visit `http://localhost:3000/letter_opener`.
-
-### 5. 🧪 Testing & Quality
-The standard Minitest suite has been replaced with the RSpec ecosystem:
-
-*   **RSpec:** Configured with `documentation` format by default.
-*   **FactoryBot:** Integrated into `rails_helper` for easy data creation.
-*   **Guard:** Watches file changes and runs tests automatically in the background.
-*   **Rubocop:** Configured with "Omakase" Rails styling rules to enforce code quality.
+### 4. 🧪 Testing & Quality
+*   **RSpec:** Replaces Minitest.
+*   **FactoryBot:** Integrated for test data.
+*   **Guard:** Auto-runs tests on file save (`bundle exec guard`).
+*   **Rubocop:** Enforces code style.
 
 ---
 
 ## 📖 How to Use
 
+### Testing AI Connections
+To verify your AI service is working, open the Rails console:
+
+```bash
+bin/rails c
+```
+
+**For Gemini:**
+```ruby
+puts GoogleGeminiService.new.generate("Hello, how are you?")
+```
+
+**For Local Llama:**
+```ruby
+puts LocalLlmService.new.chat("Hello, are you running locally?")
+```
+
 ### Managing Authentication
-By default, controllers require authentication. To allow public access to a specific controller or action:
+By default, controllers require authentication. To allow public access:
 
 ```ruby
 class HomeController < ApplicationController
   allow_unauthenticated_access only: %i[ index ]
-  # ...
 end
 ```
 
-To access the currently logged-in user in views or controllers:
-
-```erb
-<% if current_user %>
-  Hello, <%= current_user.email_address %>
-<% end %>
-```
-
-### Running Tests
-You can run the full test suite manually:
-
-```bash
-bundle exec rspec
-```
-
-Or run **Guard** to automatically run tests as you save files (highly recommended):
-
-```bash
-bundle exec guard
-```
-
-### Code Formatting
-To check for style violations:
-
-```bash
-bundle exec rubocop
-```
-
-To automatically fix simple style violations:
-
-```bash
-bundle exec rubocop -a
-```
-
 ### Checking Emails (Development)
-1. Register a new user or trigger an action that sends an email.
-2. Navigate to `http://localhost:3000/letter_opener`.
-3. Click the email to view the content and click any links (e.g., "Confirm Account").
+1. Trigger an action that sends an email (e.g., Sign Up).
+2. Visit `http://localhost:3000/letter_opener` to view the email.
 
 ---
 
-## 📂 Key Generated Files
+## 📂 Key Files
 
+*   `config/initializers/ai_config.rb`: Handles API keys and WSL<->Windows IP detection.
+*   `app/services/*`: Contains the AI service logic.
 *   `app/controllers/registrations_controller.rb`: Handles user signup.
-*   `app/views/shared/_menu.html.erb`: The main navigation bar.
 *   `spec/rails_helper.rb`: Main RSpec configuration.
-*   `.rubocop.yml`: Linting rules.
-*   `config/environments/development.rb`: Configured for Letter Opener.
