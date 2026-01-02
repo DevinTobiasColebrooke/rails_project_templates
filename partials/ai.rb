@@ -20,9 +20,13 @@ def setup_ai_configuration
       # 2. Fallback to auto-detection inside WSL
       WINDOWS_HOST = ENV.fetch('WINDOWS_HOST_IP') { detect_host_ip }
       
-      LOCAL_LLM_URL = "http://\#{WINDOWS_HOST}:8080"
-      LOCAL_EMBEDDING_URL = "http://\#{WINDOWS_HOST}:8081"
-      LOCAL_MODEL_NAME = "Meta-Llama-3.1-8B-Instruct-Q8_0.guff"
+      # Configuration matches your Windows Batch Script ports
+      LOCAL_LLM_URL = "http://\#{WINDOWS_HOST}:8080"       # Instruct Server
+      LOCAL_EMBEDDING_URL = "http://\#{WINDOWS_HOST}:8081" # Embeddings Server
+      
+      # We use a generic name here. Since your Batch script handles the actual .gguf loading,
+      # Rails doesn't need to know the specific filename. Llama-server will accept 'default'.
+      LOCAL_MODEL_NAME = "default"
     RUBY
   end
 
@@ -46,7 +50,16 @@ def setup_ai_services
           @api_key = api_key
         end
         def generate(prompt)
-          # Placeholder implementation
+          response = Faraday.post(BASE_URL) do |req|
+            req.params["key"] = @api_key
+            req.headers["Content-Type"] = "application/json"
+            req.body = { contents: [{ parts: [{ text: prompt }] }] }.to_json
+          end
+          return nil unless response.success?
+          JSON.parse(response.body).dig("candidates", 0, "content", "parts", 0, "text")&.strip
+        rescue Faraday::Error => e
+          Rails.logger.error("Gemini Error: \#{e.message}")
+          nil
         end
       end
     RUBY
@@ -57,13 +70,14 @@ def setup_ai_services
       require "openai"
       class LocalLlmService
         def initialize
+          # Connects to your Windows Batch Script server on Port 8080
           @client = OpenAI::Client.new(access_token: "x", uri_base: AiConfig::LOCAL_LLM_URL)
         end
         
         def chat(prompt, system_message: "You are a helpful assistant.")
           response = @client.chat(
             parameters: {
-              model: AiConfig::LOCAL_MODEL_NAME,
+              model: AiConfig::LOCAL_MODEL_NAME, # Sends "default", server ignores it and uses loaded model
               messages: [
                 { role: "system", content: system_message },
                 { role: "user", content: prompt }
@@ -74,7 +88,7 @@ def setup_ai_services
           response.dig("choices", 0, "message", "content")&.strip
         rescue => e
           Rails.logger.error "Local LLM Error: \#{e.message}"
-          "Error connecting to Windows Local Host"
+          "Error connecting to Windows Local Host. Make sure your Batch script is running."
         end
       end
     RUBY
@@ -87,5 +101,28 @@ def setup_ai_services
     inject_into_file migration_file, after: "def change\n" do
       "    enable_extension 'vector'\n"
     end if migration_file
+
+    # Optional: Embedding Service if you want it generated
+    create_file "app/services/embedding_service.rb", <<~RUBY
+      require "net/http"
+      class EmbeddingService
+        def self.generate(text)
+          uri = URI("\#{AiConfig::LOCAL_EMBEDDING_URL}/embeddings")
+          http = Net::HTTP.new(uri.host, uri.port)
+          request = Net::HTTP::Post.new(uri.path, { "Content-Type" => "application/json" })
+          request.body = { content: text }.to_json
+          
+          response = http.request(request)
+          return nil unless response.is_a?(Net::HTTPSuccess)
+          
+          json = JSON.parse(response.body)
+          # Handle Nomic format
+          (json["embedding"] || json.dig("data", 0, "embedding"))&.flatten&.map(&:to_f)
+        rescue => e
+          Rails.logger.error "Embedding Error: \#{e.message}"
+          nil
+        end
+      end
+    RUBY
   end
 end
