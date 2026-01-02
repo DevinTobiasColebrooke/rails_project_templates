@@ -1,6 +1,6 @@
+# partials/gems.rb
 puts "\n📦  Defining Gems..."
 
-# Standard Development Gems
 gem_group :development, :test do
   gem 'rspec-rails', '~> 7.0'
   gem 'factory_bot_rails', '~> 6.0'
@@ -13,6 +13,11 @@ end
 gem_group :development do
   gem 'letter_opener', '~> 1.0'
   gem 'letter_opener_web', '~> 3.0'
+end
+
+# Stripe
+if @install_stripe
+  gem 'stripe', '~> 10.0'
 end
 
 # AI Specific Gems
