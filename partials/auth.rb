@@ -1,0 +1,58 @@
+def setup_authentication
+  puts "🔐  Generating Authentication..."
+  rails_command "generate authentication"
+
+  # 1. Registration Controller
+  create_file 'app/controllers/registrations_controller.rb', <<~RUBY
+    class RegistrationsController < ApplicationController
+      allow_unauthenticated_access only: %i[new create]
+      def new
+        @user = User.new
+      end
+      def create
+        @user = User.new(params.require(:user).permit(:email_address, :password, :password_confirmation))
+        if @user.save
+          start_new_session_for @user
+          redirect_to root_path, notice: "Welcome!"
+        else
+          render :new, status: :unprocessable_entity
+        end
+      end
+    end
+  RUBY
+  
+  route "resource :registration, only: %i[new create]"
+  
+  # 2. Registration View
+  create_file 'app/views/registrations/new.html.erb', <<~ERB
+    <div class="max-w-md mx-auto bg-white p-8 rounded shadow">
+      <h1 class="text-2xl font-bold mb-4">Sign Up</h1>
+      <%= form_with(model: @user, url: registration_path) do |form| %>
+        <div class="mb-4">
+          <%= form.label :email_address, class: "block text-gray-700" %>
+          <%= form.email_field :email_address, class: "w-full border p-2 rounded" %>
+        </div>
+        <div class="mb-4">
+          <%= form.label :password, class: "block text-gray-700" %>
+          <%= form.password_field :password, class: "w-full border p-2 rounded" %>
+        </div>
+        <div class="mb-4">
+          <%= form.label :password_confirmation, class: "block text-gray-700" %>
+          <%= form.password_field :password_confirmation, class: "w-full border p-2 rounded" %>
+        </div>
+        <%= form.submit "Register", class: "w-full bg-blue-600 text-white p-2 rounded cursor-pointer" %>
+      <% end %>
+    </div>
+  ERB
+
+  # 3. Helper Method
+  inject_into_file 'app/controllers/application_controller.rb', after: "allow_browser versions: :modern\n" do
+    "  helper_method :current_user\n  def current_user\n    Current.session&.user\n  end\n"
+  end
+
+  # 4. Optional Verification
+  if @install_verify
+    generate :migration, 'AddConfirmationToUsers', 'confirmation_token:string:index', 'confirmed_at:datetime'
+    route 'mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?'
+  end
+end

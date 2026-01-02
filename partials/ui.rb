@@ -1,0 +1,46 @@
+def setup_ui_layout
+  puts "🎨  Scaffolding UI..."
+  
+  # 1. Tailwind Flash Messages
+  create_file 'app/views/shared/_flash.html.erb', <<~ERB
+    <% flash.each do |type, message| %>
+      <% classes = (type.to_s == 'notice' ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800") %>
+      <div class="p-4 mb-4 rounded <%= classes %>"><%= message %></div>
+    <% end %>
+  ERB
+
+  # 2. Navigation Menu
+  create_file 'app/views/shared/_menu.html.erb', <<~ERB
+    <nav class="bg-gray-800 p-4 text-white flex justify-between items-center">
+      <div>
+        <%= link_to "App", root_path, class: "font-bold text-xl" %>
+      </div>
+      <div class="space-x-4">
+        <% if defined?(current_user) && current_user %>
+          <span><%= current_user.email_address %></span>
+          <%= button_to "Sign out", session_path, method: :delete, class: "inline bg-red-600 px-3 py-1 rounded" %>
+        <% else %>
+          <%= link_to "Login", new_session_path, class: "hover:text-gray-300" %>
+          <%= link_to "Sign Up", new_registration_path, class: "bg-blue-600 px-3 py-1 rounded" %>
+        <% end %>
+      </div>
+    </nav>
+  ERB
+
+  # 3. Application Layout Update
+  gsub_file 'app/views/layouts/application.html.erb', /<body[^>]*>(.*?)<\/body>/m do
+    <<-ERB
+  <body class="bg-gray-50 text-gray-900">
+    <%= render 'shared/menu' %>
+    <main class="container mx-auto px-4 py-8">
+      <%= render 'shared/flash' %>
+      <%= yield %>
+    </main>
+  </body>
+    ERB
+  end
+
+  # 4. Home Controller
+  generate "controller", "home index --skip-routes"
+  route 'root "home#index"'
+end
