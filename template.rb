@@ -306,6 +306,9 @@ after_bundle do
   # 6. Linting
   run "bundle exec rubocop -a"
 
+  # 7. Cleanup
+  remove_file "app/javascript/controllers/hello_controller.js"
+
   puts "\n🎉  App Generation Complete!"
   puts "    Run 'bin/dev' to start."
   if install_local
