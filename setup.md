@@ -58,7 +58,8 @@ If you selected **Local AI**, the Rails app connects to a server on your Windows
 
 1.  Open PowerShell on **Windows**.
 2.  Run:
-    ```./start_ai_servers.bat
+    ```bash
+    ./start_ai_servers.bat
     ```
 
 ### 3. 💳 Testing Stripe Webhooks
