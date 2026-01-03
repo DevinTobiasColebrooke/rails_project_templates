@@ -1,3 +1,5 @@
+# partials/performance.rb
+
 def setup_performance
   puts "🏎️  Configuring Performance & Observability..."
 
@@ -20,7 +22,7 @@ def setup_performance
   # 2. Rack Attack
   create_file "config/initializers/rack_attack.rb", <<~RUBY
     class Rack::Attack
-      # Throttle all requests by IP (60 requests per minute)
+      # Throttle all requests by IP (300 requests per 5 minutes)
       throttle('req/ip', limit: 300, period: 5.minutes) do |req|
         req.ip
       end
@@ -40,5 +42,6 @@ def setup_performance
   end
 
   # 3. Ahoy Analytics
-  generate "ahoy:install"
+  # FIX: Use external command to force loading of the new ahoy_matey gem
+  run "bin/rails generate ahoy:install"
 end
