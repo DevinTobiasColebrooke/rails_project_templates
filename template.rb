@@ -1,3 +1,6 @@
+# template.rb
+
+# 1. Configuration Wizard
 puts "\n🚀 Rails 8 Master Template Wizard"
 puts "========================================================"
 
@@ -48,6 +51,7 @@ load_partial 'performance'
 load_partial 'themes'
 load_partial 'prompts'
 load_partial 'api_client'
+load_partial 'docs'      # <--- Added this
 load_partial 'finalize'
 
 # 3. Execution (After Bundle)
@@ -67,12 +71,14 @@ after_bundle do
   setup_authentication if @install_auth
   setup_stripe if @install_stripe
   
-  setup_vector_db if @install_vector_db # <--- Added this
+  setup_vector_db if @install_vector_db
   
   if @install_gemini || @install_local
     setup_ai_configuration
     setup_ai_services
   end
+
+  setup_docs
 
   setup_finalize
 end
