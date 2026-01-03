@@ -1,11 +1,11 @@
-# Rails 8 Application Template - Setup & Features
+# Rails 8 Super Template - Setup & Documentation
 
-This project was initialized using a custom Rails 8 template designed to accelerate development by scaffolding a modern testing suite, authentication system, AI service integrations, and UI foundations.
+This project was initialized using a comprehensive Rails 8 template designed to act as a production-ready starter kit. It scaffolds authentication, payments, AI integration, observability, and content management foundations out of the box.
 
 ## 🚀 Quick Start
 
 **Option A: Using the Windows Batch Script (Recommended for WSL)**
-If you are on Windows using WSL, use the provided `create_rails_app.bat` script. This handles IP detection and database startup automatically.
+If you are on Windows using WSL, use the provided `create_rails_app.bat` script. This handles IP detection, Postgres startup, and VS Code launching automatically.
 
 **Option B: Manual Generation**
 To generate a new application manually using the template:
@@ -25,117 +25,136 @@ bin/dev
 
 ---
 
-## ⚠️ Post-Installation & Manual Configuration
+## ⚠️ Post-Installation & Configuration
 
-While the template automates 90% of the work, there are specific secrets and external tools you must configure manually depending on the options you selected during generation.
+This template automates the code generation, but you must manually configure secrets and external services.
 
-### 1. 🔑 Configure Credentials (If using Gemini AI)
-If you selected **Google Gemini**, the application expects your API key to be encrypted in the Rails credentials file.
+### 1. 🔑 Configure Credentials & Secrets
+Run the credentials editor to set up API keys for the features you selected.
 
-1.  Open the credentials editor:
-    ```bash
-    EDITOR="nano" bin/rails credentials:edit
-    ```
-2.  Add your key under a `google` key:
-    ```yaml
-    google:
-      gemini_key: "YOUR_ACTUAL_API_KEY_HERE"
-    ```
-3.  Save and exit.
+```bash
+EDITOR="nano" bin/rails credentials:edit
+```
+
+Depending on your choices, add the following keys:
+
+```yaml
+# 1. AI Services
+google:
+  gemini_key: "YOUR_GEMINI_API_KEY"
+
+# 2. Payments (Stripe)
+stripe:
+  publishable_key: "pk_test_..."
+  secret_key: "sk_test_..."
+  signing_secret: "whsec_..." # For Webhooks
+
+# 3. External APIs
+data_gov_key: "YOUR_DATA_GOV_KEY"
+```
 
 ### 2. 🦙 Start Local AI Server (If using Local Llama)
-If you selected **Local AI**, the Rails app expects to connect to a server running on your Windows Host.
+If you selected **Local AI**, the Rails app connects to a server on your Windows Host.
 
-1.  Open a PowerShell terminal on **Windows**.
-2.  Navigate to your `llama-server.exe` directory.
-3.  Run the server on port **8080** allowing external connections:
-    ```powershell
-    ./llama-server.exe -m path/to/your/model.gguf --port 8080 --host 0.0.0.0
-    ```
-4.  *(Optional)* If using RAG/Embeddings, run a second instance on port **8081**:
-    ```powershell
-    ./llama-server.exe -m path/to/your/model.gguf --embedding --port 8081 --host 0.0.0.0
+1.  Open PowerShell on **Windows**.
+2.  Run:
+    ```./start_ai_servers.bat
     ```
 
-### 3. ⚙️ Verify RSpec Configuration
-Occasionally, the template injection into `config/application.rb` may fail if the file structure varies. Open `config/application.rb` and ensure this block exists inside `class Application < Rails::Application`:
+### 3. 💳 Testing Stripe Webhooks
+To test payments locally, you need the Stripe CLI forwarding events to your app.
 
-```ruby
-config.generators do |g|
-  g.test_framework :rspec,
-    fixtures: true,
-    view_specs: false,
-    helper_specs: false,
-    routing_specs: false,
-    request_specs: true
-  g.fixture_replacement :factory_bot, dir: "spec/factories"
-end
+```bash
+stripe listen --forward-to localhost:3000/webhooks/stripe
 ```
 
 ---
 
 ## ✨ Features Overview
 
-### 1. 🤖 AI Integration (New)
-Depending on your selection, you have ready-to-use Service classes in `app/services/`:
-*   **Gemini:** `GoogleGeminiService` for connecting to Google's API.
-*   **Local LLM:** `LocalLlmService` configured to talk to your Windows host from inside WSL (handles IP resolution automatically).
-*   **RAG Tools:** Setup for `pgvector` and `Ferrum` (headless browser) for building context-aware AI apps.
+### 🤖 AI & Data
+*   **Service Layer:** Pre-built services for **Google Gemini** and **Local Llama** (WSL-bridge).
+*   **RAG Ready:** Setup for `pgvector` and `Ferrum` (headless browser) for context retrieval.
+*   **Prompt Management:** Store system prompts in `config/prompts.yml` instead of hardcoding them.
+*   **API Generator:** Generic `ApplicationApiService` pattern with a Data.gov example implementation.
 
-### 2. 🔐 Authentication System
-*   **Native Sessions:** Uses Rails 8 `Current` attributes.
-*   **Registration:** Fully functional `RegistrationsController`.
-*   **Helper Methods:** `current_user` and `allow_unauthenticated_access`.
+### 💰 Commerce (Stripe)
+*   **Checkout:** Controllers and Views for one-time payments.
+*   **Webhooks:** Secure webhook verification and event handling logic in `WebhooksController`.
+*   **UI:** Pre-styled "Buy Button" partials.
 
-### 3. 🎨 UI & Layout
-*   **Tailwind CSS:** Pre-configured with a build pipeline.
-*   **Components:** Responsive Navigation Menu (`_menu.html.erb`) and Flash Messages (`_flash.html.erb`).
+### 🎨 Content & UI
+*   **Themes:** CSS-Variable based theming system. Configurable via `config/themes.yml`.
+*   **Admin Panel:** A dedicated `Admin::BaseController` and dashboard layout, distinct from the main app.
+*   **Rich Text:** ActionText (Trix) installed with Tailwind typography fixes.
+*   **SEO:** `MetaTags` and `SitemapGenerator` pre-configured.
 
-### 4. 🧪 Testing & Quality
-*   **RSpec:** Replaces Minitest.
-*   **FactoryBot:** Integrated for test data.
-*   **Guard:** Auto-runs tests on file save (`bundle exec guard`).
-*   **Rubocop:** Enforces code style.
+### 🛡️ Ops & Observability
+*   **Rack Attack:** Throttling and rate-limiting middleware configured in `config/initializers/rack_attack.rb`.
+*   **Bullet:** Detects N+1 queries in development.
+*   **Ahoy:** First-party analytics for tracking visits and events.
+*   **Scenic:** SQL View management support.
 
 ---
 
 ## 📖 How to Use
 
-### Testing AI Connections
-To verify your AI service is working, open the Rails console:
+### 🎨 Changing Themes
+You don't need to touch CSS to change your color palette. Open `config/themes.yml`:
 
-```bash
-bin/rails c
+```yaml
+default:
+  primary: "#4F46E5"   # Change this hex code
+  secondary: "#10B981"
+  background: "#F3F4F6"
 ```
 
-**For Gemini:**
+### 🧠 Using Prompts
+Don't write prompts in your controllers. Use the prompt manager:
+
+1.  Add to `config/prompts.yml`:
+    ```yaml
+    user:
+      summarize: "Summarize this text: %{text}"
+    ```
+2.  Call it in Ruby:
+    ```ruby
+    prompt = Prompt.get('user.summarize', text: "Long article content...")
+    GoogleGeminiService.new.generate(prompt)
+    ```
+
+### 🔌 Consuming APIs
+Use the generated service pattern for clean external data fetching:
+
 ```ruby
-puts GoogleGeminiService.new.generate("Hello, how are you?")
+# app/services/data_gov_service.rb
+service = DataGovService.new
+schools = service.search_schools(state: 'NY')
 ```
 
-**For Local Llama:**
-```ruby
-puts LocalLlmService.new.chat("Hello, are you running locally?")
-```
-
-### Managing Authentication
-By default, controllers require authentication. To allow public access:
+### 🔍 SEO Helper
+In your views/controllers, set metadata easily:
 
 ```ruby
-class HomeController < ApplicationController
-  allow_unauthenticated_access only: %i[ index ]
+# In a controller
+def show
+  @product = Product.find(params[:id])
+  set_meta_tags title: @product.name,
+                description: @product.description,
+                keywords: 'rails, ruby, template'
 end
 ```
 
-### Checking Emails (Development)
-1. Trigger an action that sends an email (e.g., Sign Up).
-2. Visit `http://localhost:3000/letter_opener` to view the email.
-
 ---
 
-## 📂 Key Files
+## 📂 Key Generated Files
 
-*   `config/initializers/ai_config.rb`: Handles API keys and WSL<->Windows IP detection.
-*   `app/services/*`: Contains the AI service logic.
-*   `app/controllers/registrations_controller.rb`: Handles user signup.
-*   `spec/rails_helper.rb`: Main RSpec configuration.
+| File Path | Description |
+| :--- | :--- |
+| `config/initializers/ai_config.rb` | AI Settings & WSL IP Detection |
+| `config/themes.yml` | Color palettes for the UI |
+| `config/prompts.yml` | Centralized AI Prompt storage |
+| `config/initializers/rack_attack.rb` | Rate limiting configuration |
+| `app/controllers/admin/*` | Custom Admin panel logic |
+| `app/services/*` | AI, API, and Stripe service logic |
+| `app/views/checkouts/*` | Stripe payment success/cancel pages |
