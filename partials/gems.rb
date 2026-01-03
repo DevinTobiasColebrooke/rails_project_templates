@@ -18,7 +18,6 @@ end
 gem_group :development do
   gem 'letter_opener', '~> 1.10'
   gem 'letter_opener_web', '~> 3.0'
-  gem 'annotate', '~> 3.2'
 end
 
 # 2. Production Observability & Data
