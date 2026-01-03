@@ -3,10 +3,10 @@ puts "\n📦  Defining Gems..."
 
 # 1. Standard Dev/Test
 gem_group :development, :test do
-  gem 'rspec-rails', '~> 7.0'
-  gem 'factory_bot_rails', '~> 6.0'
-  gem 'guard', '~> 2.19'
-  gem 'guard-rspec', '~> 4.7'
+  gem 'rspec', '~> 3.13', '>= 3.13.2'
+  gem 'factory_bot_rails', '~> 6.5', '>= 6.5.1'
+  gem 'guard', '~> 2.19', '>= 2.19.1'
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   
@@ -16,9 +16,9 @@ gem_group :development, :test do
 end
 
 gem_group :development do
-  gem 'letter_opener', '~> 1.0'
+  gem 'letter_opener', '~> 1.10'
   gem 'letter_opener_web', '~> 3.0'
-  gem 'annotate'
+  gem 'annotate', '~> 3.2'
 end
 
 # 2. Production Observability & Data
@@ -35,19 +35,19 @@ end
 
 # 4. Stripe
 if @install_stripe
-  gem 'stripe', '~> 10.0'
+  gem 'stripe', '~> 17.2'
 end
 
 # 5. Vector Database
 if @install_vector_db
-  gem "pgvector", "~> 0.2"
-  gem "neighbor"
-  gem "parallel"
+  gem 'pgvector', '~> 0.3.2'
+  gem 'neighbor', '~> 0.6.0'
+  gem 'parallel', '~> 1.27'
 end
 
 # 6. AI Services
 if @install_gemini || @install_local
-  gem "faraday", "~> 2.14"
-  gem "json"
-  gem "ruby-openai", "~> 6.0"
+  gem 'faraday', '~> 2.14'
+  gem 'json', '~> 2.18'
+  gem 'ruby-openai', '~> 8.3'
 end

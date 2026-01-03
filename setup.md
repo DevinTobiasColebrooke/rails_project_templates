@@ -54,12 +54,16 @@ data_gov_key: "YOUR_DATA_GOV_KEY"
 ```
 
 ### 2. 🦙 Start Local AI Server (If using Local Llama)
-If you selected **Local AI**, the Rails app connects to a server on your Windows Host.
+If you selected **Local AI**, the Rails app connects to a server on your Windows Host via a generic "default" model name.
 
 1.  Open PowerShell on **Windows**.
-2.  Run:
-    ```bash
-    ./start_ai_servers.bat
+2.  Run the **Instruct/Chat** server on port **8080**:
+    ```powershell
+    ./llama-server.exe -m path/to/model.gguf --port 8080 --host 0.0.0.0
+    ```
+3.  Run the **Embedding** server on port **8081** (Required if using Vector DB):
+    ```powershell
+    ./llama-server.exe -m path/to/nomic-embed.gguf --embedding --port 8081 --host 0.0.0.0
     ```
 
 ### 3. 💳 Testing Stripe Webhooks
@@ -75,7 +79,7 @@ stripe listen --forward-to localhost:3000/webhooks/stripe
 
 ### 🤖 AI & Data
 *   **Service Layer:** Pre-built services for **Google Gemini** and **Local Llama** (WSL-bridge).
-*   **RAG Ready:** Setup for `pgvector` and `Ferrum` (headless browser) for context retrieval.
+*   **Vector Database:** `pgvector` + `neighbor` gem configuration for semantic search.
 *   **Prompt Management:** Store system prompts in `config/prompts.yml` instead of hardcoding them.
 *   **API Generator:** Generic `ApplicationApiService` pattern with a Data.gov example implementation.
 
@@ -95,10 +99,23 @@ stripe listen --forward-to localhost:3000/webhooks/stripe
 *   **Bullet:** Detects N+1 queries in development.
 *   **Ahoy:** First-party analytics for tracking visits and events.
 *   **Scenic:** SQL View management support.
+*   **PgQuery:** SQL parsing utilities for performance analysis.
 
 ---
 
 ## 📖 How to Use
+
+### 🧠 Knowledge Base (Vector Search)
+If you enabled the Vector DB, you have a `Document` model ready for semantic search.
+
+```ruby
+# 1. Create a document (Embedding is generated automatically via service)
+doc = Document.create(content: "Rails 8 includes a new authentication generator.")
+
+# 2. Search semantically
+results = Document.semantic_search("What is new in the framework?")
+puts results.first.content
+```
 
 ### 🎨 Changing Themes
 You don't need to touch CSS to change your color palette. Open `config/themes.yml`:
@@ -109,20 +126,6 @@ default:
   secondary: "#10B981"
   background: "#F3F4F6"
 ```
-
-### 🧠 Using Prompts
-Don't write prompts in your controllers. Use the prompt manager:
-
-1.  Add to `config/prompts.yml`:
-    ```yaml
-    user:
-      summarize: "Summarize this text: %{text}"
-    ```
-2.  Call it in Ruby:
-    ```ruby
-    prompt = Prompt.get('user.summarize', text: "Long article content...")
-    GoogleGeminiService.new.generate(prompt)
-    ```
 
 ### 🔌 Consuming APIs
 Use the generated service pattern for clean external data fetching:
@@ -157,5 +160,6 @@ end
 | `config/prompts.yml` | Centralized AI Prompt storage |
 | `config/initializers/rack_attack.rb` | Rate limiting configuration |
 | `app/controllers/admin/*` | Custom Admin panel logic |
-| `app/services/*` | AI, API, and Stripe service logic |
+| `app/services/embedding_service.rb` | routing logic for Local vs Cloud embeddings |
+| `app/models/document.rb` | Vector-enabled model |
 | `app/views/checkouts/*` | Stripe payment success/cancel pages |
