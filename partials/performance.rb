@@ -4,7 +4,8 @@ def setup_performance
   puts "🏎️  Configuring Performance & Observability..."
 
   # 1. Bullet (N+1 Detection)
-  inject_into_file 'config/environments/development.rb', after: "config.action_mailer.raise_delivery_errors = true\n" do
+  # Inject at the end of the development config block to ensure we don't miss the target string
+  inject_into_file 'config/environments/development.rb', before: /^end/ do
     <<-RUBY
 
   # Bullet N+1 Query Detection
@@ -42,6 +43,5 @@ def setup_performance
   end
 
   # 3. Ahoy Analytics
-  # FIX: Use external command to force loading of the new ahoy_matey gem
   run "bin/rails generate ahoy:install"
 end

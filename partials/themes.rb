@@ -23,7 +23,8 @@ def setup_themes_and_admin
         def index
         end
       end
-    RUBY
+    end
+  RUBY
   
   create_file "app/views/layouts/admin.html.erb", <<~ERB
     <!DOCTYPE html>

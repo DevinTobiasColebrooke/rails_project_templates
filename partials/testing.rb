@@ -4,7 +4,8 @@ def setup_testing
   puts "🧪  Configuring RSpec..."
   
   # FIX: Use external command to force loading of the new rspec-rails gem
-  run "bin/rails generate rspec:install"
+  # Added --force to ensure this runs cleanly even if triggered multiple times
+  run "bin/rails generate rspec:install --force"
   
   # Configure .rspec output format
   append_to_file '.rspec', '--format documentation'
