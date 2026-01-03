@@ -1,5 +1,3 @@
-# template.rb
-
 # 1. Configuration Wizard
 puts "\n🚀 Rails 8 Master Template Wizard"
 puts "========================================================"
@@ -15,7 +13,7 @@ puts "\n🧱  Content & Data"
 @install_rich_text = yes?("    Add Rich Text (ActionText)?")
 @install_seo       = yes?("    Add SEO Tools (MetaTags, Sitemap)?")
 @install_api       = yes?("    Add API Services (Data.gov example)?")
-@install_prompts   = yes?("    Add Prompt Management System?")
+# Prompts question removed from here to handle it smartly below
 
 puts "\n💳  Payments"
 @install_stripe = yes?("    Add Stripe Payments?")
@@ -26,6 +24,14 @@ puts "\n🧠  Knowledge Base"
 puts "\n🤖  AI Configuration"
 @install_gemini = yes?("    Add Google Gemini Service?")
 @install_local  = yes?("    Add Local AI (Llama via Windows/WSL)?")
+
+if @install_gemini || @install_local
+  @install_prompts = true
+  puts "    -> 🧠 Prompt Management System auto-enabled for AI."
+else
+  @install_prompts = yes?("    Add Prompt Management System (Standalone)?")
+end
+
 
 puts "\n⚙️  Ops"
 @install_ops = yes?("    Add Observability (RackAttack, Bullet, Ahoy, Scenic)?")
@@ -65,7 +71,9 @@ after_bundle do
   setup_rich_text if @install_rich_text
   setup_seo if @install_seo
   setup_performance if @install_ops
-  setup_prompt_management if @install_prompts
+  
+  setup_prompt_management if @install_prompts # This now runs automatically if AI was chosen
+  
   setup_api_generator if @install_api
   
   setup_authentication if @install_auth

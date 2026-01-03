@@ -11,8 +11,8 @@ gem_group :development, :test do
   gem 'rubocop-rails', require: false
   
   # Performance & Observability (Dev)
-  gem 'bullet'
-  gem 'prosopite'
+  gem 'bullet', '~> 8.1'
+  gem 'prosopite', '~> 2.1', '>= 2.1.2'
 end
 
 gem_group :development do
