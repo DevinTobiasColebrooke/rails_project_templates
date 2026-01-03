@@ -1,3 +1,4 @@
+# partials/gems.rb
 puts "\n📦  Defining Gems..."
 
 # 1. Standard Dev/Test
@@ -10,47 +11,43 @@ gem_group :development, :test do
   gem 'rubocop-rails', require: false
   
   # Performance & Observability (Dev)
-  gem 'bullet'         # Detect N+1 queries
-  gem 'prosopite'      # N+1 auto-detection (alternative to bullet)
+  gem 'bullet'
+  gem 'prosopite'
 end
 
 gem_group :development do
   gem 'letter_opener', '~> 1.0'
   gem 'letter_opener_web', '~> 3.0'
-  gem 'annotate'       # Adds schema comments to models
+  gem 'annotate'
 end
 
 # 2. Production Observability & Data
-gem 'rack-attack'      # Rate limiting & protection
-gem 'pg_query'         # SQL query parsing
-gem 'scenic'           # Database Views support
-gem 'ahoy_matey'       # First-party analytics
-gem 'blazer'           # (Optional) Business Intelligence/SQL queries
+gem 'rack-attack'
+gem 'pg_query'
+gem 'scenic'
+gem 'ahoy_matey'
 
 # 3. SEO
-gem 'meta-tags'
-gem 'sitemap_generator'
+if @install_seo
+  gem 'meta-tags'
+  gem 'sitemap_generator'
+end
 
 # 4. Stripe
 if @install_stripe
   gem 'stripe', '~> 10.0'
 end
 
-# 5. AI
-if @install_gemini || @install_local || @install_rag
-  gem "faraday", "~> 2.14"
-  gem "json"
-end
-
-if @install_gemini || @install_local
-  gem "ruby-openai", "~> 6.0"
-end
-
-if @install_rag
-  gem "ferrum"
-  gem "ruby-readability", require: "readability"
-  gem "nokogiri", "~> 1.18"
+# 5. Vector Database
+if @install_vector_db
   gem "pgvector", "~> 0.2"
   gem "neighbor"
   gem "parallel"
+end
+
+# 6. AI Services
+if @install_gemini || @install_local
+  gem "faraday", "~> 2.14"
+  gem "json"
+  gem "ruby-openai", "~> 6.0"
 end
