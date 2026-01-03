@@ -51,7 +51,7 @@ load_partial 'performance'
 load_partial 'themes'
 load_partial 'prompts'
 load_partial 'api_client'
-load_partial 'docs'      # <--- Added this
+load_partial 'docs'
 load_partial 'finalize'
 
 # 3. Execution (After Bundle)
