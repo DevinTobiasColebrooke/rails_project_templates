@@ -1,4 +1,3 @@
-# partials/gems.rb
 puts "\n📦  Defining Gems..."
 
 # 1. Standard Dev/Test
