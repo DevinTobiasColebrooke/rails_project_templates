@@ -56,6 +56,13 @@ data_gov_key: "YOUR_DATA_GOV_KEY"
 ### 2. 🦙 Start Local AI Server (If using Local Llama)
 If you selected **Local AI**, the Rails app connects to a server on your Windows Host via a generic "default" model name.
 
+**Option A: Automated (Recommended)**
+Use the provided `start_ai_servers.bat` script which launches both the Instruct and Embedding servers in a split-pane Windows Terminal.
+1.  Open `start_ai_servers.bat` in a text editor.
+2.  Update `LLAMA_DIR` to point to the folder containing your `llama-server.exe`.
+3.  Run the script: `.\start_ai_servers.bat`
+
+**Option B: Manual**
 1.  Open PowerShell on **Windows**.
 2.  Run the **Instruct/Chat** server on port **8080**:
     ```powershell
@@ -72,6 +79,18 @@ To test payments locally, you need the Stripe CLI forwarding events to your app.
 ```bash
 stripe listen --forward-to localhost:3000/webhooks/stripe
 ```
+
+---
+
+## 📚 Project Documentation
+
+Upon generation, a `docs/` folder is created within your application containing detailed guides specific to the features you enabled:
+
+*   **`docs/project_foundation/`**: Architecture diagrams and schema plans.
+*   **`docs/authentication.md`**: User auth and session details.
+*   **`docs/ai_and_data.md`**: Configuration for Gemini, Local Llama, and Vector DB.
+*   **`docs/payments.md`**: Stripe setup and webhook handling.
+*   **`docs/ui_and_themes.md`**: How to use the theming system.
 
 ---
 
@@ -163,3 +182,4 @@ end
 | `app/services/embedding_service.rb` | routing logic for Local vs Cloud embeddings |
 | `app/models/document.rb` | Vector-enabled model |
 | `app/views/checkouts/*` | Stripe payment success/cancel pages |
+```
