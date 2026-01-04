@@ -109,4 +109,76 @@ def setup_docs_features
       - **Ahoy**: Analytics enabled. Check `Ahoy::Visit` and `Ahoy::Event`.
     MARKDOWN
   end
+  
+  # 6. Pagination (Pagy)
+  if @install_pagy
+    create_file "docs/pagination.md", <<~MARKDOWN
+      # Pagination (Pagy)
+
+      ## Quick Start
+
+      ### 1. Install
+
+      Gemfile:
+      ```ruby
+      gem 'pagy', '~> 43.2'
+      ```
+
+      ### 2. Use it in your app
+
+      Include the `pagy` method where you are going to use it:
+      ```ruby
+      include Pagy::Method
+      ```
+
+      Use it to paginate any collection with any technique:
+      ```ruby
+      @pagy, @records = pagy(:offset, Product.some_scope, **options) # :offset paginator
+      @pagy, @records = pagy(:keyset, Product.some_scope, **options) # :keyset paginator
+      ```
+
+      Render navigator tags and other helpers with the `@pagy` instance methods:
+      ```erb
+      <%== @pagy.series_nav %>
+      <%== @pagy.info_tag %>
+      ```
+
+      ## Choose Wisely
+
+      ### OFFSET Pagination
+      The most common pagination technique.
+      - **Pros**: Simple setup, full UI support
+      - **Cons**: Slow on big tables (two queries per page), data-shift
+
+      ### KEYSET Pagination
+      The fastest performance.
+      - **Pros**: Fastest paginator, no data-shift, one query per page
+      - **Cons**: Very limited UI support, appropriate DB indices required
+
+      ## How To
+
+      ### Control the items per page
+      ```ruby
+      @pagy, @products = pagy(:offset, collection, limit: 10)
+      # With client max limit
+      @pagy, @products = pagy(:offset, collection, limit: 10, client_max_limit: 1_000)
+      ```
+
+      ### Force the page
+      ```ruby
+      @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
+      ```
+      
+      ### JSON:API
+      ```ruby
+      @pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size')
+      ```
+
+      ### Paginate an Array
+      Simply pass it as the collection: `pagy(:offset, my_array, **options)`
+
+      ### Configuration
+      Check `config/initializers/pagy.rb` for defaults like overflow handling and CSS framework extras.
+    MARKDOWN
+  end
 end

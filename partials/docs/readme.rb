@@ -8,6 +8,7 @@ def setup_docs_readme
   links << "- [Project Foundation](./project_foundation/)"
   links << "- [Authentication](./authentication.md)" if @install_auth
   links << "- [AI & Data](./ai_and_data.md)" if @install_gemini || @install_local || @install_vector_db
+  links << "- [Pagination](./pagination.md)" if @install_pagy
   links << "- [Payments](./payments.md)" if @install_stripe
   links << "- [UI & Themes](./ui_and_themes.md)" if @install_ui
   links << "- [Operations](./operations.md)" if @install_ops
@@ -48,7 +49,7 @@ def setup_docs_readme
       Run the credentials editor to set up API keys for the features you selected.
 
       ```bash
-      EDITOR="nano" bin/rails credentials:edit
+      EDITOR="code --wait" bin/rails credentials:edit
       ```
 
       Add the following keys to the encrypted file:
@@ -109,6 +110,7 @@ def setup_docs_readme
     ## ✨ Features Enabled
     
     - **Rails 8**: Propshaft, importmaps, and Tailwind CSS.
+    - **Pagination**: Pagy (High performance pagination).
     #{@install_auth ? "- **Authentication**: Native Rails auth with custom controllers." : ""}
     #{@install_stripe ? "- **Payments**: Stripe Checkout & Webhooks integration." : ""}
     #{@install_gemini || @install_local ? "- **AI**: Integration with #{@install_local ? 'Local LLMs' : ''} #{@install_gemini ? 'Google Gemini' : ''}." : ""}

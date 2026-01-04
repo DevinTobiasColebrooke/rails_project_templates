@@ -34,6 +34,11 @@ set /p AppName=Enter your new Application Name:
 
 if "%AppName%"=="" goto Error
 
+echo.
+set /p ApiInput=Create as API-only application? (Y/N): 
+set API_FLAG=
+if /I "%ApiInput%"=="Y" set API_FLAG=--api
+
 :: ==============================================================================
 :: [ GENERATE SCRIPT ]
 :: ==============================================================================
@@ -59,7 +64,8 @@ echo cd "%PROJECTS_DIR%" >> "%WIN_TEMP_SCRIPT%"
 
 :: Run Rails New
 echo echo "Creating Rails App: %AppName%..." >> "%WIN_TEMP_SCRIPT%"
-echo rails new %AppName% -d postgresql --css=tailwind -m "%TEMPLATE_PATH%" >> "%WIN_TEMP_SCRIPT%"
+:: We append the %API_FLAG% here
+echo rails new %AppName% %API_FLAG% -d postgresql --css=tailwind -m "%TEMPLATE_PATH%" >> "%WIN_TEMP_SCRIPT%"
 
 :: Enter App and Open Code
 echo cd "%AppName%" >> "%WIN_TEMP_SCRIPT%"

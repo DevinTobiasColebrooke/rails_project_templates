@@ -2,17 +2,36 @@
 puts "\n🚀 Rails 8 Master Template Wizard"
 puts "========================================================"
 
-@install_ui    = yes?("🎨  Add UI (Tailwind, Flash, Menu, Custom Themes)?")
-@install_admin = yes?("👑  Add Custom Admin Panel?")
-@install_auth  = yes?("🔐  Add Authentication?")
-if @install_auth
-  @install_verify = yes?("    📧  Add Email Verification?")
+# Detect API Mode
+@api_only = Rails.configuration.api_only
+
+if @api_only
+  puts "🤖  API Mode Detected."
+  puts "    Skipping UI, Admin, SEO, and Browser-Auth prompts."
+  
+  @install_ui = false
+  @install_admin = false
+  @install_seo = false
+  @install_auth = false # Native Rails 8 auth is session/browser based
+else
+  @install_ui    = yes?("🎨  Add UI (Tailwind, Flash, Menu, Custom Themes)?")
+  @install_admin = yes?("👑  Add Custom Admin Panel?")
+  @install_auth  = yes?("🔐  Add Authentication?")
+  if @install_auth
+    @install_verify = yes?("    📧  Add Email Verification?")
+  end
+  # Rich Text removed as requested
+  @install_seo       = yes?("    Add SEO Tools (MetaTags, Sitemap)?")
 end
 
+
 puts "\n🧱  Content & Data"
-# Rich Text removed as requested
-@install_seo       = yes?("    Add SEO Tools (MetaTags, Sitemap)?")
 @install_api       = yes?("    Add API Services (Data.gov example)?")
+
+# Pagy is now auto-included as standard
+@install_pagy = true
+puts "    -> 📄 Pagination (Pagy) auto-enabled."
+
 # Prompts question removed from here to handle it smartly below
 
 puts "\n💳  Payments"
@@ -51,6 +70,7 @@ load_partial 'themes'
 load_partial 'auth'
 load_partial 'api_client'
 load_partial 'seo'
+load_partial 'pagy'
 load_partial 'stripe'
 load_partial 'vector_db'
 load_partial 'ai'
@@ -64,9 +84,8 @@ after_bundle do
   setup_testing
   setup_performance if @install_ops
 
-  # UI & Admin
+  # UI & Admin (Skipped in API mode)
   setup_ui_layout if @install_ui
-  # Themes partial handles both themes and admin logic
   setup_themes_and_admin if @install_ui || @install_admin 
 
   # Authentication
@@ -75,6 +94,7 @@ after_bundle do
   # Features
   setup_api_generator if @install_api
   setup_seo if @install_seo
+  setup_pagy if @install_pagy # Always runs now, but handles API logic inside
   setup_stripe if @install_stripe
 
   # Data & AI

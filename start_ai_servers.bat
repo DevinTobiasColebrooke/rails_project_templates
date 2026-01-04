@@ -4,8 +4,18 @@ setlocal
 :: ==============================================================================
 :: [ CONFIGURATION ]
 :: ==============================================================================
+
+:: --- WINDOWS / LLAMA CONFIG ---
 set LLAMA_DIR=C:\Users\dtcol\Documents\llama-b7307-bin-win-vulkan-x64
 set EMBED_MODEL=nomic-embed-text-v1.5.f32.gguf
+
+:: --- WSL / SEARXNG CONFIG ---
+set WSL_DISTRO=MyDevUbuntu
+set WSL_USER=dtcolebrooke
+set SEARX_PATH=/home/%WSL_USER%/dev/searxng/searxng
+
+:: Command string for inside WSL (Cleans lock, starts server, keeps shell open)
+set "CMD_SEARX=rm -f ~/.config/google-chrome/Singleton* && ./manage webapp.run && exec bash || exec bash"
 
 :: ==============================================================================
 :: [ CLEANUP ]
@@ -40,17 +50,31 @@ goto MENU
 :MODEL_LLAMA
 set MODEL_FILE=Meta-Llama-3.1-8B-Instruct-Q8_0.gguf
 set MODEL_NAME=Llama 3.1 8B
-goto LAUNCH
+goto ASK_SEARX
 
 :MODEL_QWEN
 set MODEL_FILE=Qwen3-14B-Q5_K_M.gguf
 set MODEL_NAME=Qwen3 14B
-goto LAUNCH
+goto ASK_SEARX
 
 :MODEL_GPT
 set MODEL_FILE=gpt-oss-20b-Q5_K_M.gguf
 set MODEL_NAME=GPT OSS 20B
-goto LAUNCH
+goto ASK_SEARX
+
+:: ==============================================================================
+:: [ SEARXNG SELECTION ]
+:: ==============================================================================
+:ASK_SEARX
+echo.
+set /p start_searx="Start SearXNG server as well? (Y/N): "
+if /I "%start_searx%"=="Y" goto PREP_SEARX
+if /I "%start_searx%"=="N" goto LAUNCH
+
+:PREP_SEARX
+:: This constructs the extra WT arguments to split the pane and run WSL
+set "SEARX_WT_ARG=; move-focus left ; split-pane -H -p "%WSL_DISTRO%" wsl -d %WSL_DISTRO% -u %WSL_USER% --cd "%SEARX_PATH%" bash -c "%CMD_SEARX%""
+echo SearXNG Enabled.
 
 :: ==============================================================================
 :: [ LAUNCH COMMANDS ]
@@ -61,15 +85,18 @@ echo Selected: %MODEL_NAME%
 echo Launching servers...
 
 :: Command for the Instruct Model (Dynamic based on choice)
-:: Note: ctx-size 32768 is set. If the 20B model runs out of VRAM, try lowering this to 8192.
 set INSTRUCT_CMD=llama-server -m %MODEL_FILE% --host 0.0.0.0 --port 8080 --jinja --verbose --ctx-size 32768
 
 :: Command for the Embedding Model (Static)
 set EMBED_CMD=llama-server -m %EMBED_MODEL% --host 0.0.0.0 --port 8081 --embedding --ubatch-size 2048 --verbose
 
+:: Launch Windows Terminal
+:: 1. New Tab (Instruct)
+:: 2. Split Vertical (Embed)
+:: 3. (Optional) Move Focus Left -> Split Horizontal (SearXNG)
 start "AI Servers" wt ^
   new-tab -p "Command Prompt" -d "%LLAMA_DIR%" --title "Instruct: %MODEL_NAME%" cmd /k "%INSTRUCT_CMD%" ; ^
-  split-pane -V -p "Command Prompt" -d "%LLAMA_DIR%" --title "Embed: Nomic" cmd /k "%EMBED_CMD%" ; ^
-  move-focus left
+  split-pane -V -p "Command Prompt" -d "%LLAMA_DIR%" --title "Embed: Nomic" cmd /k "%EMBED_CMD%" ^
+  %SEARX_WT_ARG%
 
 endlocal
