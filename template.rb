@@ -3,7 +3,8 @@ puts "\n🚀 Rails 8 Master Template Wizard"
 puts "========================================================"
 
 # Detect API Mode
-@api_only = Rails.configuration.api_only
+# We check the options hash passed to the generator instead of Rails.configuration
+@api_only = options[:api]
 
 if @api_only
   puts "🤖  API Mode Detected."

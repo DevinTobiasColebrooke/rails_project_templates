@@ -52,9 +52,8 @@ if exist "%WIN_TEMP_SCRIPT%" del "%WIN_TEMP_SCRIPT%"
 echo source ~/.bashrc > "%WIN_TEMP_SCRIPT%"
 echo echo "--- INITIALIZING RAILS 8 SETUP ---" >> "%WIN_TEMP_SCRIPT%"
 
-:: IP Detection
+:: IP Detection (Modified to not print to console)
 echo export WINDOWS_HOST_IP=$(ip route show ^| grep -i default ^| awk '{print $3}') >> "%WIN_TEMP_SCRIPT%"
-echo echo "Windows Host IP: $WINDOWS_HOST_IP" >> "%WIN_TEMP_SCRIPT%"
 
 :: Check/Start Postgres
 echo service postgresql status ^> /dev/null ^|^| sudo service postgresql start >> "%WIN_TEMP_SCRIPT%"
