@@ -1,9 +1,11 @@
 def setup_recon_models
   # We use generate model to create the files, but we'll overwrite the content to match the specific schema
-  generate :model, "ReconnaissanceLog query:string domain:string location:string report:text method:string logs:jsonb"
+  # FIX: Renamed 'method' to 'search_method' to avoid FactoryBot collision with Kernel#method
+  generate :model, "ReconnaissanceLog query:string domain:string location:string report:text search_method:string logs:jsonb"
   
   # WebDocument needs vector support
-  generate :model, "WebDocument url:string:index content:text"
+  # Removed :index from url:string to avoid duplicate index creation (we inject a unique index manually below)
+  generate :model, "WebDocument url:string content:text"
   
   # Update WebDocument migration to add vector column and index
   migration_file = Dir.glob("db/migrate/*_create_web_documents.rb").first

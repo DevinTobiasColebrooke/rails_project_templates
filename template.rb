@@ -38,19 +38,21 @@ puts "    -> 📄 Pagination (Pagy) auto-enabled."
 puts "\n💳  Payments"
 @install_stripe = yes?("    Add Stripe Payments?")
 
-puts "\n🧠  Knowledge Base"
-@install_vector_db = yes?("    Add Vector Database (pgvector + Neighbor)?")
-
-puts "\n🤖  AI Configuration"
+puts "\n🤖  AI & Research Configuration"
 @install_gemini = yes?("    Add Google Gemini Service?")
-@install_local  = yes?("    Add Local AI (Llama via Windows/WSL)?")
 @install_recon  = yes?("    Add Deep Research Agent (Recon)?")
 
-# Recon implies Vector DB and Local AI
 if @install_recon
-  puts "    -> 🕵️‍♂️  Recon Agent requires Vector DB and Local AI. Enabling..."
-  @install_vector_db = true
+  puts "    -> 🕵️‍♂️  Recon Agent selected."
+  puts "    -> 📦 Auto-enabling Local AI and Vector DB (Required dependencies)."
   @install_local = true
+  @install_vector_db = true
+else
+  # Only prompt for these if Recon didn't auto-enable them
+  @install_local = yes?("    Add Local AI (Llama via Windows/WSL)?")
+  
+  puts "\n🧠  Knowledge Base"
+  @install_vector_db = yes?("    Add Vector Database (pgvector + Neighbor)?")
 end
 
 if @install_gemini || @install_local || @install_recon

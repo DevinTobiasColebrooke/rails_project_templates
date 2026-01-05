@@ -159,7 +159,7 @@ def setup_recon_agent
             query: @goal.truncate(250),
             report: result,
             logs: @logs,
-            method: "deep_research_v2"
+            search_method: "deep_research_v2"
           )
         rescue => e
           Rails.logger.error "Failed to save logs: \#{e.message}"
