@@ -11,11 +11,13 @@ if @api_only
   puts "    Skipping UI, Admin, SEO, and Browser-Auth prompts."
   
   @install_ui = false
+  @install_chat_ui = false
   @install_admin = false
   @install_seo = false
   @install_auth = false # Native Rails 8 auth is session/browser based
 else
   @install_ui    = yes?("🎨  Add UI (Tailwind, Flash, Menu, Custom Themes)?")
+  @install_chat_ui = yes?("    💬  Add AI Chat UI (Conversational Interface)?")
   @install_admin = yes?("👑  Add Custom Admin Panel?")
   @install_auth  = yes?("🔐  Add Authentication?")
   if @install_auth
@@ -73,6 +75,7 @@ load_partial 'gems'
 load_partial 'testing'
 load_partial 'performance'
 load_partial 'ui'
+load_partial 'chat_ui' # New Loader
 load_partial 'themes'
 load_partial 'auth'
 load_partial 'api_client'
@@ -94,6 +97,11 @@ after_bundle do
 
   # UI & Admin (Skipped in API mode)
   setup_ui_layout if @install_ui
+  
+  if @install_chat_ui
+    setup_chat_ui
+  end
+
   setup_themes_and_admin if @install_ui || @install_admin 
 
   # Authentication
