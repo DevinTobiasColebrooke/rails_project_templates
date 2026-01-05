@@ -1,5 +1,3 @@
-# partials/docs/features.rb
-
 def setup_docs_features
   puts "    ...generating Feature specific documentation"
 
@@ -26,11 +24,12 @@ def setup_docs_features
   end
 
   # 2. AI & Data
-  if @install_gemini || @install_local || @install_vector_db
+  if @install_gemini || @install_local || @install_vector_db || @install_searxng
     
     ai_content = "## AI Providers\n"
     ai_content += "- **Gemini**: Use `GoogleGeminiService`. Requires `google: gemini_key` in credentials.\n" if @install_gemini
     ai_content += "- **Local Llama**: Use `LocalLlmService`. Connects to Windows host on port 8080. See `config/initializers/ai_config.rb`.\n" if @install_local
+    ai_content += "- **SearXNG**: Use `WebSearchService`. Connects to `ENV['SEARXNG_URL']` (Default: localhost:8888).\n" if @install_searxng
     
     if @install_vector_db
       ai_content += <<~MARKDOWN
@@ -48,6 +47,16 @@ def setup_docs_features
         ## Prompt Management
         - Edit prompts in `config/prompts.yml`.
         - Access via `Prompt.get('key')`.
+      MARKDOWN
+    end
+    
+    if @install_searxng
+      ai_content += <<~MARKDOWN
+
+        ## Web Search Tools
+        - **Service**: `app/services/web_search_service.rb`
+        - **Tool Wrapper**: `app/models/tools/searxng_search_tool.rb`
+        - **Dependency**: `ferrum` gem (Headless Chrome) is installed for scraping content.
       MARKDOWN
     end
 

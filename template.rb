@@ -33,8 +33,6 @@ puts "\n🧱  Content & Data"
 @install_pagy = true
 puts "    -> 📄 Pagination (Pagy) auto-enabled."
 
-# Prompts question removed from here to handle it smartly below
-
 puts "\n💳  Payments"
 @install_stripe = yes?("    Add Stripe Payments?")
 
@@ -44,8 +42,16 @@ puts "\n🧠  Knowledge Base"
 puts "\n🤖  AI Configuration"
 @install_gemini = yes?("    Add Google Gemini Service?")
 @install_local  = yes?("    Add Local AI (Llama via Windows/WSL)?")
+@install_recon  = yes?("    Add Deep Research Agent (Recon)?")
 
-if @install_gemini || @install_local
+# Recon implies Vector DB and Local AI
+if @install_recon
+  puts "    -> 🕵️‍♂️  Recon Agent requires Vector DB and Local AI. Enabling..."
+  @install_vector_db = true
+  @install_local = true
+end
+
+if @install_gemini || @install_local || @install_recon
   @install_prompts = true
   puts "    -> 🧠 Prompt Management System auto-enabled for AI."
 else
@@ -75,6 +81,7 @@ load_partial 'pagy'
 load_partial 'stripe'
 load_partial 'vector_db'
 load_partial 'ai'
+load_partial 'recon'
 load_partial 'prompts'
 load_partial 'docs'
 load_partial 'finalize'
@@ -105,6 +112,8 @@ after_bundle do
     setup_ai_configuration
     setup_ai_services
   end
+
+  setup_recon if @install_recon
   
   setup_prompt_management if @install_prompts
 

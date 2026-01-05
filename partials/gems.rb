@@ -40,12 +40,18 @@ end
 if @install_vector_db
   gem 'pgvector', '~> 0.3.2'
   gem 'neighbor', '~> 0.6.0'
-  gem 'parallel', '~> 1.27'
 end
 
 # 6. AI Services
-if @install_gemini || @install_local
+if @install_gemini || @install_local || @install_recon
   gem 'faraday', '~> 2.14'
   gem 'json', '~> 2.18'
   gem 'ruby-openai', '~> 8.3'
+end
+
+# 7. Web Search / Scraping / Agent
+if @install_recon
+  gem 'ferrum', '~> 0.17.1' # Headless Chrome
+  gem 'parallel', '~> 1.27' # Threading for RAG
+  gem 'nokogiri', '~> 1.18' # Parsing
 end
