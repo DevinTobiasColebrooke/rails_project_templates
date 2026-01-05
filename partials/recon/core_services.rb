@@ -1,5 +1,77 @@
 def setup_recon_core_services
-  # 1. Embedding Service
+  # 1. Base API Client (Abstracts generic API logic)
+  create_file "app/services/api/base_client.rb", <<~RUBY
+    require "faraday"
+    require "json"
+
+    module Api
+      class BaseClient
+        def initialize(base_url:, api_key: nil)
+          @base_url = base_url
+          @api_key = api_key
+        end
+
+        protected
+
+        def connection
+          @connection ||= Faraday.new(url: @base_url) do |conn|
+            conn.request :json
+            conn.response :json, content_type: /\bjson$/
+            conn.adapter Faraday.default_adapter
+          end
+        end
+
+        def get(endpoint, params = {})
+          response = connection.get(endpoint, params)
+          handle_response(response)
+        end
+
+        def handle_response(response)
+          if response.success?
+            response.body
+          else
+            Rails.logger.error "API Error [\#{self.class.name}]: \#{response.status} - \#{response.body}"
+            nil
+          end
+        rescue Faraday::Error => e
+          Rails.logger.error "API Connection Error [\#{self.class.name}]: \#{e.message}"
+          nil
+        end
+      end
+    end
+  RUBY
+
+  # 2. Example Implementation (Data.gov)
+  # This shows users how to wrap a specific dataset API
+  create_file "app/services/api/college_scorecard_client.rb", <<~RUBY
+    module Api
+      class CollegeScorecardClient < BaseClient
+        # https://api.data.gov/ed/collegescorecard/v1
+        BASE_URL = "https://api.data.gov/ed/collegescorecard/v1".freeze
+
+        def initialize
+          # Uses credentials.data_gov_key or ENV['DATA_GOV_KEY']
+          super(
+            base_url: BASE_URL,
+            api_key: Rails.application.credentials.data_gov_key || ENV['DATA_GOV_KEY']
+          )
+        end
+
+        def search_schools(query)
+          return nil if @api_key.blank?
+
+          get("schools", {
+            api_key: @api_key,
+            "school.name" => query,
+            fields: "id,school.name,school.school_url,school.city,school.state,latest.student.size",
+            per_page: 5
+          })
+        end
+      end
+    end
+  RUBY
+
+  # 3. Embedding Service
   create_file "app/services/embedding_service.rb", <<~RUBY, force: true
     class EmbeddingService
       # Allow a specific URL for the embedding server, or fall back to the main LLM URL
@@ -31,7 +103,7 @@ def setup_recon_core_services
     end
   RUBY
 
-  # 2. Web Search Service (SearXNG + Ferrum)
+  # 4. Web Search Service (SearXNG + Ferrum)
   create_file "app/services/web_search_service.rb", <<~RUBY, force: true
     require "ferrum"
     require "net/http"
@@ -75,7 +147,7 @@ def setup_recon_core_services
     end
   RUBY
 
-  # 3. Google Custom Search
+  # 5. Google Custom Search
   create_file "app/services/google_custom_search_service.rb", <<~RUBY
     require "net/http"
     require "json"
@@ -131,7 +203,7 @@ def setup_recon_core_services
     end
   RUBY
 
-  # 4. RAG Search Service
+  # 6. RAG Search Service
   create_file "app/services/rag_search_service.rb", <<~RUBY
     require "parallel"
 

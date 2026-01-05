@@ -105,6 +105,47 @@ def setup_recon_tools
     end
   RUBY
 
+  # Example of a Domain Specific API Tool
+  create_file "app/services/tools/college_scorecard_tool.rb", <<~RUBY
+    module Tools
+      class CollegeScorecardTool < BaseTool
+        def self.tool_name
+          "college_scorecard_search"
+        end
+
+        def self.description
+          "Search U.S. Government Data for details on educational institutions, locations, and student sizes."
+        end
+
+        def self.parameters
+          {
+            name: { type: :string, description: "The name of the school or institution." }
+          }
+        end
+
+        def self.required_parameters
+          [ "name" ]
+        end
+
+        def call(args)
+          # Initialize the specific domain client
+          client = Api::CollegeScorecardClient.new
+          data = client.search_schools(args["name"])
+          
+          if data && data["results"]&.any?
+            data["results"].map do |r|
+              "School: \#{r['school.name']}\\nLocation: \#{r['school.city']}, \#{r['school.state']}\\nWebsite: \#{r['school.school_url']}\\nSize: \#{r['latest.student.size']}"
+            end.join("\\n---\\n")
+          else
+            "No records found in College Scorecard."
+          end
+        rescue => e
+          "API Error: \#{e.message}"
+        end
+      end
+    end
+  RUBY
+
   create_file "app/services/tools/visit_page_tool.rb", <<~RUBY
     module Tools
       class VisitPageTool < BaseTool
