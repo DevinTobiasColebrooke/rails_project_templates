@@ -191,28 +191,29 @@ def setup_chat_views
   # 5. Create Sources Partial
   create_file "app/views/messages/_sources.html.erb", <<~ERB
     <% if sources.any? %>
-      <div class="mt-5 pt-4 border-t border-slate-700">
-        <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+      <div class="mt-5 pt-4 border-t border-gray-800">
+        <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
           Verified Sources
         </h4>
         <div class="grid grid-cols-1 gap-2">
           <% sources.each do |url| %>
-            <a href="<%= url %>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/50 hover:bg-slate-900 border border-slate-700 hover:border-slate-600 transition-all group no-underline">
-              <div class="w-8 h-8 rounded-md bg-slate-800 flex items-center justify-center shrink-0 text-slate-400 group-hover:text-white font-bold text-xs uppercase">
+            <a href="<%= url %>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 border border-gray-800 hover:border-gray-700 transition-all group no-underline">
+              <!-- Favicon / Initial placeholder -->
+              <div class="w-8 h-8 rounded-md bg-gray-700/50 flex items-center justify-center shrink-0 text-gray-400 group-hover:text-white font-bold text-xs uppercase">
                 <%= URI.parse(url).host&.first || "?" %>
               </div>
               
               <div class="flex-1 min-w-0">
-                <div class="truncate text-blue-400 group-hover:text-blue-300 font-medium text-sm">
+                <div class="truncate text-indigo-400 group-hover:text-indigo-300 font-medium text-sm">
                   <%= URI.parse(url).host %>
                 </div>
-                <div class="truncate text-xs text-slate-500 group-hover:text-slate-400">
+                <div class="truncate text-xs text-gray-600 group-hover:text-gray-500">
                   <%= url %>
                 </div>
               </div>
               
-              <svg class="w-4 h-4 text-slate-500 group-hover:text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+              <svg class="w-4 h-4 text-gray-600 group-hover:text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
             </a>
           <% end %>
         </div>
@@ -220,51 +221,82 @@ def setup_chat_views
     <% end %>
   ERB
 
-  # 6. Message Partial (Updated to use Source parsing and server-side Markdown)
+  # 6. Message Partial (Avatar Style)
   create_file "app/views/messages/_message.html.erb", <<~ERB
-    <div class="flex flex-col <%= message.role == 'user' ? 'items-end' : 'items-start' %> group">
-      <div class="max-w-3xl <%= message.role == 'user' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-200' %> rounded-2xl px-5 py-4 shadow-sm">
-        <% if message.role == 'assistant' %>
-          <% content, sources = parse_markdown_with_sources(message.content) %>
-          
-          <div class="prose prose-invert prose-sm max-w-none">
-            <%= markdown(content) %>
-          </div>
-          
-          <%= render "messages/sources", sources: sources %>
-
-          <% if message.metadata["logs"].present? %>
-            <details class="mt-4 border-t border-slate-700 pt-2">
-              <summary class="text-xs font-mono text-slate-500 cursor-pointer hover:text-slate-300 select-none">
-                View Research Logs (<%= message.metadata["logs"].size %>)
-              </summary>
-              <div class="mt-2 space-y-1 font-mono text-[10px] text-green-400 bg-slate-950 p-2 rounded max-h-48 overflow-y-auto">
-                <% message.metadata["logs"].each do |log| %>
-                  <div class="opacity-80">
-                    <span class="text-slate-600">[<%= Time.parse(log["time"]).strftime('%T') rescue '00:00' %>]</span> 
-                    <%= log["msg"] %>
-                  </div>
-                <% end %>
-              </div>
-            </details>
-          <% end %>
+    <div class="flex gap-4 <%= message.role == 'user' ? 'flex-row-reverse' : 'flex-row' %> group mb-6">
+      <!-- Avatar -->
+      <div class="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center <%= message.role == 'user' ? 'bg-gray-700' : 'bg-indigo-600 shadow-lg shadow-indigo-500/20' %>">
+        <% if message.role == 'user' %>
+          <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
         <% else %>
-          <div class="whitespace-pre-wrap"><%= message.content %></div>
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
         <% end %>
       </div>
-      <span class="text-[10px] text-slate-600 mt-1 px-2">
-        <%= message.role.humanize %> • <%= message.created_at.strftime("%I:%M %p") %>
-      </span>
+
+      <!-- Content -->
+      <div class="flex flex-col max-w-[85%] md:max-w-3xl min-w-0 <%= message.role == 'user' ? 'items-end' : 'items-start' %>">
+        <div class="text-xs text-gray-500 mb-1 px-1">
+          <%= message.role == 'user' ? 'You' : 'Recon AI' %>
+        </div>
+        
+        <div class="<%= message.role == 'user' ? 'bg-gray-800 text-gray-100 rounded-2xl rounded-tr-sm' : 'bg-transparent text-gray-100' %> px-5 py-3 shadow-sm w-full overflow-hidden">
+          <% if message.role == 'assistant' %>
+            <% content, sources = parse_markdown_with_sources(message.content) %>
+            
+            <!-- Markdown Content -->
+            <div class="prose prose-invert prose-sm md:prose-base max-w-none prose-p:leading-relaxed prose-headings:text-gray-100 prose-a:text-indigo-400 hover:prose-a:text-indigo-300 prose-code:text-indigo-300 prose-code:bg-gray-800/50 prose-code:px-1 prose-code:rounded prose-code:before:content-none prose-code:after:content-none">
+              <%= markdown(content) %>
+            </div>
+
+            <!-- Verified Sources Partial -->
+            <%= render "messages/sources", sources: sources %>
+
+            <!-- Research Logs (Collapsible) -->
+            <% if message.metadata["logs"].present? %>
+              <div class="mt-4">
+                <details class="group/logs">
+                  <summary class="list-none flex items-center gap-2 text-xs font-medium text-gray-500 hover:text-gray-400 cursor-pointer select-none transition-colors">
+                    <svg class="w-4 h-4 transition-transform group-open/logs:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    <span>View Research Process (<%= message.metadata["logs"].size %> steps)</span>
+                  </summary>
+                  <div class="mt-3 bg-gray-950/50 border border-gray-800 rounded-lg p-3 overflow-hidden">
+                    <div class="space-y-2 font-mono text-[11px] max-h-64 overflow-y-auto custom-scrollbar">
+                      <% message.metadata["logs"].each do |log| %>
+                        <div class="flex gap-2">
+                          <span class="text-gray-600 shrink-0 select-none"><%= Time.parse(log["time"]).strftime('%H:%M:%S') rescue '' %></span>
+                          <span class="<%= log['msg'].include?('Tool') ? 'text-indigo-400' : (log['msg'].include?('Error') ? 'text-red-400' : 'text-gray-400') %> break-words">
+                            <%= log["msg"] %>
+                          </span>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="whitespace-pre-wrap leading-relaxed"><%= message.content %></div>
+          <% end %>
+        </div>
+      </div>
     </div>
   ERB
 
   # 7. Configure Tailwind Typography Plugin (Necessary for prose classes)
-  target_css = "app/assets/stylesheets/application.tailwind.css"
-  if File.exist?(target_css)
+  # Check multiple potential locations for CSS file (User request: assets/tailwind/application.css)
+  css_files = ["app/assets/stylesheets/application.tailwind.css", "app/assets/tailwind/application.css"]
+  target_css = css_files.find { |f| File.exist?(f) }
+
+  if target_css
     # Inject plugin registration if not already present
-    unless File.read(target_css).include?("@plugin")
-      inject_into_file target_css, after: '@import "tailwindcss";' do
-        "\n@plugin \"@tailwindcss/typography\";"
+    unless File.read(target_css).include?("typography")
+      if File.read(target_css).include?('@import "tailwindcss";')
+        inject_into_file target_css, after: '@import "tailwindcss";' do
+          "\n@plugin \"@tailwindcss/typography\";"
+        end
+      else
+        # Fallback if no import found or empty file
+        append_to_file target_css, "\n@plugin \"@tailwindcss/typography\";"
       end
     end
   end
