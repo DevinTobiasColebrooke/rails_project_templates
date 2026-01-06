@@ -16,7 +16,7 @@ def setup_chat_views
         <link rel="icon" href="/icon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/icon.png">
 
-        <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+        <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
         <%= javascript_importmap_tags %>
         
         <!-- Marked.js for Markdown Rendering -->
@@ -60,6 +60,9 @@ def setup_chat_views
 
   # 3. Conversation Show (The Main Chat Interface)
   # Includes duplicate sidebar (responsive hidden) and the chat area
+  
+  sidebar_query = @install_auth ? "current_user.conversations" : "Conversation"
+
   create_file "app/views/conversations/show.html.erb", <<~ERB
     <div class="flex h-full w-full" data-controller="loader">
       <!-- Sidebar -->
@@ -71,7 +74,7 @@ def setup_chat_views
           <%= button_to "+ New Research", conversations_path, class: "w-full bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded transition text-sm font-medium cursor-pointer" %>
         </div>
         <div class="flex-1 overflow-y-auto px-2 space-y-1">
-          <% Conversation.order(updated_at: :desc).limit(50).each do |conv| %>
+          <% #{sidebar_query}.order(updated_at: :desc).limit(50).each do |conv| %>
             <%= link_to conv.title, conversation_path(conv), class: "block px-3 py-2 rounded text-sm truncate \#{conv.id == @conversation.id ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-900'}" %>
           <% end %>
         </div>

@@ -1,26 +1,35 @@
 def setup_chat_controllers
   # 1. Conversations Controller
+  # Adjust scope based on Auth presence
+  
+  if @install_auth
+    conv_scope = "current_user.conversations"
+  else
+    conv_scope = "Conversation"
+  end
+
   create_file "app/controllers/conversations_controller.rb", <<~RUBY
     class ConversationsController < ApplicationController
       layout "chat" # Use specific chat layout
 
       def index
-        @conversations = Conversation.order(updated_at: :desc)
+        @conversations = #{conv_scope}.order(updated_at: :desc)
         @conversation = Conversation.new
       end
 
       def create
-        @conversation = Conversation.create
+        @conversation = #{conv_scope}.create
         redirect_to conversation_path(@conversation)
       end
 
       def show
-        @conversation = Conversation.find(params[:id])
+        # Security check if auth is on
+        @conversation = #{conv_scope}.find(params[:id])
         @messages = @conversation.messages.order(:created_at)
       end
 
       def destroy
-        Conversation.find(params[:id]).destroy
+        #{conv_scope}.find(params[:id]).destroy
         redirect_to conversations_path
       end
     end
@@ -29,6 +38,8 @@ def setup_chat_controllers
   # 2. Messages Controller
   # We construct the logic based on what AI services are installed
   
+  message_lookup = @install_auth ? "current_user.conversations.find(params[:conversation_id])" : "Conversation.find(params[:conversation_id])"
+
   service_call_logic = if @install_recon
     <<~RUBY
       # Call Recon Agent directly
@@ -61,7 +72,7 @@ def setup_chat_controllers
   create_file "app/controllers/messages_controller.rb", <<~RUBY
     class MessagesController < ApplicationController
       def create
-        @conversation = Conversation.find(params[:conversation_id])
+        @conversation = #{message_lookup}
         user_content = params[:content]
 
         return head :unprocessable_entity if user_content.blank?

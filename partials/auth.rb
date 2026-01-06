@@ -86,4 +86,13 @@ def setup_authentication
     end
     RUBY
   end
+
+  # 6. Chat UI Integration
+  if @install_chat_ui
+    # The User model is created by 'generate authentication' which usually places it at app/models/user.rb
+    # We inject the association.
+    inject_into_file 'app/models/user.rb', after: "class User < ApplicationRecord\n" do
+      "  has_many :conversations, dependent: :destroy\n"
+    end
+  end
 end
