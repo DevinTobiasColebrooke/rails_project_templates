@@ -40,9 +40,15 @@ def setup_recon_clients
 
         raise "LLM returned empty response" if content.blank?
         content.strip
-      rescue Faraday::ConnectionFailed
-        Rails.logger.error "LocalLlmClient: Connection refused at \#{BASE_URL}"
-        raise
+      rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
+        Rails.logger.error "LocalLlmClient: Connection failed at \#{BASE_URL}: \#{e.message}"
+        
+        hint = ""
+        if BASE_URL.include?("127.0.0.1") || BASE_URL.include?("localhost")
+          hint = " (If using WSL, delete 'config/ai_host.txt' to auto-detect Windows IP)"
+        end
+        
+        raise "Connection to AI Server failed at \#{BASE_URL}\#{hint}. Please ensure 'start_recon_stack.bat' is running."
       end
 
       def chat_with_tools(messages:, tools:, temperature: 0.0)
@@ -63,9 +69,15 @@ def setup_recon_clients
         else
           { content: message["content"]&.strip }
         end
-      rescue Faraday::ConnectionFailed
-        Rails.logger.error "LocalLlmClient: Connection refused at \#{BASE_URL}"
-        raise
+      rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
+        Rails.logger.error "LocalLlmClient: Connection failed at \#{BASE_URL}: \#{e.message}"
+        
+        hint = ""
+        if BASE_URL.include?("127.0.0.1") || BASE_URL.include?("localhost")
+          hint = " (If using WSL, delete 'config/ai_host.txt' to auto-detect Windows IP)"
+        end
+
+        raise "Connection to AI Server failed at \#{BASE_URL}\#{hint}. Please ensure 'start_recon_stack.bat' is running."
       end
 
       def healthy?

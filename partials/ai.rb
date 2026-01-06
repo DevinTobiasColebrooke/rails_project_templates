@@ -9,20 +9,33 @@ def setup_ai_configuration
   if @install_local
     # WSL 2 IP Detection Logic
     config_content += <<~RUBY
-      # Detect Windows Host IP from WSL
+      # Detect Windows Host IP from WSL dynamically
       def self.detect_host_ip
-        # Check for WSL (case insensitive check for 'microsoft')
-        return 'localhost' unless File.exist?('/proc/version') && File.read('/proc/version').downcase.include?('microsoft')
-        
-        # Extract nameserver IP from resolv.conf which usually points to the Windows Host in WSL2
-        ip = `grep nameserver /etc/resolv.conf | awk '{print $2}'`.strip
-        ip.empty? ? 'localhost' : ip
-      rescue
-        'localhost'
+        # 1. Check for manual override file "config/ai_host.txt" first
+        override_file = Rails.root.join("config/ai_host.txt")
+        if File.exist?(override_file)
+          ip = File.read(override_file).strip
+          return ip unless ip.blank?
+        end
+
+        # 2. Check for WSL environment
+        if File.exist?("/proc/version") && File.read("/proc/version").downcase.include?("microsoft")
+          # Method A: Get the Default Gateway (This is usually the Windows Host IP in NAT mode)
+          # Output looks like: "default via 172.29.240.1 dev eth0" -> We want "172.29.240.1"
+          gateway = `ip route show default | awk '{print $3}'`.strip
+          return gateway if gateway.present? && gateway =~ /^\\d+\\.\\d+\\.\\d+\\.\\d+$/
+
+          # Method B: Nameserver fallback
+          nameserver = `grep nameserver /etc/resolv.conf | awk '{print $2}'`.strip
+          return nameserver if nameserver.present? && nameserver =~ /^\\d+\\.\\d+\\.\\d+\\.\\d+$/
+        end
+
+        # 3. Fallback to localhost (Native Linux, Native Windows, or Mirrored Networking)
+        "localhost"
       end
 
-      # 1. Try to use the IP passed from the Batch script (fastest/safest)
-      # 2. Fallback to auto-detection inside WSL
+      # 1. Try to use the IP passed from the Batch script env var (fastest/safest)
+      # 2. Fallback to auto-detection methods
       WINDOWS_HOST = ENV.fetch('WINDOWS_HOST_IP') { detect_host_ip }
       
       # Configuration matches your Windows Batch Script ports
