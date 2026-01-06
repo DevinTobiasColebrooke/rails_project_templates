@@ -11,9 +11,14 @@ def setup_ai_configuration
     config_content += <<~RUBY
       # Detect Windows Host IP from WSL
       def self.detect_host_ip
-        return 'localhost' unless File.exist?('/proc/version') && File.read('/proc/version').include?('Microsoft')
+        # Check for WSL (case insensitive check for 'microsoft')
+        return 'localhost' unless File.exist?('/proc/version') && File.read('/proc/version').downcase.include?('microsoft')
+        
+        # Extract nameserver IP from resolv.conf which usually points to the Windows Host in WSL2
         ip = `grep nameserver /etc/resolv.conf | awk '{print $2}'`.strip
         ip.empty? ? 'localhost' : ip
+      rescue
+        'localhost'
       end
 
       # 1. Try to use the IP passed from the Batch script (fastest/safest)
