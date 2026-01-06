@@ -118,29 +118,31 @@ load_partial 'finalize'
 
 # 3. Execute Setup 
 after_bundle do
-  # Testing & Ops
+  # 1. Foundation & Config
   setup_testing
   setup_performance if @install_ops
 
-  # UI & Admin 
+  # 2. Core Identity (Users) - MUST run before features that reference users (like Chat UI)
+  # This ensures CreateUsers migration is generated before CreateConversations
+  setup_authentication if @install_auth
+
+  # 3. UI Framework
   setup_ui_layout if @install_ui
   
+  # 4. Features dependent on UI/Auth
   if @install_chat_ui
     setup_chat_ui
   end
 
   setup_themes_and_admin if @install_ui || @install_admin 
 
-  # Authentication
-  setup_authentication if @install_auth
-
-  # Features
+  # 5. Standalone Features
   setup_api_generator if @install_api
   setup_seo if @install_seo
   setup_pagy if @install_pagy 
   setup_stripe if @install_stripe
 
-  # Data & AI
+  # 6. Data & AI
   setup_vector_db if @install_vector_db
   
   if @install_gemini || @install_local
@@ -152,9 +154,7 @@ after_bundle do
   
   setup_prompt_management if @install_prompts
 
-  # Documentation
+  # 7. Documentation & Cleanup
   setup_docs
-
-  # Finalize
   setup_finalize
 end

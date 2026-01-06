@@ -63,4 +63,5 @@ if @install_recon
   gem 'ferrum', '~> 0.17.1' # Headless Chrome
   gem 'parallel', '~> 1.27' # Threading for RAG
   gem 'nokogiri', '~> 1.18' # Parsing
+  gem 'redcarpet'           # Server-side Markdown rendering
 end

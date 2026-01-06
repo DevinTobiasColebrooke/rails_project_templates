@@ -1,10 +1,5 @@
 def setup_chat_javascript
-  # 1. Pin Marked (Version matching ReconUi)
-  append_to_file "config/importmap.rb", <<~RUBY
-    pin "marked" # @17.0.1
-  RUBY
-
-  # 2. Loader Controller
+  # 1. Loader Controller
   create_file "app/javascript/controllers/loader_controller.js", <<~JS
     import { Controller } from "@hotwired/stimulus"
 
@@ -54,29 +49,7 @@ def setup_chat_javascript
     }
   JS
 
-  # 3. Markdown Controller
-  create_file "app/javascript/controllers/markdown_controller.js", <<~JS
-    import { Controller } from "@hotwired/stimulus"
-
-    export default class extends Controller {
-      connect() {
-        // Check if 'marked' is available globally (set in layout)
-        if (window.marked) {
-          this.render()
-        } else {
-          // Fallback if marked isn't loaded yet
-          setTimeout(() => this.render(), 100)
-        }
-      }
-
-      render() {
-        // Parse the raw text content of the div and set it as HTML
-        this.element.innerHTML = window.marked.parse(this.element.innerText)
-      }
-    }
-  JS
-
-  # 4. Reset Form Controller
+  # 2. Reset Form Controller
   create_file "app/javascript/controllers/reset_form_controller.js", <<~JS
     import { Controller } from "@hotwired/stimulus"
 
@@ -96,7 +69,7 @@ def setup_chat_javascript
     }
   JS
 
-  # 5. Scroll Controller
+  # 3. Scroll Controller
   create_file "app/javascript/controllers/scroll_controller.js", <<~JS
     import { Controller } from "@hotwired/stimulus"
     export default class extends Controller {

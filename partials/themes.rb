@@ -33,7 +33,7 @@ def setup_themes_and_admin
         <title>Admin | <%= yield(:title) %></title>
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
-        <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+        <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
         <%= javascript_importmap_tags %>
       </head>
       <body class="bg-gray-100 font-sans text-gray-900">

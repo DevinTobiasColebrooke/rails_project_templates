@@ -59,7 +59,6 @@ def setup_recon_agent
           messages = [ { role: "system", content: system_prompt } ]
 
           # 2. Inject Chat History (if any)
-          # We map string keys to symbols or keep as is, ensuring format is correct for the LLM client
           if @history.present?
             messages += @history.map do |msg|
               {
@@ -70,23 +69,33 @@ def setup_recon_agent
           end
 
           # 3. Add Current Request
-          messages << { role: "user", content: "Current Task: \#{@goal}" }
+          messages << { role: "user", content: "Current Task: \#{@goal}\\n\\nIMPORTANT: Provide a detailed report and cite your sources (URLs) for every fact." }
 
           MAX_TURNS.times do |turn|
             log "Turn \#{turn + 1}: Thinking..."
 
             response = @llm.chat_with_tools(messages: messages, tools: @tool_definitions)
 
-            if response[:tool_calls]
-              log "Agent decided to call tools: \#{response[:tool_calls].map { |t| t.dig('function', 'name') }.join(', ')}"
+            # Helper to normalize tool calls from either API structure or text hallucination
+            tool_calls = response[:tool_calls] || extract_json_tools(response[:content])
+
+            if tool_calls.present?
+              log "Agent decided to call tools: \#{tool_calls.map { |t| t.dig('function', 'name') }.join(', ')}"
 
               # Add the assistant's "intent" to call a tool to history
-              messages << { role: "assistant", content: nil, tool_calls: response[:tool_calls] }
+              # If it was a text extraction, we still want to save the text content so the model knows what it thought
+              content_to_save = response[:content]
+              
+              # If it was a structured call, content might be nil, but if we extracted it, content is the full text.
+              messages << { role: "assistant", content: content_to_save, tool_calls: (response[:tool_calls] if response[:tool_calls]) }
 
-              response[:tool_calls].each do |tool_call|
+              tool_calls.each do |tool_call|
                 function_name = tool_call.dig("function", "name")
-                arguments = JSON.parse(tool_call.dig("function", "arguments"))
-                tool_call_id = tool_call["id"]
+                # Parse arguments if they are a string (API) or already a hash (Extraction)
+                raw_args = tool_call.dig("function", "arguments")
+                arguments = raw_args.is_a?(String) ? JSON.parse(raw_args) : raw_args
+                
+                tool_call_id = tool_call["id"] || "call_\#{SecureRandom.hex(4)}"
 
                 result = execute_tool(function_name, arguments)
                 log "Tool \#{function_name} output length: \#{result.to_s.length} chars"
@@ -130,6 +139,43 @@ def setup_recon_agent
           end
         end
 
+        # Fallback: Extract JSON tool calls from text if the model outputs them directly
+        def extract_json_tools(text)
+          return nil if text.blank?
+
+          # Look for markdown code blocks containing JSON first
+          json_candidates = text.scan(/```json\\s*(\\{.*?\\})\\s*```/m).flatten
+          
+          # If no code blocks, look for raw JSON-like structures matching our tool schema
+          if json_candidates.empty?
+            # Regex looks for {"name": "...", "parameters": {...}}
+            json_candidates = text.scan(/(\\{[\\s\\n]*"name"[\\s\\n]*:[\\s\\n]*"[a-zA-Z0-9_]+"[\\s\\n]*,[\\s\\n]*"parameters"[\\s\\n]*:[\\s\\n]*\\{.*?\\})/m).flatten
+          end
+
+          return nil if json_candidates.empty?
+
+          json_candidates.map do |json_str|
+            try_parse_tool(json_str)
+          end.compact
+        end
+
+        def try_parse_tool(json_str)
+          data = JSON.parse(json_str)
+          return nil unless data["name"] && data["parameters"]
+
+          # Normalize to OpenAI structure
+          {
+            "id" => "call_\#{SecureRandom.hex(4)}",
+            "type" => "function",
+            "function" => {
+              "name" => data["name"],
+              "arguments" => data["parameters"] # Pass as hash, handled in loop
+            }
+          }
+        rescue JSON::ParserError
+          nil
+        end
+
         def system_prompt
           <<~PROMPT
             You are a Deep Research Agent. Your goal is to gather accurate, comprehensive information to answer the user's request.
@@ -145,7 +191,16 @@ def setup_recon_agent
             3. Visit relevant pages to verify details.
             4. Synthesize a final report.
 
-            When you have the final answer, respond with the text of the report directly (no tool calls).
+            CITATION REQUIREMENT:
+            - You MUST cite your sources.
+            - Every fact derived from a tool output must be followed by the source URL.
+            - Format: "Fact statement [Source Name](url)".
+            - At the end of your response, include a "## Sources" section listing all URLs used.
+
+            IMPORTANT:
+            If you need to use a tool, output the tool call in JSON format matching the schema. 
+            Do not describe the plan without executing the tool.
+            If you have the answer, respond with the text of the report directly.
           PROMPT
         end
 
