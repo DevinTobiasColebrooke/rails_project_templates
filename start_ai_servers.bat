@@ -85,10 +85,10 @@ echo Selected: %MODEL_NAME%
 echo Preparing launch sequences...
 
 :: Port 8080 (Instruct)
-set INSTRUCT_CMD=llama-server -m %MODEL_FILE% --host 0.0.0.0 --port 8080 --jinja --verbose --ctx-size 32768
+set INSTRUCT_CMD=llama-server -m %MODEL_FILE% --host 0.0.0.0 --port 9090 --jinja --verbose --ctx-size 32768
 
 :: Port 8081 (Embed)
-set EMBED_CMD=llama-server -m %EMBED_MODEL% --host 0.0.0.0 --port 8081 --embedding --ubatch-size 2048 --verbose
+set EMBED_CMD=llama-server -m %EMBED_MODEL% --host 0.0.0.0 --port 9091 --embedding --ubatch-size 2048 --verbose
 
 if /I "%start_searx%"=="Y" goto LAUNCH_ALL
 goto LAUNCH_AI

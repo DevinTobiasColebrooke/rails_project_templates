@@ -11,8 +11,34 @@ def setup_chat_javascript
     export default class extends Controller {
       static targets = ["indicator"]
 
+      connect() {
+        // The parent container of the messages list
+        this.container = this.indicatorTarget.parentElement
+
+        // Observer to ensure loader stays at the bottom when new messages arrive
+        this.observer = new MutationObserver(() => {
+          if (!this.indicatorTarget.classList.contains("hidden")) {
+            // If the loader is visible but not the last element, move it to the end
+            if (this.container.lastElementChild !== this.indicatorTarget) {
+              this.container.appendChild(this.indicatorTarget)
+              this.scrollToBottom()
+            }
+          }
+        })
+
+        this.observer.observe(this.container, { childList: true })
+      }
+
+      disconnect() {
+        if (this.observer) {
+          this.observer.disconnect()
+        }
+      }
+
       show() {
         this.indicatorTarget.classList.remove("hidden")
+        // Move to bottom immediately on show
+        this.container.appendChild(this.indicatorTarget)
         this.scrollToBottom()
       }
 
@@ -21,10 +47,8 @@ def setup_chat_javascript
       }
 
       scrollToBottom() {
-        // Access the scrolling container (the parent of the messages)
-        const scrollContainer = document.getElementById("messages")
-        if (scrollContainer) {
-          scrollContainer.scrollTop = scrollContainer.scrollHeight
+        if (this.container) {
+          this.container.scrollTop = this.container.scrollHeight
         }
       }
     }

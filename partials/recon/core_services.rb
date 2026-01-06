@@ -74,8 +74,8 @@ def setup_recon_core_services
   # 3. Embedding Service
   create_file "app/services/embedding_service.rb", <<~RUBY, force: true
     class EmbeddingService
-      # Allow a specific URL for the embedding server, or fall back to the main LLM URL
-      EMBEDDING_BASE_URL = ENV.fetch("LLM_EMBEDDING_URL", LocalLlmClient::BASE_URL).freeze
+      # Allow a specific URL for the embedding server, or fall back to the AiConfig (Windows Host IP)
+      EMBEDDING_BASE_URL = ENV.fetch("LLM_EMBEDDING_URL", AiConfig::LOCAL_EMBEDDING_URL).freeze
 
       def generate(text)
         return nil if text.blank?

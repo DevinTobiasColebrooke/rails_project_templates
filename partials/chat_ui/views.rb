@@ -96,20 +96,32 @@ def setup_chat_views
         <!-- Added id="messages" to match the Model target -->
         <div id="messages" class="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth" data-controller="scroll">
           <%= render @messages %>
-        </div>
-        
-        <!-- Thinking/Loading Indicator -->
-        <div data-loader-target="indicator" class="hidden px-6 pb-4 bg-slate-900 flex flex-col items-start animate-pulse border-t border-slate-800 pt-4">
-          <div class="flex items-center gap-2">
-            <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
-            <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-            <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-            <span class="text-xs text-slate-500 font-mono ml-2">Agent is researching...</span>
+          
+          <!-- Thinking/Loading Indicator (Bubble Style) -->
+          <div data-loader-target="indicator" class="hidden flex gap-4 flex-row group mb-6 animate-pulse">
+            <!-- Avatar -->
+             <div class="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-blue-600/20">
+               <div class="w-2 h-2 bg-blue-500 rounded-full animate-spin"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col max-w-[85%] md:max-w-3xl min-w-0 items-start">
+              <div class="text-[10px] text-slate-500 mb-1 px-1">Recon AI</div>
+              
+              <div class="bg-slate-800 text-slate-200 rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm w-full overflow-hidden flex items-center gap-3">
+                 <span class="text-blue-400 font-medium text-sm">Agent is researching...</span>
+                 <div class="flex gap-1">
+                  <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                  <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                  <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Input Area -->
-        <div class="p-4 bg-slate-900">
+        <div class="p-4 bg-slate-900 border-t border-slate-800">
           <%= form_with url: conversation_messages_path(@conversation), 
               class: "relative max-w-4xl mx-auto", 
               data: { 
