@@ -8,6 +8,7 @@ def setup_recon
   apply File.join(__dir__, 'recon', 'agent.rb')
   apply File.join(__dir__, 'recon', 'tools.rb')
   apply File.join(__dir__, 'recon', 'controller.rb')
+  apply File.join(__dir__, 'recon', 'launcher.rb')
 
   # Execute setup methods
   setup_recon_clients
@@ -16,4 +17,5 @@ def setup_recon
   setup_recon_agent
   setup_recon_tools
   setup_recon_controller
+  setup_recon_launcher
 end

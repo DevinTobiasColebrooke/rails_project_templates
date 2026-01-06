@@ -31,14 +31,15 @@ def setup_api_generator
   RUBY
 
   # 2. Data.gov Example
+  # Updated to use Credentials for the API key
   create_file "app/services/data_gov_service.rb", <<~RUBY
     class DataGovService < ApplicationApiService
       # https://api.data.gov/
       BASE_URL = "https://api.data.gov/ed/collegescorecard/v1"
 
-      def initialize(api_key: ENV['DATA_GOV_KEY'])
+      def initialize(api_key: nil)
         super()
-        @api_key = api_key
+        @api_key = api_key || Rails.application.credentials.data_gov_key || ENV['DATA_GOV_KEY']
       end
 
       def search_schools(state: 'CA')
@@ -49,5 +50,5 @@ def setup_api_generator
   RUBY
   
   # 3. Add to Credentials reminder
-  puts "   -> Added DataGovService. Remember to add DATA_GOV_KEY to your .env or credentials."
+  puts "   -> Added DataGovService. API Key configured in credentials."
 end

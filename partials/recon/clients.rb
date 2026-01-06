@@ -5,8 +5,8 @@ def setup_recon_clients
 
     class LocalLlmClient
       # Local Configuration
-      # Defaults to the batch script ports, but overridable via ENV
-      BASE_URL = ENV.fetch("LLM_BASE_URL", "http://127.0.0.1:8080").freeze
+      # Defaults to the batch script ports (9090), but overridable via ENV
+      BASE_URL = ENV.fetch("LLM_BASE_URL", "http://127.0.0.1:9090").freeze
       MODEL_NAME = ENV.fetch("LLM_MODEL_NAME", "default").freeze
       API_KEY = ENV.fetch("LLM_API_KEY", "dummy").freeze
 

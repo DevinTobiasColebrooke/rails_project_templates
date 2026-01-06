@@ -2,8 +2,17 @@
 puts "\n🚀 Rails 8 Master Template Wizard"
 puts "========================================================"
 
+# Helper to check ENV first, then ask
+def fetch_config(prompt, env_var)
+  if ENV[env_var].present?
+    puts "    🔑  Found value for #{env_var} from script."
+    ENV[env_var]
+  else
+    ask(prompt)
+  end
+end
+
 # Detect API Mode
-# We check the options hash passed to the generator instead of Rails.configuration
 @api_only = options[:api]
 
 if @api_only
@@ -14,7 +23,7 @@ if @api_only
   @install_chat_ui = false
   @install_admin = false
   @install_seo = false
-  @install_auth = false # Native Rails 8 auth is session/browser based
+  @install_auth = false 
 else
   @install_ui    = yes?("🎨  Add UI (Tailwind, Flash, Menu, Custom Themes)?")
   @install_chat_ui = yes?("    💬  Add AI Chat UI (Conversational Interface)?")
@@ -23,13 +32,15 @@ else
   if @install_auth
     @install_verify = yes?("    📧  Add Email Verification?")
   end
-  # Rich Text removed as requested
   @install_seo       = yes?("    Add SEO Tools (MetaTags, Sitemap)?")
 end
 
 
 puts "\n🧱  Content & Data"
 @install_api       = yes?("    Add API Services (Data.gov example)?")
+if @install_api
+  @data_gov_key = fetch_config("    🔑  (Optional) Enter Data.gov API Key:", "TEMPLATE_DATA_GOV")
+end
 
 # Pagy is now auto-included as standard
 @install_pagy = true
@@ -37,10 +48,25 @@ puts "    -> 📄 Pagination (Pagy) auto-enabled."
 
 puts "\n💳  Payments"
 @install_stripe = yes?("    Add Stripe Payments?")
+if @install_stripe
+  puts "    🔑  Stripe Configuration:"
+  @stripe_publishable = fetch_config("        Publishable Key:", "TEMPLATE_STRIPE_PUB")
+  @stripe_secret      = fetch_config("        Secret Key:", "TEMPLATE_STRIPE_SEC")
+  @stripe_signing     = fetch_config("        Signing Secret (Webhook):", "TEMPLATE_STRIPE_SIGN")
+end
 
 puts "\n🤖  AI & Research Configuration"
 @install_gemini = yes?("    Add Google Gemini Service?")
+if @install_gemini
+  @gemini_key = fetch_config("    🔑  (Optional) Enter Gemini API Key:", "TEMPLATE_GEMINI")
+end
+
 @install_recon  = yes?("    Add Deep Research Agent (Recon)?")
+if @install_recon
+  puts "    🔑  Google Custom Search Credentials (for Recon):"
+  @google_search_key = fetch_config("        Search API Key:", "TEMPLATE_GOOGLE_SEARCH_KEY")
+  @google_search_id  = fetch_config("        Search Engine ID:", "TEMPLATE_GOOGLE_SEARCH_CX")
+end
 
 if @install_recon
   puts "    -> 🕵️‍♂️  Recon Agent selected."
@@ -48,7 +74,6 @@ if @install_recon
   @install_local = true
   @install_vector_db = true
 else
-  # Only prompt for these if Recon didn't auto-enable them
   @install_local = yes?("    Add Local AI (Llama via Windows/WSL)?")
   
   puts "\n🧠  Knowledge Base"
@@ -72,12 +97,12 @@ def load_partial(name)
   apply File.join(__dir__, 'partials', "#{name}.rb")
 end
 
-# 2. Load Partials (Defines methods or adds gems)
+# 2. Load Partials 
 load_partial 'gems' 
 load_partial 'testing'
 load_partial 'performance'
 load_partial 'ui'
-load_partial 'chat_ui' # New Loader
+load_partial 'chat_ui' 
 load_partial 'themes'
 load_partial 'auth'
 load_partial 'api_client'
@@ -91,13 +116,13 @@ load_partial 'prompts'
 load_partial 'docs'
 load_partial 'finalize'
 
-# 3. Execute Setup (Runs after bundle install)
+# 3. Execute Setup 
 after_bundle do
   # Testing & Ops
   setup_testing
   setup_performance if @install_ops
 
-  # UI & Admin (Skipped in API mode)
+  # UI & Admin 
   setup_ui_layout if @install_ui
   
   if @install_chat_ui
@@ -112,7 +137,7 @@ after_bundle do
   # Features
   setup_api_generator if @install_api
   setup_seo if @install_seo
-  setup_pagy if @install_pagy # Always runs now, but handles API logic inside
+  setup_pagy if @install_pagy 
   setup_stripe if @install_stripe
 
   # Data & AI

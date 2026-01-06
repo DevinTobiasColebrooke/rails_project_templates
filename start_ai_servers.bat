@@ -85,10 +85,12 @@ echo Selected: %MODEL_NAME%
 echo Launching servers...
 
 :: Command for the Instruct Model (Dynamic based on choice)
-set INSTRUCT_CMD=llama-server -m %MODEL_FILE% --host 0.0.0.0 --port 8080 --jinja --verbose --ctx-size 32768
+:: Using Port 9090
+set INSTRUCT_CMD=llama-server -m %MODEL_FILE% --host 0.0.0.0 --port 9090 --jinja --verbose --ctx-size 32768
 
 :: Command for the Embedding Model (Static)
-set EMBED_CMD=llama-server -m %EMBED_MODEL% --host 0.0.0.0 --port 8081 --embedding --ubatch-size 2048 --verbose
+:: Using Port 9091
+set EMBED_CMD=llama-server -m %EMBED_MODEL% --host 0.0.0.0 --port 9091 --embedding --ubatch-size 2048 --verbose
 
 :: Launch Windows Terminal
 :: 1. New Tab (Instruct)

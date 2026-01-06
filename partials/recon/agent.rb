@@ -42,24 +42,24 @@ def setup_recon_agent
           @llm = LocalLlmClient.new
           @logs = []
 
-          # DYNAMIC TOOL LOADING
-          # Instead of hardcoding the list, we look for all classes in the Tools module
-          # that inherit from Tools::BaseTool. This allows easy extension.
-          @tools = ::Tools.constants
-                         .map { |c| ::Tools.const_get(c) }
-                         .select { |c| c.is_a?(Class) && c < ::Tools::BaseTool && c != ::Tools::BaseTool }
-          
+          # Load available tools using global scope ::Tools
+          # We explicitly list them to ensure they are loaded and ordered correctly
+          @tools = [
+            ::Tools::GoogleSearchTool,
+            ::Tools::SearxngSearchTool,
+            ::Tools::VisitPageTool
+          ]
           @tool_definitions = @tools.map(&:definition)
         end
 
         def call
           log "Starting deep research for goal: \#{@goal}"
-          log "Loaded tools: \#{@tools.map(&:tool_name).join(', ')}"
 
           # 1. Start with System Prompt
           messages = [ { role: "system", content: system_prompt } ]
 
           # 2. Inject Chat History (if any)
+          # We map string keys to symbols or keep as is, ensuring format is correct for the LLM client
           if @history.present?
             messages += @history.map do |msg|
               {
@@ -131,18 +131,18 @@ def setup_recon_agent
         end
 
         def system_prompt
-          tool_descriptions = @tools.map { |t| "- \#{t.tool_name}: \#{t.description}" }.join("\\n")
-
           <<~PROMPT
             You are a Deep Research Agent. Your goal is to gather accurate, comprehensive information to answer the user's request.
 
             You have access to the following tools:
-            \#{tool_descriptions}
+            1. google_search: Best for official entities, news, and finding specific websites.
+            2. searxng_search: Best for broad queries, alternative sources, or when Google fails.
+            3. visit_page: ESSENTIAL. After searching, you MUST visit promising URLs to read their actual content. Do not hallucinate content.
 
             Workflow:
             1. Plan your research.
-            2. Search for information using the appropriate tool.
-            3. Visit relevant pages (using visit_page) to verify details if needed.
+            2. Search for information.
+            3. Visit relevant pages to verify details.
             4. Synthesize a final report.
 
             When you have the final answer, respond with the text of the report directly (no tool calls).

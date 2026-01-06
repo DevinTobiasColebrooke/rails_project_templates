@@ -23,12 +23,69 @@ def setup_docs_features
     MARKDOWN
   end
 
-  # 2. AI & Data
+  # 2. Storage & Rich Text
+  if @install_active_storage || @install_action_text
+    content = "# Content & Storage\n\n"
+    
+    if @install_active_storage
+      content += <<~MARKDOWN
+        ## Active Storage (File Uploads)
+        
+        ### Setup
+        1. **Production**: We have pre-configured the `amazon` service in `config/storage.yml`.
+        2. **Credentials**: Run `bin/rails credentials:edit` and add:
+           ```yaml
+           aws:
+             access_key_id: "..."
+             secret_access_key: "..."
+           ```
+        3. **Enable**: In `config/environments/production.rb`, uncomment `config.active_storage.service = :amazon`.
+
+        ### Usage
+        ```ruby
+        class User < ApplicationRecord
+          has_one_attached :avatar
+        end
+        ```
+      MARKDOWN
+    end
+
+    if @install_action_text
+      content += <<~MARKDOWN
+
+        ## Action Text (Rich Text)
+        
+        ### Usage
+        Adds a Trix editor to your forms.
+        
+        **Model:**
+        ```ruby
+        class Article < ApplicationRecord
+          has_rich_text :content
+        end
+        ```
+
+        **View (Form):**
+        ```erb
+        <%= form.rich_text_area :content %>
+        ```
+        
+        **View (Display):**
+        ```erb
+        <%= @article.content %>
+        ```
+      MARKDOWN
+    end
+
+    create_file "docs/content_and_storage.md", content
+  end
+
+  # 3. AI & Data
   if @install_gemini || @install_local || @install_vector_db || @install_searxng
     
     ai_content = "## AI Providers\n"
     ai_content += "- **Gemini**: Use `GoogleGeminiService`. Requires `google: gemini_key` in credentials.\n" if @install_gemini
-    ai_content += "- **Local Llama**: Use `LocalLlmService`. Connects to Windows host on port 8080. See `config/initializers/ai_config.rb`.\n" if @install_local
+    ai_content += "- **Local Llama**: Use `LocalLlmService`. Connects to Windows host on port 9090. See `config/initializers/ai_config.rb`.\n" if @install_local
     ai_content += "- **SearXNG**: Use `WebSearchService`. Connects to `ENV['SEARXNG_URL']` (Default: localhost:8888).\n" if @install_searxng
     
     if @install_vector_db
@@ -70,7 +127,7 @@ def setup_docs_features
     MARKDOWN
   end
 
-  # 3. Stripe
+  # 4. Stripe
   if @install_stripe
     create_file "docs/payments.md", <<~MARKDOWN
       # Stripe Payments
@@ -91,7 +148,7 @@ def setup_docs_features
     MARKDOWN
   end
 
-  # 4. UI
+  # 5. UI
   if @install_ui
     create_file "docs/ui_and_themes.md", <<~MARKDOWN
       # UI & Theming
@@ -108,7 +165,7 @@ def setup_docs_features
     MARKDOWN
   end
 
-  # 5. Ops
+  # 6. Ops
   if @install_ops
     create_file "docs/operations.md", <<~MARKDOWN
       # Operations & Observability
@@ -119,75 +176,14 @@ def setup_docs_features
     MARKDOWN
   end
   
-  # 6. Pagination (Pagy)
+  # 7. Pagination (Pagy)
   if @install_pagy
     create_file "docs/pagination.md", <<~MARKDOWN
       # Pagination (Pagy)
 
       ## Quick Start
-
-      ### 1. Install
-
-      Gemfile:
-      ```ruby
-      gem 'pagy', '~> 43.2'
-      ```
-
-      ### 2. Use it in your app
-
-      Include the `pagy` method where you are going to use it:
-      ```ruby
-      include Pagy::Method
-      ```
-
-      Use it to paginate any collection with any technique:
-      ```ruby
-      @pagy, @records = pagy(:offset, Product.some_scope, **options) # :offset paginator
-      @pagy, @records = pagy(:keyset, Product.some_scope, **options) # :keyset paginator
-      ```
-
-      Render navigator tags and other helpers with the `@pagy` instance methods:
-      ```erb
-      <%== @pagy.series_nav %>
-      <%== @pagy.info_tag %>
-      ```
-
-      ## Choose Wisely
-
-      ### OFFSET Pagination
-      The most common pagination technique.
-      - **Pros**: Simple setup, full UI support
-      - **Cons**: Slow on big tables (two queries per page), data-shift
-
-      ### KEYSET Pagination
-      The fastest performance.
-      - **Pros**: Fastest paginator, no data-shift, one query per page
-      - **Cons**: Very limited UI support, appropriate DB indices required
-
-      ## How To
-
-      ### Control the items per page
-      ```ruby
-      @pagy, @products = pagy(:offset, collection, limit: 10)
-      # With client max limit
-      @pagy, @products = pagy(:offset, collection, limit: 10, client_max_limit: 1_000)
-      ```
-
-      ### Force the page
-      ```ruby
-      @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
-      ```
-      
-      ### JSON:API
-      ```ruby
-      @pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size')
-      ```
-
-      ### Paginate an Array
-      Simply pass it as the collection: `pagy(:offset, my_array, **options)`
-
-      ### Configuration
-      Check `config/initializers/pagy.rb` for defaults like overflow handling and CSS framework extras.
+      Use `pagy` in controllers and `<%== @pagy.nav %>` in views.
+      See `config/initializers/pagy.rb` for configuration.
     MARKDOWN
   end
 end

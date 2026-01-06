@@ -21,8 +21,9 @@ def setup_ai_configuration
       WINDOWS_HOST = ENV.fetch('WINDOWS_HOST_IP') { detect_host_ip }
       
       # Configuration matches your Windows Batch Script ports
-      LOCAL_LLM_URL = "http://\#{WINDOWS_HOST}:8080"       # Instruct Server
-      LOCAL_EMBEDDING_URL = "http://\#{WINDOWS_HOST}:8081" # Embeddings Server
+      # We use 9090/9091 to avoid conflicts with 3000 (Rails) or 8080 (Common)
+      LOCAL_LLM_URL = "http://\#{WINDOWS_HOST}:9090"       # Instruct Server
+      LOCAL_EMBEDDING_URL = "http://\#{WINDOWS_HOST}:9091" # Embeddings Server
       
       # We use a generic name here. Since your Batch script handles the actual .gguf loading,
       # Rails doesn't need to know the specific filename. Llama-server will accept 'default'.
@@ -70,7 +71,7 @@ def setup_ai_services
       require "openai"
       class LocalLlmService
         def initialize
-          # Connects to your Windows Batch Script server on Port 8080
+          # Connects to your Windows Batch Script server on Port 9090
           @client = OpenAI::Client.new(access_token: "x", uri_base: AiConfig::LOCAL_LLM_URL)
         end
         

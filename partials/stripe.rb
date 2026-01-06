@@ -4,11 +4,12 @@ def setup_stripe
   puts "💳  Configuring Stripe..."
 
   # 1. Initializer
+  # Updated to prefer credentials over ENV variables
   create_file 'config/initializers/stripe.rb', <<~RUBY
     Rails.configuration.stripe = {
-      publishable_key: ENV.fetch('STRIPE_PUBLISHABLE_KEY', nil),
-      secret_key:      ENV.fetch('STRIPE_SECRET_KEY', nil),
-      signing_secret:  ENV.fetch('STRIPE_SIGNING_SECRET', nil)
+      publishable_key: Rails.application.credentials.dig(:stripe, :publishable_key) || ENV['STRIPE_PUBLISHABLE_KEY'],
+      secret_key:      Rails.application.credentials.dig(:stripe, :secret_key)      || ENV['STRIPE_SECRET_KEY'],
+      signing_secret:  Rails.application.credentials.dig(:stripe, :signing_secret)  || ENV['STRIPE_SIGNING_SECRET']
     }
 
     Stripe.api_key = Rails.configuration.stripe[:secret_key]

@@ -8,6 +8,7 @@ def setup_docs_readme
   links << "- [Project Foundation](./project_foundation/)"
   links << "- [Authentication](./authentication.md)" if @install_auth
   links << "- [AI & Data](./ai_and_data.md)" if @install_gemini || @install_local || @install_vector_db
+  links << "- [Content & Storage](./content_and_storage.md)" if @install_active_storage || @install_action_text
   links << "- [Pagination](./pagination.md)" if @install_pagy
   links << "- [Payments](./payments.md)" if @install_stripe
   links << "- [UI & Themes](./ui_and_themes.md)" if @install_ui
@@ -41,6 +42,14 @@ def setup_docs_readme
     YAML
   end
   
+  if @install_active_storage
+    creds << <<~YAML.strip
+      aws:
+        access_key_id: "..."
+        secret_access_key: "..."
+    YAML
+  end
+  
   creds << "data_gov_key: \"YOUR_DATA_GOV_KEY\"" if @install_api
   
   if creds.any?
@@ -68,11 +77,11 @@ def setup_docs_readme
       This application is configured to connect to a Local LLM running on your Windows Host (via WSL networking).
 
       **Option A: Automated (Recommended)**
-      Use the provided `start_ai_servers.bat` script in the root directory of the project (run from Windows).
+      Use the provided `start_ai_servers.bat` (or `start_recon_stack.bat` if using Recon) script in the root directory.
 
       **Option B: Manual**
-      - **Chat Server**: Port 8080
-      - **Embeddings**: Port 8081
+      - **Chat Server**: Port 9090
+      - **Embeddings**: Port 9091
     MARKDOWN
   end
 
@@ -110,9 +119,9 @@ def setup_docs_readme
     ## ✨ Features Enabled
     
     - **Rails 8**: Propshaft, importmaps, and Tailwind CSS.
-    - **Pagination**: Pagy (High performance pagination).
     #{@install_auth ? "- **Authentication**: Native Rails auth with custom controllers." : ""}
     #{@install_stripe ? "- **Payments**: Stripe Checkout & Webhooks integration." : ""}
+    #{@install_action_text ? "- **Content**: Action Text (Rich Text) enabled." : ""}
     #{@install_gemini || @install_local ? "- **AI**: Integration with #{@install_local ? 'Local LLMs' : ''} #{@install_gemini ? 'Google Gemini' : ''}." : ""}
     #{@install_vector_db ? "- **Vector DB**: pgvector + Neighbor for semantic search." : ""}
     #{@install_ops ? "- **Ops**: Rack Attack, Bullet, and Ahoy analytics." : ""}

@@ -1,7 +1,7 @@
 def setup_chat_javascript
-  # 1. Pin Marked
+  # 1. Pin Marked (Version matching ReconUi)
   append_to_file "config/importmap.rb", <<~RUBY
-    pin "marked" # @12.0.0
+    pin "marked" # @17.0.1
   RUBY
 
   # 2. Loader Controller
@@ -21,6 +21,7 @@ def setup_chat_javascript
       }
 
       scrollToBottom() {
+        // Access the scrolling container (the parent of the messages)
         const scrollContainer = document.getElementById("messages")
         if (scrollContainer) {
           scrollContainer.scrollTop = scrollContainer.scrollHeight
@@ -35,14 +36,17 @@ def setup_chat_javascript
 
     export default class extends Controller {
       connect() {
+        // Check if 'marked' is available globally (set in layout)
         if (window.marked) {
           this.render()
         } else {
+          // Fallback if marked isn't loaded yet
           setTimeout(() => this.render(), 100)
         }
       }
 
       render() {
+        // Parse the raw text content of the div and set it as HTML
         this.element.innerHTML = window.marked.parse(this.element.innerText)
       }
     }
@@ -56,8 +60,10 @@ def setup_chat_javascript
       static targets = ["input"]
 
       clear() {
+        // Small timeout ensures the form submission grabs the value before we clear it
         setTimeout(() => {
           this.element.reset()
+          // If we have an explicit input target, focus it back
           if (this.hasInputTarget) {
             this.inputTarget.focus()
           }

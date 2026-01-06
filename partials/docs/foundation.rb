@@ -1,5 +1,3 @@
-# partials/docs/foundation.rb
-
 def setup_docs_foundation
   puts "    ...scaffolding Project Foundation documents"
   empty_directory "docs/project_foundation"
@@ -73,5 +71,12 @@ def setup_docs_foundation
     | email  | string| unique, index|             |
 
     <!-- TODO: Add planned tables here before generating migrations -->
+  MARKDOWN
+
+  create_file "docs/project_foundation/implementation_plan.md", <<~MARKDOWN
+    # Implementation Plan
+
+    This document serves as the roadmap for building the application features defined in the [Architecture Blueprint](./architecture_blueprint.md) and [Database Schema](./database_schema.md).
+
   MARKDOWN
 end

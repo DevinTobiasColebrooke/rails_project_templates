@@ -25,31 +25,40 @@ gem 'pg_query'
 gem 'scenic'
 gem 'ahoy_matey'
 
-# 3. SEO
+# 3. Storage & Rich Text
+if @install_active_storage || @install_action_text
+  # Transformations
+  gem "image_processing", "~> 1.2"
+  # S3 Support (Optional but recommended for prod)
+  gem "aws-sdk-s3", require: false
+end
+
+# 4. SEO
 if @install_seo
   gem 'meta-tags'
   gem 'sitemap_generator'
 end
 
-# 4. Stripe
+# 5. Stripe
 if @install_stripe
   gem 'stripe', '~> 17.2'
 end
 
-# 5. Vector Database
+# 6. Vector Database
 if @install_vector_db
   gem 'pgvector', '~> 0.3.2'
   gem 'neighbor', '~> 0.6.0'
+  gem 'pdf-reader', '~> 1.4'
 end
 
-# 6. AI Services
+# 7. AI Services
 if @install_gemini || @install_local || @install_recon
   gem 'faraday', '~> 2.14'
   gem 'json', '~> 2.18'
   gem 'ruby-openai', '~> 8.3'
 end
 
-# 7. Web Search / Scraping / Agent
+# 8. Web Search / Scraping / Agent
 if @install_recon
   gem 'ferrum', '~> 0.17.1' # Headless Chrome
   gem 'parallel', '~> 1.27' # Threading for RAG

@@ -77,4 +77,64 @@ def setup_vector_db
       end
     RUBY
   end
+
+  # 5. Document Ingestion Service (New)
+  create_file "app/services/document_ingestion_service.rb", <<~RUBY
+    require 'pdf-reader'
+
+    class DocumentIngestionService
+      # Usage: DocumentIngestionService.ingest("path/to/file.pdf")
+      def self.ingest(file_path, metadata: {})
+        return unless File.exist?(file_path)
+
+        # 1. Extract Content
+        content = extract_content(file_path)
+        return if content.blank?
+
+        # 2. Chunking (Simple paragraph split for now)
+        # Adjust delimiter based on your needs (e.g. overlap)
+        chunks = content.split(/\\n\\n+/).reject(&:blank?)
+        
+        puts "   -> Ingesting \#{chunks.size} chunks from \#{File.basename(file_path)}..."
+
+        chunks.each_with_index do |chunk, index|
+          # Skip chunks that are too short to be meaningful
+          next if chunk.length < 50 
+
+          # 3. Generate Embedding
+          vector = EmbeddingService.generate(chunk)
+          
+          if vector
+            Document.create!(
+              content: chunk,
+              embedding: vector,
+              metadata: metadata.merge(
+                source: File.basename(file_path),
+                chunk_index: index,
+                total_chunks: chunks.size
+              )
+            )
+          end
+        end
+      end
+
+      def self.extract_content(path)
+        ext = File.extname(path).downcase
+        case ext
+        when '.pdf'
+          reader = PDF::Reader.new(path)
+          # Join pages with double newline
+          reader.pages.map(&:text).join("\\n\\n")
+        when '.txt', '.md', '.csv', '.json'
+          File.read(path)
+        else
+          Rails.logger.warn "Unsupported file type for ingestion: \#{ext}"
+          nil
+        end
+      rescue => e
+        Rails.logger.error "Ingestion Failed: \#{e.message}"
+        nil
+      end
+    end
+  RUBY
 end
