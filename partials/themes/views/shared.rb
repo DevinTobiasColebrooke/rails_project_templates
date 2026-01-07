@@ -1,6 +1,4 @@
-def setup_ui_layout
-  puts "🎨  Scaffolding UI..."
-  
+def setup_shared_partials
   # 1. Tailwind Flash Messages
   create_file 'app/views/shared/_flash.html.erb', <<~ERB
     <% flash.each do |type, message| %>
@@ -36,21 +34,4 @@ def setup_ui_layout
       </div>
     </nav>
   ERB
-
-  # 3. Application Layout Update
-  gsub_file 'app/views/layouts/application.html.erb', /<body[^>]*>(.*?)<\/body>/m do
-    <<-ERB
-  <body class="bg-gray-50 text-gray-900">
-    <%= render 'shared/menu' %>
-    <main class="container mx-auto px-4 py-8">
-      <%= render 'shared/flash' %>
-      <%= yield %>
-    </main>
-  </body>
-    ERB
-  end
-
-  # 4. Home Controller
-  generate "controller", "home index --skip-routes"
-  route 'root "home#index"'
 end

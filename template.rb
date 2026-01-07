@@ -106,7 +106,7 @@ load_partial 'testing'
 load_partial 'performance'
 load_partial 'storage'
 load_partial 'rich_text'
-load_partial 'ui'
+# UI partial removed, now merged into themes
 load_partial 'chat_ui' 
 load_partial 'themes'
 load_partial 'auth'
@@ -130,15 +130,14 @@ after_bundle do
   # 2. Core Identity (Users) - MUST run before features that reference users (like Chat UI)
   setup_authentication if @install_auth
 
-  # 3. UI Framework
-  setup_ui_layout if @install_ui
+  # 3. UI Framework & Admin
+  # Refactored: UI scaffolding is now handled within setup_themes_and_admin
+  setup_themes_and_admin if @install_ui || @install_admin 
   
   # 4. Features dependent on UI/Auth
   if @install_chat_ui
     setup_chat_ui
   end
-
-  setup_themes_and_admin if @install_ui || @install_admin 
 
   # 5. Standalone Features
   setup_active_storage if @install_active_storage
