@@ -1,15 +1,14 @@
 def setup_chat_view_sources_partial
+  t = @chat_theme
+
   create_file "app/views/messages/_sources.html.erb", <<~ERB
     <% if sources.any? %>
-      <div class="mt-5 pt-4 border-t border-gray-800">
-        <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">Verified Sources</h4>
-        <div class="grid grid-cols-1 gap-2">
+      <div class="mt-4 pt-3 border-t border-dashed border-gray-400/30">
+        <h4 class="text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-2 opacity-60">Verified Sources</h4>
+        <div class="grid grid-cols-1 gap-1">
           <% sources.each do |url| %>
-            <a href="<%= url %>" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 border border-gray-800 no-underline">
-              <div class="flex-1 min-w-0">
-                <div class="truncate text-indigo-400 font-medium text-sm"><%= URI.parse(url).host %></div>
-                <div class="truncate text-xs text-gray-600"><%= url %></div>
-              </div>
+            <a href="<%= url %>" target="_blank" class="flex items-center gap-3 p-2 rounded-lg text-xs no-underline transition #{t[:message][:source_box]} #{t[:message][:source_link]}">
+              <span class="truncate opacity-80 font-medium"><%= URI.parse(url).host rescue url %></span>
             </a>
           <% end %>
         </div>

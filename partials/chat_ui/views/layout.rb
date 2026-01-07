@@ -9,8 +9,12 @@ def setup_chat_view_layout
         <%= csp_meta_tag %>
         <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
         <%= javascript_importmap_tags %>
+        <style>
+           /* Ensure code blocks look good in markdown */
+           .prose pre { background-color: #1e293b; color: #e2e8f0; }
+        </style>
       </head>
-      <body class="bg-slate-900 text-slate-100 h-screen flex overflow-hidden font-sans">
+      <body class="#{@chat_theme[:body]} h-screen flex overflow-hidden">
         <%= yield %>
       </body>
     </html>
