@@ -3,7 +3,6 @@ load_partial 'testing'
 load_partial 'performance'
 load_partial 'storage'
 load_partial 'rich_text'
-# UI partial removed, now merged into themes
 load_partial 'chat_ui' 
 load_partial 'themes'
 load_partial 'auth'
