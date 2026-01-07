@@ -37,7 +37,10 @@ end
 
 
 puts "\n🧱  Content & Data"
-@install_api       = yes?("    Add API Services (Data.gov example)?")
+@install_active_storage = yes?("    📦  Add Active Storage (File Uploads)?")
+@install_action_text    = yes?("    📝  Add Action Text (Rich Text Editor)?")
+@install_api            = yes?("    Add API Services (Data.gov example)?")
+
 if @install_api
   @data_gov_key = fetch_config("    🔑  (Optional) Enter Data.gov API Key:", "TEMPLATE_DATA_GOV")
 end
@@ -101,6 +104,8 @@ end
 load_partial 'gems' 
 load_partial 'testing'
 load_partial 'performance'
+load_partial 'storage'
+load_partial 'rich_text'
 load_partial 'ui'
 load_partial 'chat_ui' 
 load_partial 'themes'
@@ -123,7 +128,6 @@ after_bundle do
   setup_performance if @install_ops
 
   # 2. Core Identity (Users) - MUST run before features that reference users (like Chat UI)
-  # This ensures CreateUsers migration is generated before CreateConversations
   setup_authentication if @install_auth
 
   # 3. UI Framework
@@ -137,6 +141,8 @@ after_bundle do
   setup_themes_and_admin if @install_ui || @install_admin 
 
   # 5. Standalone Features
+  setup_active_storage if @install_active_storage
+  setup_action_text if @install_action_text
   setup_api_generator if @install_api
   setup_seo if @install_seo
   setup_pagy if @install_pagy 
