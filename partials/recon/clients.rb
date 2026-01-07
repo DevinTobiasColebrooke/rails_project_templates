@@ -1,11 +1,13 @@
 def setup_recon_clients
-  create_file "app/clients/local_llm_client.rb", <<~RUBY
+  # Renamed to LlmClient (Model) to live in app/models
+  create_file "app/models/llm_client.rb", <<~RUBY
     require "openai"
     require "json"
 
-    class LocalLlmClient
+    class LlmClient
+      include ActiveModel::Model
+
       # Local Configuration
-      # Defaults to AiConfig which detects the correct Windows Host IP in WSL
       BASE_URL = ENV.fetch("LLM_BASE_URL", AiConfig::LOCAL_LLM_URL).freeze
       MODEL_NAME = ENV.fetch("LLM_MODEL_NAME", "default").freeze
       API_KEY = ENV.fetch("LLM_API_KEY", "dummy").freeze
@@ -27,7 +29,7 @@ def setup_recon_clients
 
         if json_mode
           params[:response_format] = { type: "json_object" }
-          # Ensure system prompt asks for JSON to avoid model confusion
+          # Ensure prompt requests JSON
           unless messages.any? { |m| m[:role] == "system" && m[:content].downcase.include?("json") }
             if messages.first[:role] == "system"
               messages.first[:content] += " Respond strictly in valid JSON."
@@ -37,18 +39,10 @@ def setup_recon_clients
 
         response = @client.chat(parameters: params)
         content = response.dig("choices", 0, "message", "content")
-
         raise "LLM returned empty response" if content.blank?
         content.strip
       rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
-        Rails.logger.error "LocalLlmClient: Connection failed at \#{BASE_URL}: \#{e.message}"
-        
-        hint = ""
-        if BASE_URL.include?("127.0.0.1") || BASE_URL.include?("localhost")
-          hint = " (If using WSL, delete 'config/ai_host.txt' to auto-detect Windows IP)"
-        end
-        
-        raise "Connection to AI Server failed at \#{BASE_URL}\#{hint}. Please ensure 'start_recon_stack.bat' is running."
+        handle_error(e)
       end
 
       def chat_with_tools(messages:, tools:, temperature: 0.0)
@@ -64,20 +58,12 @@ def setup_recon_clients
         message = response.dig("choices", 0, "message")
 
         if message["tool_calls"]
-          # The API returns tool_calls as an array of hashes
           { tool_calls: message["tool_calls"] }
         else
           { content: message["content"]&.strip }
         end
       rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
-        Rails.logger.error "LocalLlmClient: Connection failed at \#{BASE_URL}: \#{e.message}"
-        
-        hint = ""
-        if BASE_URL.include?("127.0.0.1") || BASE_URL.include?("localhost")
-          hint = " (If using WSL, delete 'config/ai_host.txt' to auto-detect Windows IP)"
-        end
-
-        raise "Connection to AI Server failed at \#{BASE_URL}\#{hint}. Please ensure 'start_recon_stack.bat' is running."
+        handle_error(e)
       end
 
       def healthy?
@@ -85,6 +71,14 @@ def setup_recon_clients
         true
       rescue
         false
+      end
+
+      private
+
+      def handle_error(e)
+        Rails.logger.error "LlmClient Connection Failed: \#{e.message}"
+        hint = (BASE_URL.include?("127.0.0.1") || BASE_URL.include?("localhost")) ? " (Check WSL/Host IP)" : ""
+        raise "Connection to AI Server failed at \#{BASE_URL}\#{hint}. Ensure stack is running."
       end
     end
   RUBY
