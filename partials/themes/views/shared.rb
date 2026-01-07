@@ -7,17 +7,21 @@ def setup_shared_partials
     <% end %>
   ERB
 
-  # 2. Navigation Menu
+  # 2. Navigation Menu (Primarily used by the Default theme)
   # Conditionally generate auth links to prevent NameError if auth is skipped
   auth_section = ""
   if @install_auth
     auth_section = <<~ERB
       <% if defined?(current_user) && current_user %>
-          <span><%= current_user.email_address %></span>
-          <%= button_to "Sign out", session_path, method: :delete, class: "inline bg-red-600 px-3 py-1 rounded" %>
+          <div class="flex items-center gap-4">
+            <span class="text-sm opacity-80"><%= current_user.email_address %></span>
+            <%= button_to "Sign out", session_path, method: :delete, class: "inline bg-red-600 hover:bg-red-700 px-3 py-1 rounded transition text-sm cursor-pointer" %>
+          </div>
         <% else %>
-          <%= link_to "Login", new_session_path, class: "hover:text-gray-300" %>
-          <%= link_to "Sign Up", new_registration_path, class: "bg-blue-600 px-3 py-1 rounded" %>
+          <div class="space-x-2">
+            <%= link_to "Login", new_session_path, class: "hover:text-gray-300 text-sm" %>
+            <%= link_to "Sign Up", new_registration_path, class: "bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition text-sm" %>
+          </div>
         <% end %>
     ERB
   else
@@ -25,11 +29,11 @@ def setup_shared_partials
   end
 
   create_file 'app/views/shared/_menu.html.erb', <<~ERB
-    <nav class="bg-gray-800 p-4 text-white flex justify-between items-center">
+    <nav class="bg-gray-800 p-4 text-white flex justify-between items-center shadow-md">
       <div>
-        <%= link_to "App", root_path, class: "font-bold text-xl" %>
+        <%= link_to "App", root_path, class: "font-bold text-xl tracking-tight" %>
       </div>
-      <div class="space-x-4">
+      <div class="flex items-center">
         #{auth_section.strip}
       </div>
     </nav>
