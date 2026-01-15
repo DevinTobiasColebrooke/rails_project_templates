@@ -32,14 +32,8 @@ def setup_docs_features
         ## Active Storage (File Uploads)
         
         ### Setup
-        1. **Production**: We have pre-configured the `amazon` service in `config/storage.yml`.
-        2. **Credentials**: Run `bin/rails credentials:edit` and add:
-           ```yaml
-           aws:
-             access_key_id: "..."
-             secret_access_key: "..."
-           ```
-        3. **Enable**: In `config/environments/production.rb`, uncomment `config.active_storage.service = :amazon`.
+        1. **Configuration**: Edit `config/storage.yml` to define your storage service (local, azure, gcs, etc).
+        2. **Enable**: Update `config/environments/production.rb` to set `config.active_storage.service` to your chosen provider.
 
         ### Usage
         ```ruby

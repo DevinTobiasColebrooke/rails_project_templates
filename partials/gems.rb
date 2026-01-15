@@ -29,8 +29,6 @@ gem 'ahoy_matey'
 if @install_active_storage || @install_action_text
   # Transformations
   gem "image_processing", "~> 1.2"
-  # S3 Support (Optional but recommended for prod)
-  gem "aws-sdk-s3", require: false
 end
 
 # 4. SEO

@@ -42,13 +42,7 @@ def setup_docs_readme
     YAML
   end
   
-  if @install_active_storage
-    creds << <<~YAML.strip
-      aws:
-        access_key_id: "..."
-        secret_access_key: "..."
-    YAML
-  end
+  # Active Storage credentials placeholder removed (AWS support removed)
   
   creds << "data_gov_key: \"YOUR_DATA_GOV_KEY\"" if @install_api
   
