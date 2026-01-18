@@ -5,7 +5,12 @@ def setup_recon
   apply File.join(__dir__, 'recon', 'clients.rb')
   apply File.join(__dir__, 'recon', 'models.rb')
   apply File.join(__dir__, 'recon', 'core_services.rb')
+  
+  # Load Agent Components (Context & Researcher) before the Orchestrator
+  apply File.join(__dir__, 'recon', 'agent', 'context.rb')
+  apply File.join(__dir__, 'recon', 'agent', 'researcher.rb')
   apply File.join(__dir__, 'recon', 'agent.rb')
+
   apply File.join(__dir__, 'recon', 'tools.rb')
   apply File.join(__dir__, 'recon', 'controller.rb')
   apply File.join(__dir__, 'recon', 'launcher.rb')
