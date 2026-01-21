@@ -17,6 +17,11 @@ load_partial 'agents/state_records_agent'
 load_partial 'agents/stimulus_agent'
 load_partial 'agents/test_agent'
 load_partial 'agents/turbo_agent'
+load_partial 'agents/product_strategist_agent'
+load_partial 'agents/requirements_specialist_agent'
+load_partial 'agents/system_architect_agent'
+load_partial 'agents/user_proxy_agent'
+load_partial 'agents/sre_agent'
 
 def setup_agents
   puts '🤖 Setting up AI Agents...'
@@ -41,4 +46,9 @@ def setup_agents
   create_stimulus_agent_agent
   create_test_agent_agent
   create_turbo_agent_agent
+  create_product_strategist_agent_agent
+  create_requirements_specialist_agent_agent
+  create_system_architect_agent_agent
+  create_user_proxy_agent_agent
+  create_sre_agent_agent
 end
