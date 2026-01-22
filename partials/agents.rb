@@ -1,4 +1,5 @@
 # Load all individual agent definitions
+load_partial 'agents/autopilot_agent'
 load_partial 'agents/api_agent'
 load_partial 'agents/auth_agent'
 load_partial 'agents/caching_agent'
@@ -23,10 +24,15 @@ load_partial 'agents/system_architect_agent'
 load_partial 'agents/user_proxy_agent'
 load_partial 'agents/sre_agent'
 
+# Load all individual skill definitions
+load_partial 'skills/playwright'
+
 def setup_agents
   puts '🤖 Setting up AI Agents...'
 
   empty_directory '.opencode/agents'
+  empty_directory '.opencode/skills'
+  empty_directory '.opencode/skills/playwright'
 
   create_api_agent_agent
   create_auth_agent_agent
@@ -39,6 +45,7 @@ def setup_agents
   create_mailer_agent_agent
   create_migration_agent_agent
   create_model_agent_agent
+  create_autopilot_agent
   create_multi_tenant_agent_agent
   create_refactoring_agent_agent
   create_review_agent_agent
@@ -51,4 +58,6 @@ def setup_agents
   create_system_architect_agent_agent
   create_user_proxy_agent_agent
   create_sre_agent_agent
+
+  create_playwright_skill
 end
