@@ -1,4 +1,5 @@
 def create_playwright_skill
+  # 1. Create the skill description (SKILL.md)
   create_file '.opencode/skills/playwright/SKILL.md', <<~'MARKDOWN'
     ---
     description: "Write and execute Playwright end-to-end tests for the application."
@@ -40,4 +41,26 @@ def create_playwright_skill
 
     When you need to verify a feature works end-to-end, load this skill and instruct it to "Test the [feature name] flow."
   MARKDOWN
+
+  # 2. Create the lockfile/dependencies (SKILLS.md - as requested in prompt)
+  create_file '.opencode/skills/playwright/SKILLS.md', <<~'JSON'
+    {
+      "lockfileVersion": 1,
+      "configVersion": 1,
+      "workspaces": {
+        "": {
+          "dependencies": {
+            "@opencode-ai/plugin": "1.1.36"
+          }
+        }
+      },
+      "packages": {
+        "@opencode-ai/plugin": ["@opencode-ai/plugin@1.1.36", "", { "dependencies": { "@opencode-ai/sdk": "1.1.36", "zod": "4.1.8" } }, "sha512-b2XWeFZN7UzgwkkzTIi6qSntkpEA9En2zvpqakQzZAGQm6QBdGAlv6r1u5hEnmF12Gzyj5umTMWr5GzVbP/oAA=="],
+
+        "@opencode-ai/sdk": ["@opencode-ai/sdk@1.1.36", "", {}, "sha512-feNHWnbxhg03TI2QrWnw3Chc0eYrWSDSmHIy/ejpSVfcKlfXREw1Tpg0L4EjrpeSc4jB1eM673dh+WM/Ko2SFQ=="],
+
+        "zod": ["zod@4.1.8", "", {}, "sha512-5R1P+WwQqmmMIEACyzSvo4JXHY5WiAFHRMg+zBZKgKS+Q1viRa0C1hmUKtHltoIFKtIdki3pRxkmpP74jnNYHQ=="]
+      }
+    }
+  JSON
 end

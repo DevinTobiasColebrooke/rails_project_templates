@@ -58,6 +58,7 @@ def setup_agents
   create_system_architect_agent_agent
   create_user_proxy_agent_agent
   create_sre_agent_agent
+  create_playwright_agent
 
   create_playwright_skill
 end
