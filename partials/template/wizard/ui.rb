@@ -1,3 +1,5 @@
+require 'json'
+
 if @api_only
   puts '🤖 API Mode Detected.'
   puts ' Skipping UI, Admin, SEO, and Browser-Auth prompts.'
@@ -11,19 +13,22 @@ else
   @install_ui = yes?('🎨 Add UI (Tailwind, Flash, Menu)?')
 
   if @install_ui
-    puts " 🎨 Select your application's base theme:"
-    puts ' 1. Default (Standard Top Bar)'
-    puts ' 2. PNW (Evergreen, Sidebar, Serif Fonts)'
-    puts ' 3. Caribbean (Beach, Sticky Header, Rounded Fonts)'
-    puts ' 4. None (No Theme)'
-    theme_choice = ask(' -> Selection:', limited_to: %w[1 2 3 4 default pnw caribbean none])
-    @selected_theme = case theme_choice
-                      when '2', 'pnw' then 'pnw'
-                      when '3', 'caribbean' then 'caribbean'
-                      when '4', 'none' then 'none'
-                      else 'default'
-                      end
-    puts "    -> Applying #{@selected_theme.upcase} theme structure."
+    design_systems_dir = File.expand_path('../../themes/design_systems', __dir__)
+    theme_slugs = Dir.children(design_systems_dir)
+                     .select { |slug| File.directory?(File.join(design_systems_dir, slug)) }
+                     .sort
+
+    puts " 🎨 Select your application's design system:"
+    theme_slugs.each_with_index do |slug, index|
+      meta = JSON.parse(File.read(File.join(design_systems_dir, slug, 'system.json')))
+      mode = meta['native_mode'] || (meta['is_dark'] ? 'dark' : 'light')
+      puts format(' %<num>2d. %<name>-40s (%<mode>s)', num: index + 1, name: meta['name'] || slug, mode: mode)
+    end
+
+    theme_choice = ask(' -> Selection:', limited_to: (1..theme_slugs.size).map(&:to_s))
+    @selected_theme = theme_slugs[theme_choice.to_i - 1]
+    @selected_design_system_dir = File.join(design_systems_dir, @selected_theme)
+    puts "    -> Applying #{@selected_theme} design system."
 
   else
     @selected_theme = 'none'

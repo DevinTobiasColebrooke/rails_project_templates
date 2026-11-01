@@ -1,0 +1,114 @@
+{
+  "slug": "steampunk",
+  "number": "12",
+  "name": "Steampunk Brass",
+  "kind": "proposal",
+  "order": 12,
+  "vibe": "Victorian industrial machinery — dark leather and charcoal with brass, copper, rivets, and gauge dials.",
+  "best_for": "Automation cockpit and Playwright run logs — publishing pipelines as steam-driven machinery.",
+  "adjectives": [
+    "mechanical",
+    "warm",
+    "hand-built"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "Brass rivets + copper/brass borders + gear and gauge dial motifs — machinery you can almost hear.",
+  "motion": "Heavy and mechanical — 200-300ms with one small overshoot \"clunk\"; gears rotate slowly on hover.",
+  "fonts": {
+    "display": "\"IM Fell English\", \"Marcellus\", serif",
+    "sans": "\"Spectral\", Georgia, serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 2px solid var(--border-default); border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(201, 129, 46, 0.28);",
+  "texture_style": "",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#12100c",
+    "bg_surface": "#1c1914",
+    "bg_surface_elevated": "#272219",
+    "border_subtle": "#332c20",
+    "border_default": "#4d4230",
+    "border_focus": "#d9a441",
+    "text_primary": "#f2e9d8",
+    "text_secondary": "#c9bda4",
+    "text_muted": "#8a7f6b",
+    "color_action": "#c9812e",
+    "color_action_hover": "#b06f24",
+    "color_earnings": "#d9a441",
+    "color_earnings_hover": "#c28c32",
+    "color_automation": "#7fb0a8",
+    "color_alert": "#e0a02f",
+    "color_danger": "#a4452c",
+    "color_action_glow": "rgba(201, 129, 46, 0.18)",
+    "color_earnings_glow": "rgba(217, 164, 65, 0.16)",
+    "color_automation_glow": "rgba(127, 176, 168, 0.14)"
+  },
+  "counterpart": {
+    "bg_canvas": "#ece3d0",
+    "bg_surface": "#f7f0e0",
+    "bg_surface_elevated": "#e5d9c0",
+    "border_subtle": "#d4c6a8",
+    "border_default": "#b39a6e",
+    "border_focus": "#a0711f",
+    "text_primary": "#241d13",
+    "text_secondary": "#4f4431",
+    "text_muted": "#7a6d52",
+    "color_action": "#9a6b23",
+    "color_action_hover": "#825820",
+    "color_earnings": "#a8802e",
+    "color_earnings_hover": "#8f6d25",
+    "color_automation": "#5e8f86",
+    "color_alert": "#8f6b18",
+    "color_danger": "#9a3f22",
+    "color_action_glow": "rgba(154, 107, 35, 0.14)",
+    "color_earnings_glow": "rgba(168, 128, 46, 0.12)",
+    "color_automation_glow": "rgba(94, 143, 134, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "copper-fire",
+      "name": "Copper Fire",
+      "desc": "Copper-led with amber; use white bold labels on copper.",
+      "overrides": {
+        "color_action": "#b4502e",
+        "color_action_hover": "#9a4226",
+        "color_earnings": "#a8802e",
+        "color_earnings_hover": "#8f6d25",
+        "color_automation": "#5e8f86",
+        "color_alert": "#8f6b18",
+        "color_danger": "#9a3f22",
+        "border_focus": "#b4502e",
+        "color_action_glow": "rgba(180, 80, 46, 0.16)",
+        "color_earnings_glow": "rgba(168, 128, 46, 0.12)",
+        "color_automation_glow": "rgba(94, 143, 134, 0.12)"
+      }
+    },
+    {
+      "slug": "mercury-silver",
+      "name": "Mercury Silver",
+      "desc": "Silver-steel-led machinery; use white bold labels on steel.",
+      "overrides": {
+        "color_action": "#7a8590",
+        "color_action_hover": "#68737e",
+        "color_earnings": "#a8802e",
+        "color_earnings_hover": "#8f6d25",
+        "color_automation": "#5e8f86",
+        "color_alert": "#8f6b18",
+        "color_danger": "#9a3f22",
+        "border_focus": "#7a8590",
+        "color_action_glow": "rgba(122, 133, 144, 0.14)",
+        "color_earnings_glow": "rgba(168, 128, 46, 0.12)",
+        "color_automation_glow": "rgba(94, 143, 134, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-12 — Steampunk Brass\n\n- **slug**: `steampunk`\n- **Vibe**: Victorian industrial machinery — dark leather and charcoal with brass, copper, rivets, and gauge dials.\n- **Best for**: Automation cockpit and Playwright run logs — publishing pipelines as steam-driven machinery. Adjectives: mechanical, warm, hand-built.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#12100c` | Dark leather-charcoal canvas |\n| `--bg-surface` | `#1c1914` | Panel fill |\n| `--bg-surface-elevated` | `#272219` | Raised panels, modals |\n| `--border-subtle` | `#332c20` | Fine seam lines |\n| `--border-default` | `#4d4230` | Standard brass borders |\n| `--border-focus` | `#d9a441` | Brass focus outline |\n| `--text-primary` | `#f2e9d8` | Warm parchment headings |\n| `--text-secondary` | `#c9bda4` | Body text |\n| `--text-muted` | `#8a7f6b` | Captions, gauge labels |\n| `--color-action` | `#c9812e` | Copper primary action |\n| `--color-action-hover` | `#b06f24` | Action hover (deeper copper) |\n| `--color-earnings` | `#d9a441` | Brass-gold earnings |\n| `--color-earnings-hover` | `#c28c32` | Earnings hover (deeper brass) |\n| `--color-automation` | `#7fb0a8` | Tarnished-teal gauge glass accents |\n| `--color-alert` | `#e0a02f` | Amber warnings |\n| `--color-danger` | `#a4452c` | Rust-red failed states |\n| `--color-action-glow` | `rgba(201, 129, 46, 0.18)` | Copper tint behind action icons |\n| `--color-earnings-glow` | `rgba(217, 164, 65, 0.16)` | Brass tint behind earnings icons |\n| `--color-automation-glow` | `rgba(127, 176, 168, 0.14)` | Teal tint behind automation icons |\n\n- **Typography**: Display: `\"IM Fell English\", \"Marcellus\", serif` — engraved Victorian serif for headings and nameplates. Sans/body: `\"Spectral\", Georgia, serif` at 400-600. Mono: `\"IBM Plex Mono\", ui-monospace, monospace` for gauge readouts, timestamps, and log lines. Small caps with `letter-spacing: 0.04em`; numerals `tabular-nums`.\n- **Radii & Borders**: Rounded mechanical parts — 6-10px on cards, 8px on buttons. Borders are 2px brass (`--border-default`) with an engraved inner hairline. Rivet dots (2-3px brass circles) sit at card corners.\n- **Component Patterns**:\n  - **Buttons**: Brass-bordered with warm dark fill; primary = copper gradient fill with dark ink text (`#1c1914`); hover = brass glow. Secondary = transparent with 2px brass border. Focus = brass double outline. Small rivets flank the label on primary buttons.\n  - **Cards**: Leather-dark panels with a 2px brass frame, engraved nameplate header bar, and rivets at the corners. Optional gauge dial motif in the header for status.\n  - **Badges/Status**: Octagonal or oval brass-bezel chips with a glowing dot; publishing = rotating gear + pulsing amber; published = brass; failed = rust red.\n  - **Tables**: Parchment-tinted rows on charcoal with thin brass rules; header row engraved-plate style (small caps, lighter). Row hover = 1px brass left rule.\n  - **Forms/Inputs**: Engraved-line fields (dark fill, 1px brass border); focus = brass underline. Helper text in small caps.\n  - **Loading**: A rotating gear (8-tooth, CSS-stepped) or a needle gauge sweeping; determinate = a dial gauge filling clockwise.\n  - **Signature detail**: Brass rivets + copper/brass borders + gear and gauge dial motifs — machinery you can almost hear.\n- **Motion & Animation**: Heavy and mechanical — 200-300ms with one small overshoot \"clunk\"; gears rotate slowly on hover; status toggles click. No springs, no glides.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Steampunk gauge KPI: brass frame, rivets, dial readout -->\n<div class=\"steam-card\">\n  <span class=\"steam-plate\">REVENUE / 30D</span>\n  <strong class=\"steam-readout\">$12,480</strong>\n  <span class=\"steam-rivet steam-r1\"></span>\n  <span class=\"steam-rivet steam-r2\"></span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-12",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

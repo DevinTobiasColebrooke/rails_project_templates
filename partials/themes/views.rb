@@ -3,11 +3,6 @@ def setup_shared_views
   setup_shared_partials
 end
 
-def setup_public_layout
-  apply File.join(__dir__, 'views', 'layout.rb')
-  setup_application_layout_modification
-end
-
 def setup_admin_views
   # Load sub-view partials
   apply File.join(__dir__, 'views', 'layout.rb')

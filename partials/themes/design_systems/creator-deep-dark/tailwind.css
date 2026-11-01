@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Creator Deep Dark — design system theme for Rails 8 + Tailwind CSS v4
+   Source: AffiliateManager DEFAULT_THEME (docs/blueprint/design_system.md)
+   System page: https://github.com/DevinTobiasColebrooke/design_systems/tree/main/systems/creator-deep-dark
+
+   Install:
+     1. Copy this file to  app/assets/tailwind/design_system.css
+     2. Add to app/assets/tailwind/application.css (after @import "tailwindcss";):
+          @import "./design_system.css";
+     3. Use the brand-* utilities (bg-brand-surface, text-brand-action, ...)
+        and the .ds-* component recipes below.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Token contract — native dark palette (is_dark: true)
+   Override with <html data-theme="light"> for the
+   light palette.
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-canvas: #090d16; /* Deepest background layer */
+  --bg-surface: #0f172a; /* Cards, Sidebars, Panes */
+  --bg-surface-elevated: #1e293b; /* Dropdowns, hovered states */
+  --border-subtle: #1e293b; /* Very light separation */
+  --border-default: #334155; /* Standard card/form borders */
+  --border-focus: #6366f1; /* Focus states */
+  --text-primary: #f8fafc; /* High contrast title/text */
+  --text-secondary: #cbd5e1; /* Standard body paragraph */
+  --text-muted: #64748b; /* Descriptions, helper text, dates */
+  --color-action: #6366f1; /* Primary action */
+  --color-action-hover: #4f46e5; /* Action hover */
+  --color-earnings: #10b981; /* Earnings, Revenue, Profit */
+  --color-earnings-hover: #059669; /* Earnings hover */
+  --color-automation: #06b6d4; /* Playwright, AI, Terminal accents */
+  --color-alert: #f59e0b; /* Warnings, pending states */
+  --color-danger: #ef4444; /* Error, failed status, deletes */
+  --color-action-glow: rgba(99, 102, 241, 0.15); /* Halo behind action icons */
+  --color-earnings-glow: rgba(16, 185, 129, 0.15); /* Halo behind earnings icons */
+  --color-automation-glow: rgba(6, 182, 212, 0.15); /* Halo behind automation icons */
+  --action-label: #ffffff; /* readable text on --color-action fills */
+
+  /* Radii */
+  --radius-sm: 0.375rem; /* buttons, inputs */
+  --radius-md: 0.5rem;   /* cards, small panes */
+  --radius-lg: 0.75rem;  /* big dashboards, modals */
+}
+
+/* Light counterpart palette */
+[data-theme="light"] {
+  --bg-canvas: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f8fafc;
+  --border-subtle: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-focus: #4f46e5;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --color-action: #4f46e5;
+  --color-action-hover: #4338ca;
+  --color-earnings: #059669;
+  --color-earnings-hover: #047857;
+  --color-automation: #0891b2;
+  --color-alert: #d97706;
+  --color-danger: #dc2626;
+  --color-action-glow: rgba(79, 70, 229, 0.12);
+  --color-earnings-glow: rgba(5, 150, 105, 0.12);
+  --color-automation-glow: rgba(8, 145, 178, 0.12);
+  --action-label: #ffffff;
+}
+
+@theme {
+  /* Typography — Creator Deep Dark */
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Brand colors bound to the raw tokens (re-skins when data-theme flips) */
+  --color-brand-canvas: var(--bg-canvas);
+  --color-brand-surface: var(--bg-surface);
+  --color-brand-surface-elevated: var(--bg-surface-elevated);
+  --color-brand-border-subtle: var(--border-subtle);
+  --color-brand-border-default: var(--border-default);
+  --color-brand-border-focus: var(--border-focus);
+  --color-brand-text-primary: var(--text-primary);
+  --color-brand-text-secondary: var(--text-secondary);
+  --color-brand-text-muted: var(--text-muted);
+  --color-brand-action: var(--color-action);
+  --color-brand-action-hover: var(--color-action-hover);
+  --color-brand-earnings: var(--color-earnings);
+  --color-brand-earnings-hover: var(--color-earnings-hover);
+  --color-brand-automation: var(--color-automation);
+  --color-brand-alert: var(--color-alert);
+  --color-brand-danger: var(--color-danger);
+  --color-brand-action-glow: var(--color-action-glow);
+  --color-brand-earnings-glow: var(--color-earnings-glow);
+  --color-brand-automation-glow: var(--color-automation-glow);
+
+  /* Named theme shadows */
+  --shadow-brand-card: 0 1px 2px rgba(0, 0, 0, 0.12);
+
+  /* Motion — Hotwire-aware transitions: slide-up-fade entries, gauge-fill progress, scale-in modals, pulse states for AI processes. */
+  --animate-pulse-cyan: pulse-cyan 3s infinite ease-in-out;
+  --animate-pulse-amber: pulse-amber 2.5s infinite ease-in-out;
+  --animate-slide-up-fade: slide-up-fade 0.4s ease-in-out;
+  --animate-fade-in: fade-in 0.4s ease-in-out;
+  --animate-scale-in: scale-in 0.3s ease-in-out;
+  --animate-slide-in-right: slide-in-right 0.35s ease-in-out;
+  --animate-gauge-fill: gauge-fill 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-bloom: bloom 1.2s infinite ease-in-out;
+  --animate-sheet-up: sheet-up 0.35s ease-in-out;
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px var(--color-automation)); }
+  50% { opacity: 0.5; filter: drop-shadow(0 0 8px var(--color-automation)); }
+}
+@keyframes pulse-amber {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(245, 158, 11, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px rgba(245, 158, 11, 0.7); }
+}
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes gauge-fill { from { width: 0%; } to { width: var(--gauge-target-width); } }
+@keyframes bloom {
+  0%, 100% { opacity: 0.2; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes sheet-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Component recipes — Creator Deep Dark
+   Card signature: border: 1px solid; border-radius: 0.5rem;
+   ========================================================================== */
+
+.ds-card {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid; border-radius: 0.5rem;
+}
+
+.ds-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-action);
+  border-radius: 0.375rem;
+  background-color: var(--color-action);
+  color: var(--action-label);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 150ms ease-in-out;
+}
+.ds-btn-primary:hover { background-color: var(--color-action-hover); }
+.ds-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-surface), 0 0 0 4px var(--border-focus);
+}
+
+.ds-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 150ms ease-in-out, border-color 150ms ease-in-out;
+}
+.ds-btn-secondary:hover { color: var(--text-primary); border-color: var(--border-focus); }
+
+/* Fixed status colors (identical across all design systems) */
+.ds-status { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.125rem 0.5rem;
+             border-radius: 9999px; border: 1px solid; font-size: 0.6875rem; font-weight: 600; }
+.ds-status-draft      { background: rgba(107, 114, 128, 0.1); color: #6b7280; border-color: rgba(107, 114, 128, 0.2); }
+.ds-status-scheduled  { background: rgba(59, 130, 246, 0.1);  color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); }
+.ds-status-publishing { background: rgba(245, 158, 11, 0.1);  color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+.ds-status-published  { background: rgba(16, 185, 129, 0.1);  color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+.ds-status-failed     { background: rgba(239, 68, 68, 0.1);   color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
+
+/* Data correctness: all numbers are tabular */
+.ds-num { font-variant-numeric: tabular-nums; }

@@ -1,0 +1,114 @@
+{
+  "slug": "blob-tracking",
+  "number": "22",
+  "name": "Blob Tracking",
+  "kind": "proposal",
+  "order": 22,
+  "vibe": "Computer-vision motion detection — soft amorphous blobs of color drift over a dark feed, tagged with bounding boxes and confidence labels like `person 0.97`.",
+  "best_for": "Creator Studio and campaign overviews — content clusters as detectable “blobs” moving through the feed.",
+  "adjectives": [
+    "organic",
+    "analytical",
+    "fluid"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "Corner tracking brackets + drifting blob washes + mono confidence labels — the feed is always watching, always labeling.",
+  "motion": "Organic and fluid: 250-400ms ease-in-out; blobs drift on 8-20s loops; entries soften in (opacity + blur 4px→0). Nothing moves linearly — everything eases like matter.",
+  "fonts": {
+    "display": "\"Space Grotesk\", sans-serif",
+    "sans": "\"Inter\", system-ui, sans-serif",
+    "mono": "\"JetBrains Mono\", monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 0.5rem;",
+  "texture_style": "background-image: radial-gradient(circle at 20% 30%, rgba(92, 255, 176, 0.08), transparent 50%), radial-gradient(circle at 80% 70%, rgba(92, 200, 255, 0.08), transparent 50%);",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#050807",
+    "bg_surface": "#0d1512",
+    "bg_surface_elevated": "#152220",
+    "border_subtle": "#1e332c",
+    "border_default": "#2e4f42",
+    "border_focus": "#5cffb0",
+    "text_primary": "#eafff4",
+    "text_secondary": "#b2d8c6",
+    "text_muted": "#6a9482",
+    "color_action": "#5cffb0",
+    "color_action_hover": "#3fe596",
+    "color_earnings": "#ffe45c",
+    "color_earnings_hover": "#e6c93f",
+    "color_automation": "#5cc8ff",
+    "color_alert": "#ffb54a",
+    "color_danger": "#ff5c7a",
+    "color_action_glow": "rgba(92, 255, 176, 0.18)",
+    "color_earnings_glow": "rgba(255, 228, 92, 0.16)",
+    "color_automation_glow": "rgba(92, 200, 255, 0.16)"
+  },
+  "counterpart": {
+    "bg_canvas": "#eef4f0",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e0eee7",
+    "border_subtle": "#cfe2d8",
+    "border_default": "#93bfa8",
+    "border_focus": "#0f8a52",
+    "text_primary": "#0a2016",
+    "text_secondary": "#38584a",
+    "text_muted": "#6a887a",
+    "color_action": "#0f8a52",
+    "color_action_hover": "#0c7244",
+    "color_earnings": "#9a7400",
+    "color_earnings_hover": "#806000",
+    "color_automation": "#0a7ab8",
+    "color_alert": "#b45309",
+    "color_danger": "#c42a54",
+    "color_action_glow": "rgba(15, 138, 82, 0.14)",
+    "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+    "color_automation_glow": "rgba(10, 122, 184, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "heatmap",
+      "name": "Heatmap",
+      "desc": "Jet-heatmap accents with electric blue secondary; use white bold labels on hot fills.",
+      "overrides": {
+        "color_action": "#e05c2a",
+        "color_action_hover": "#c44a1c",
+        "color_earnings": "#e0b02a",
+        "color_earnings_hover": "#c4961c",
+        "color_automation": "#3a5ce0",
+        "color_alert": "#b45309",
+        "color_danger": "#c42a54",
+        "border_focus": "#e05c2a",
+        "color_action_glow": "rgba(224, 92, 42, 0.16)",
+        "color_earnings_glow": "rgba(224, 176, 42, 0.14)",
+        "color_automation_glow": "rgba(58, 92, 224, 0.16)"
+      }
+    },
+    {
+      "slug": "thermal-cyan",
+      "name": "Thermal Cyan",
+      "desc": "Cool cyan tracks with violet secondary; use dark ink labels on cyan.",
+      "overrides": {
+        "color_action": "#2ab8c4",
+        "color_action_hover": "#219aa4",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#7a5ce0",
+        "color_alert": "#b45309",
+        "color_danger": "#c42a54",
+        "border_focus": "#2ab8c4",
+        "color_action_glow": "rgba(42, 184, 196, 0.16)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+        "color_automation_glow": "rgba(122, 92, 224, 0.16)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-22 — Blob Tracking\n\n- **slug**: `blob-tracking`\n- **Vibe**: Computer-vision motion detection — soft amorphous blobs of color drift over a dark feed, tagged with bounding boxes and confidence labels like `person 0.97`.\n- **Best for**: Creator Studio and campaign overviews — content clusters as detectable \"blobs\" moving through the feed. Adjectives: organic, analytical, fluid.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#050807` | Camera-feed black-green |\n| `--bg-surface` | `#0d1512` | Feed panel fill |\n| `--bg-surface-elevated` | `#152220` | Tracked-region highlight fill |\n| `--border-subtle` | `#1e332c` | Faint grid hairlines |\n| `--border-default` | `#2e4f42` | Detection-box borders |\n| `--border-focus` | `#5cffb0` | Tracker-lock focus outline |\n| `--text-primary` | `#eafff4` | Bright label text |\n| `--text-secondary` | `#b2d8c6` | Body text |\n| `--text-muted` | `#6a9482` | Feed-noise dim text |\n| `--color-action` | `#5cffb0` | Tracker-green primary |\n| `--color-action-hover` | `#3fe596` | Action hover (deeper green) |\n| `--color-earnings` | `#ffe45c` | High-confidence yellow tag |\n| `--color-earnings-hover` | `#e6c93f` | Earnings hover (deeper yellow) |\n| `--color-automation` | `#5cc8ff` | Secondary-track cyan |\n| `--color-alert` | `#ffb54a` | Motion-detected amber |\n| `--color-danger` | `#ff5c7a` | Track-lost red |\n| `--color-action-glow` | `rgba(92, 255, 176, 0.18)` | Tracker bloom |\n| `--color-earnings-glow` | `rgba(255, 228, 92, 0.16)` | Tag bloom |\n| `--color-automation-glow` | `rgba(92, 200, 255, 0.16)` | Cyan bloom |\n\n- **Typography**: CV-overlay labeling. Display: `\"Space Grotesk\", sans-serif` at 600. Body: `\"Inter\", system-ui, sans-serif`. Mono: `\"JetBrains Mono\", monospace` for confidence scores and IDs — every blob gets a label like `earnings_blob 0.97`. Uppercase micro-labels on boxes. KPIs `tabular-nums`.\n- **Radii & Borders**: Detection-box language: 2px radius on chips and boxes, cards `rounded-lg`. Borders 1px; tracked items get corner brackets (like camera focus brackets) instead of full outlines.\n- **Component Patterns**:\n  - **Buttons**: Soft rounded fills with a 1px border; primary = tracker-green with dark text. Hover = corner brackets appear around the button (tracking acquired). Focus = 2px outline.\n  - **Cards**: Panels with soft blob-wash backgrounds (large radial gradients of action/automation glow at 6-10% opacity drifting slowly via CSS animation). Active cards get corner brackets + a mono confidence label.\n  - **Badges/Status**: Tag chips like CV labels: `PUBLISHED 0.98`, `FAILED 0.02`, `RUNNING …` — colored border, dark fill, mono confidence. Dot pulses when a track is live.\n  - **Tables**: Rows are \"tracks\": hover locks the row (corner brackets + brighter fill); a small mono trail of dots (motion trail) follows the hover across columns.\n  - **Forms/Inputs**: Rounded fields, 1px borders; focus = tracker-lock border + brackets. Placeholder text dimmed like feed noise.\n  - **Loading**: Blobs wander: 2-3 soft radial-gradient shapes drift and morph (border-radius animation) until content arrives; determinate = blob shrinking onto its target box.\n  - **Signature detail**: Corner tracking brackets + drifting blob washes + mono confidence labels — the feed is always watching, always labeling.\n- **Motion & Animation**: Organic and fluid: 250-400ms ease-in-out; blobs drift on 8-20s loops; entries soften in (opacity + blur 4px -> 0). Nothing moves linearly — everything eases like matter.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Blob-tracked KPI: corner brackets + confidence label -->\n<div class=\"blob-card\">\n  <div class=\"blob-brackets\"></div>\n  <span class=\"blob-label\">EARNINGS_BLOB 0.97</span>\n  <strong class=\"blob-kpi\">$12,480.50</strong>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-22",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

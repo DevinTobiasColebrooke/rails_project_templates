@@ -1,0 +1,114 @@
+{
+  "slug": "painterly-watercolor",
+  "number": "04",
+  "name": "Painterly / Watercolor",
+  "kind": "proposal",
+  "order": 4,
+  "vibe": "Soft layered washes, translucent color, and warm paper — the UI looks hand-painted rather than rendered.",
+  "best_for": "Onboarding flows, product show pages, and campaign storytelling.",
+  "adjectives": [
+    "calm",
+    "handcrafted",
+    "warm"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "The layered translucent wash gradient on the canvas plus hand-drawn underline accents on headings — watercolor bleed, no hard edges.",
+  "motion": "Slow and liquid — 300-450ms ease-in-out; elements fade in with a 6px upward drift and slight blur-to-sharp.",
+  "fonts": {
+    "display": "\"Fraunces\", Georgia, serif",
+    "sans": "\"Lora\", Georgia, serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid; border-radius: 1rem 1rem 1rem 0.25rem; box-shadow: 0 12px 40px rgba(80, 60, 40, 0.12);",
+  "texture_style": "background-image: radial-gradient(circle at 88% 8%, rgba(154, 98, 52, 0.18), transparent 55%);",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#f4ead8",
+    "bg_surface": "#fdf8ef",
+    "bg_surface_elevated": "#fffcf4",
+    "border_subtle": "#e6d9c0",
+    "border_default": "#cdbfa3",
+    "border_focus": "#9a6234",
+    "text_primary": "#3b2f26",
+    "text_secondary": "#5c4f42",
+    "text_muted": "#7a6a58",
+    "color_action": "#9a6234",
+    "color_action_hover": "#7f5127",
+    "color_earnings": "#4f7d4f",
+    "color_earnings_hover": "#3f6a40",
+    "color_automation": "#5a7f9e",
+    "color_alert": "#c9922e",
+    "color_danger": "#a6534f",
+    "color_action_glow": "rgba(154, 98, 52, 0.12)",
+    "color_earnings_glow": "rgba(79, 125, 79, 0.12)",
+    "color_automation_glow": "rgba(90, 127, 158, 0.12)"
+  },
+  "counterpart": {
+    "bg_canvas": "#1a1612",
+    "bg_surface": "#241f19",
+    "bg_surface_elevated": "#2f2921",
+    "border_subtle": "#3d362c",
+    "border_default": "#57503f",
+    "border_focus": "#d1844f",
+    "text_primary": "#f3ead9",
+    "text_secondary": "#c9bdab",
+    "text_muted": "#948875",
+    "color_action": "#d1844f",
+    "color_action_hover": "#b96f3e",
+    "color_earnings": "#86b98a",
+    "color_earnings_hover": "#6ea372",
+    "color_automation": "#7fa6c9",
+    "color_alert": "#e0a84f",
+    "color_danger": "#c96a5f",
+    "color_action_glow": "rgba(209, 132, 79, 0.14)",
+    "color_earnings_glow": "rgba(134, 185, 138, 0.12)",
+    "color_automation_glow": "rgba(127, 166, 201, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "rosewater-wash",
+      "name": "Rosewater Wash",
+      "desc": "Soft rose hero with sage and dusty blue; use cream bold labels.",
+      "overrides": {
+        "color_action": "#d9738a",
+        "color_action_hover": "#c05f76",
+        "color_earnings": "#86b98a",
+        "color_earnings_hover": "#6ea372",
+        "color_automation": "#7fa6c9",
+        "color_alert": "#e0a84f",
+        "color_danger": "#c96a5f",
+        "border_focus": "#d9738a",
+        "color_action_glow": "rgba(217, 115, 138, 0.14)",
+        "color_earnings_glow": "rgba(134, 185, 138, 0.12)",
+        "color_automation_glow": "rgba(127, 166, 201, 0.12)"
+      }
+    },
+    {
+      "slug": "lavender-bloom",
+      "name": "Lavender Bloom",
+      "desc": "Gentle lavender hero; use cream bold labels.",
+      "overrides": {
+        "color_action": "#a98fd6",
+        "color_action_hover": "#9074c0",
+        "color_earnings": "#86b98a",
+        "color_earnings_hover": "#6ea372",
+        "color_automation": "#7fa6c9",
+        "color_alert": "#e0a84f",
+        "color_danger": "#c96a5f",
+        "border_focus": "#a98fd6",
+        "color_action_glow": "rgba(169, 143, 214, 0.14)",
+        "color_earnings_glow": "rgba(134, 185, 138, 0.12)",
+        "color_automation_glow": "rgba(127, 166, 201, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-04 — Painterly / Watercolor\n\n- **slug**: `painterly-watercolor`\n- **Vibe**: Soft layered washes, translucent color, and warm paper — the UI looks hand-painted rather than rendered.\n- **Best for**: Onboarding flows, product show pages, and campaign storytelling. Adjectives: calm, handcrafted, warm.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#f4ead8` | Warm paper canvas with wash overlay |\n| `--bg-surface` | `#fdf8ef` | Card paper fill |\n| `--bg-surface-elevated` | `#fffcf4` | Raised/hovered paper |\n| `--border-subtle` | `#e6d9c0` | Soft wash hairlines |\n| `--border-default` | `#cdbfa3` | Standard soft borders |\n| `--border-focus` | `#9a6234` | Burnt-sienna brush focus |\n| `--text-primary` | `#3b2f26` | Warm dark ink-brown headings |\n| `--text-secondary` | `#5c4f42` | Body text |\n| `--text-muted` | `#7a6a58` | Captions, dates, helper text |\n| `--color-action` | `#9a6234` | Burnt-sienna primary action |\n| `--color-action-hover` | `#7f5127` | Action hover (deeper sienna) |\n| `--color-earnings` | `#4f7d4f` | Sage-green wash for earnings |\n| `--color-earnings-hover` | `#3f6a40` | Earnings hover (deeper sage) |\n| `--color-automation` | `#5a7f9e` | Dusty-blue automation wash |\n| `--color-alert` | `#c9922e` | Ochre warnings |\n| `--color-danger` | `#a6534f` | Muted vermilion destructive states |\n| `--color-action-glow` | `rgba(154, 98, 52, 0.12)` | Translucent wash behind action icons |\n| `--color-earnings-glow` | `rgba(79, 125, 79, 0.12)` | Translucent wash behind earnings icons |\n| `--color-automation-glow` | `rgba(90, 127, 158, 0.12)` | Translucent wash behind automation icons |\n\n- **Typography**: Display: `\"Fraunces\", Georgia, serif` at 500-600 weight, soft optical sizing, no extra tracking. Sans: `\"Lora\", Georgia, serif` (warm, readable). Mono: `\"IBM Plex Mono\", ui-monospace, monospace` reserved for timestamps and IDs so data reads \"typeset\". Numerals `tabular-nums`.\n- **Radii & Borders**: Organic and irregular: cards use asymmetric radii (e.g., `1rem 1rem 1rem 0.25rem`), buttons are soft pills. 1px borders only, in muted tones. Shadows are very soft (`0 12px 40px rgba(80, 60, 40, 0.10)`).\n- **Component Patterns**:\n  - **Buttons**: Soft pills with a translucent wash fill and a 1px border in a deeper tone of the same hue; white/ink text depending on wash depth. Hover deepens the wash opacity. Focus = soft double border (2px sienna ring with gap).\n  - **Cards**: Paper-white with a soft shadow and a layered translucent accent wash in one corner (radial-gradient, low opacity). Optional deckled edge via asymmetric radii. No hard outlines.\n  - **Badges/Status**: Translucent pills with a soft dot; no hard borders — status reads as colored water on paper. Publishing = slowly breathing dot.\n  - **Tables**: Minimal rules; generous row padding; header labels in small-caps serif. Row hover = soft wash band rather than a hard highlight.\n  - **Forms/Inputs**: Underline-only fields with placeholder in italic serif; focus = sienna brush underline that fades in. Errors in muted vermilion below the field.\n  - **Loading**: Three soft ink dots that \"bloom\" (opacity + scale) in sequence; determinate progress = a gentle wash filling a rounded track.\n  - **Signature detail**: The layered translucent wash gradient on the canvas plus hand-drawn underline accents on headings — watercolor bleed, no hard edges.\n- **Motion & Animation**: Slow and liquid — 300-450ms ease-in-out; elements fade in with a 6px upward drift and slight blur-to-sharp. Turbo Stream additions \"bleed\" in rather than pop.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Watercolor product card: paper surface, wash accent, serif -->\n<div class=\"wash-card\">\n  <span class=\"wash-kicker\">Campaign</span>\n  <h3 class=\"wash-title\">Summer Launch — Soundcore Q45</h3>\n  <span class=\"wash-badge\">3 posts scheduled</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-04",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

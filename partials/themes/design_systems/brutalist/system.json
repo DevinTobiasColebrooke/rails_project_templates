@@ -1,0 +1,114 @@
+{
+  "slug": "brutalist",
+  "number": "13",
+  "name": "Brutalist Raw",
+  "kind": "proposal",
+  "order": 13,
+  "vibe": "Stark, unapologetic raw HTML — heavy black borders, monospace everywhere, hard offset shadows, zero rounding.",
+  "best_for": "Agency publishing logs and power-user tables — a \"no chrome, just data\" aesthetic.",
+  "adjectives": [
+    "stark",
+    "honest",
+    "confrontational"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "Heavy black outlines + hard offset shadows + mono-everything and zero rounding — it looks like a 1996 default stylesheet with intent.",
+  "motion": "Instant — 0-60ms linear; elements hard-cut in with no fade; hover states snap.",
+  "fonts": {
+    "display": "\"Space Mono\", \"Courier New\", ui-monospace, monospace",
+    "sans": "\"Space Mono\", \"Courier New\", ui-monospace, monospace",
+    "mono": "\"Space Mono\", \"Courier New\", ui-monospace, monospace"
+  },
+  "card_style": "border: 3px solid #000000; border-radius: 0; box-shadow: 6px 6px 0 0 #000000;",
+  "texture_style": "",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#f5f5f0",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e8e8e0",
+    "border_subtle": "#c9c9c0",
+    "border_default": "#000000",
+    "border_focus": "#0000ff",
+    "text_primary": "#000000",
+    "text_secondary": "#1a1a1a",
+    "text_muted": "#55554e",
+    "color_action": "#000000",
+    "color_action_hover": "#333333",
+    "color_earnings": "#007a3d",
+    "color_earnings_hover": "#006331",
+    "color_automation": "#0000ff",
+    "color_alert": "#b45309",
+    "color_danger": "#c00000",
+    "color_action_glow": "rgba(0, 0, 0, 0.08)",
+    "color_earnings_glow": "rgba(0, 122, 61, 0.08)",
+    "color_automation_glow": "rgba(0, 0, 255, 0.08)"
+  },
+  "counterpart": {
+    "bg_canvas": "#0a0a0a",
+    "bg_surface": "#141414",
+    "bg_surface_elevated": "#1f1f1f",
+    "border_subtle": "#2e2e2e",
+    "border_default": "#ffffff",
+    "border_focus": "#00aaff",
+    "text_primary": "#ffffff",
+    "text_secondary": "#d9d9d9",
+    "text_muted": "#8a8a8a",
+    "color_action": "#ffffff",
+    "color_action_hover": "#d9d9d9",
+    "color_earnings": "#4ade80",
+    "color_earnings_hover": "#2fc46b",
+    "color_automation": "#00aaff",
+    "color_alert": "#fbbf24",
+    "color_danger": "#ff4d4d",
+    "color_action_glow": "rgba(255, 255, 255, 0.12)",
+    "color_earnings_glow": "rgba(74, 222, 128, 0.10)",
+    "color_automation_glow": "rgba(0, 170, 255, 0.10)"
+  },
+  "schemas": [
+    {
+      "slug": "raw-red",
+      "name": "Raw Red",
+      "desc": "Red-led raw UI; use black labels on red fills.",
+      "overrides": {
+        "color_action": "#ff4d4d",
+        "color_action_hover": "#e03a3a",
+        "color_earnings": "#4ade80",
+        "color_earnings_hover": "#2fc46b",
+        "color_automation": "#00aaff",
+        "color_alert": "#fbbf24",
+        "color_danger": "#ff2e2e",
+        "border_focus": "#ff4d4d",
+        "color_action_glow": "rgba(255, 77, 77, 0.14)",
+        "color_earnings_glow": "rgba(74, 222, 128, 0.10)",
+        "color_automation_glow": "rgba(0, 170, 255, 0.10)"
+      }
+    },
+    {
+      "slug": "zine-yellow",
+      "name": "Zine Yellow",
+      "desc": "Yellow-led zine energy; use black labels on yellow.",
+      "overrides": {
+        "color_action": "#fbbf24",
+        "color_action_hover": "#e0a60f",
+        "color_earnings": "#4ade80",
+        "color_earnings_hover": "#2fc46b",
+        "color_automation": "#00aaff",
+        "color_alert": "#ff8c00",
+        "color_danger": "#ff4d4d",
+        "border_focus": "#fbbf24",
+        "color_action_glow": "rgba(251, 191, 36, 0.16)",
+        "color_earnings_glow": "rgba(74, 222, 128, 0.10)",
+        "color_automation_glow": "rgba(0, 170, 255, 0.10)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-13 — Brutalist Raw\n\n- **slug**: `brutalist`\n- **Vibe**: Stark, unapologetic raw HTML — heavy black borders, monospace everywhere, hard offset shadows, zero rounding.\n- **Best for**: Agency publishing logs and power-user tables — a \"no chrome, just data\" aesthetic. Adjectives: stark, honest, confrontational.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#f5f5f0` | Off-white raw canvas |\n| `--bg-surface` | `#ffffff` | Card and panel fill |\n| `--bg-surface-elevated` | `#e8e8e0` | Hover/raised fills |\n| `--border-subtle` | `#c9c9c0` | Fine grey hairlines |\n| `--border-default` | `#000000` | Heavy black borders (2-3px) |\n| `--border-focus` | `#0000ff` | Raw-blue focus outline |\n| `--text-primary` | `#000000` | Pure black text |\n| `--text-secondary` | `#1a1a1a` | Body text |\n| `--text-muted` | `#55554e` | Captions, helper text |\n| `--color-action` | `#000000` | Black primary action |\n| `--color-action-hover` | `#333333` | Action hover (dark grey) |\n| `--color-earnings` | `#007a3d` | Print-green earnings |\n| `--color-earnings-hover` | `#006331` | Earnings hover (deeper green) |\n| `--color-automation` | `#0000ff` | Raw-blue automation accents |\n| `--color-alert` | `#b45309` | Amber-brown warnings |\n| `--color-danger` | `#c00000` | Raw-red failed states |\n| `--color-action-glow` | `rgba(0, 0, 0, 0.08)` | Grey tint behind action icons |\n| `--color-earnings-glow` | `rgba(0, 122, 61, 0.08)` | Green tint behind earnings icons |\n| `--color-automation-glow` | `rgba(0, 0, 255, 0.08)` | Blue tint behind automation icons |\n\n- **Typography**: Mono everything — display, sans, and mono all use `\"Space Mono\", \"Courier New\", ui-monospace, monospace`. Display at 700, body at 400-700, uppercase labels at `letter-spacing: 0.04em`. Numerals `tabular-nums`. Nothing decorative; every glyph is typewriter-honest.\n- **Radii & Borders**: `border-radius: 0` everywhere. Borders are 2-3px solid black (`--border-default`); hairlines are 1px. Shadows are hard offsets (`4px 4px 0 0 #000`) with zero blur.\n- **Component Patterns**:\n  - **Buttons**: Square, 3px black border, solid black fill with white text; hover inverts (white fill, black text) and shifts the offset shadow. Secondary = white with 3px border. Focus = 3px `#0000ff` outline with a 2px gap.\n  - **Cards**: White with 3px black border and a hard 6px black offset shadow; header bar is a solid black strip with white mono text. No gradients, no glows.\n  - **Badges/Status**: Square mono chips with 2px black border; publishing = blinking black square; published = green text chip; failed = red text chip. No pills.\n  - **Tables**: Stark 1px grid with a thick black header bar (white text); row hover = 4px black left rule. All values mono and aligned.\n  - **Forms/Inputs**: 2px black border, no rounding; focus = 3px black border plus a blue offset. Labels are uppercase mono.\n  - **Loading**: A blinking block cursor on a `LOADING...` line, or a hard black square bar sweeping; determinate = solid black bar filling from left.\n  - **Signature detail**: Heavy black outlines + hard offset shadows + mono-everything and zero rounding — it looks like a 1996 default stylesheet with intent.\n- **Motion & Animation**: Instant — 0-60ms linear; elements hard-cut in with no fade. Hover states snap; Turbo Stream inserts appear as abrupt line insertions.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Brutalist KPI: black border, hard offset shadow, mono -->\n<div class=\"brut-card\">\n  <span class=\"brut-label\">EARNINGS / 30D</span>\n  <strong class=\"brut-kpi\">$12,480</strong>\n  <span class=\"brut-delta\">+14.2%</span>\n  <button class=\"brut-btn\">QUEUE POST</button>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-13",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

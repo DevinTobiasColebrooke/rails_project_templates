@@ -1,0 +1,114 @@
+{
+  "slug": "depth-map",
+  "number": "21",
+  "name": "Depth Map",
+  "kind": "proposal",
+  "order": 21,
+  "vibe": "A sensor's point-cloud view of the app — surfaces colored by distance, luminous cyan-to-magenta gradients marking near-to-far, wireframe contours on hover.",
+  "best_for": "Analytics dashboards and the shooting board — literal visual depth for information priority.",
+  "adjectives": [
+    "technical",
+    "luminous",
+    "dimensional"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The cyan-near / magenta-far gradient language — priority is literally distance, and everything important glows closer.",
+  "motion": "Smooth and parallax-minded: 200-300ms ease-out; elements “arrive from depth” (scale 0.96→1 + brightness 0.7→1). Hover lifts z; leaving settles back.",
+  "fonts": {
+    "display": "\"Space Grotesk\", \"Chakra Petch\", sans-serif",
+    "sans": "\"Inter\", system-ui, sans-serif",
+    "mono": "\"JetBrains Mono\", monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 0.5rem; border-left: 3px solid var(--color-action);",
+  "texture_style": "background-image: radial-gradient(circle at 88% 8%, rgba(78, 240, 255, 0.10), transparent 55%);",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#04070e",
+    "bg_surface": "#0a1120",
+    "bg_surface_elevated": "#111b33",
+    "border_subtle": "#1a2745",
+    "border_default": "#2a3c66",
+    "border_focus": "#4ef0ff",
+    "text_primary": "#e8f4ff",
+    "text_secondary": "#a8c4e8",
+    "text_muted": "#5c739c",
+    "color_action": "#4ef0ff",
+    "color_action_hover": "#38d4e6",
+    "color_earnings": "#ff9d4e",
+    "color_earnings_hover": "#e6843a",
+    "color_automation": "#c44eff",
+    "color_alert": "#ffd23c",
+    "color_danger": "#ff4e6a",
+    "color_action_glow": "rgba(78, 240, 255, 0.18)",
+    "color_earnings_glow": "rgba(255, 157, 78, 0.16)",
+    "color_automation_glow": "rgba(196, 78, 255, 0.16)"
+  },
+  "counterpart": {
+    "bg_canvas": "#e8f0f8",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#dbe8f4",
+    "border_subtle": "#c4d6e8",
+    "border_default": "#93aed0",
+    "border_focus": "#0087a8",
+    "text_primary": "#0a1626",
+    "text_secondary": "#38485e",
+    "text_muted": "#66788f",
+    "color_action": "#0087a8",
+    "color_action_hover": "#006e8a",
+    "color_earnings": "#b05f10",
+    "color_earnings_hover": "#944e0c",
+    "color_automation": "#8a2bc4",
+    "color_alert": "#9a6d00",
+    "color_danger": "#c42a48",
+    "color_action_glow": "rgba(0, 135, 168, 0.16)",
+    "color_earnings_glow": "rgba(176, 95, 16, 0.12)",
+    "color_automation_glow": "rgba(138, 43, 196, 0.14)"
+  },
+  "schemas": [
+    {
+      "slug": "thermal",
+      "name": "Thermal",
+      "desc": "Hot-metal thermal ramp with amber returns; use white bold labels on hot fills.",
+      "overrides": {
+        "color_action": "#e04a2e",
+        "color_action_hover": "#c43e24",
+        "color_earnings": "#e0a02e",
+        "color_earnings_hover": "#c48a1f",
+        "color_automation": "#4a6ac4",
+        "color_alert": "#c47a1c",
+        "color_danger": "#a8321c",
+        "border_focus": "#e04a2e",
+        "color_action_glow": "rgba(224, 74, 46, 0.16)",
+        "color_earnings_glow": "rgba(224, 160, 46, 0.14)",
+        "color_automation_glow": "rgba(74, 106, 196, 0.14)"
+      }
+    },
+    {
+      "slug": "sonar",
+      "name": "Sonar",
+      "desc": "Monochrome-green sonar sweep; use white bold labels on the sweep green.",
+      "overrides": {
+        "color_action": "#2ea86a",
+        "color_action_hover": "#238a54",
+        "color_earnings": "#8a6d00",
+        "color_earnings_hover": "#725800",
+        "color_automation": "#4a8a5c",
+        "color_alert": "#9a6d00",
+        "color_danger": "#b3261e",
+        "border_focus": "#2ea86a",
+        "color_action_glow": "rgba(46, 168, 106, 0.16)",
+        "color_earnings_glow": "rgba(138, 109, 0, 0.12)",
+        "color_automation_glow": "rgba(74, 138, 92, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-21 — Depth Map\n\n- **slug**: `depth-map`\n- **Vibe**: A sensor's point-cloud view of the app — surfaces colored by distance, luminous cyan-to-magenta gradients marking near-to-far, wireframe contours on hover.\n- **Best for**: Analytics dashboards and the shooting board — literal visual depth for information priority. Adjectives: technical, luminous, dimensional.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#04070e` | Sensor-black void |\n| `--bg-surface` | `#0a1120` | Near-field panel fill |\n| `--bg-surface-elevated` | `#111b33` | Closer/higher-priority fill |\n| `--border-subtle` | `#1a2745` | Contour hairlines |\n| `--border-default` | `#2a3c66` | Standard borders |\n| `--border-focus` | `#4ef0ff` | Sensor-cyan focus outline |\n| `--text-primary` | `#e8f4ff` | Near-white headings (closest) |\n| `--text-secondary` | `#a8c4e8` | Mid-field body text |\n| `--text-muted` | `#5c739c` | Far-field dim text |\n| `--color-action` | `#4ef0ff` | Cyan = nearest action |\n| `--color-action-hover` | `#38d4e6` | Action hover (deeper cyan) |\n| `--color-earnings` | `#ff9d4e` | Warm near-IR earnings |\n| `--color-earnings-hover` | `#e6843a` | Earnings hover (deeper amber) |\n| `--color-automation` | `#c44eff` | Far-field magenta automation |\n| `--color-alert` | `#ffd23c` | Hot-return warnings |\n| `--color-danger` | `#ff4e6a` | Collision-red failed states |\n| `--color-action-glow` | `rgba(78, 240, 255, 0.18)` | Cyan depth glow |\n| `--color-earnings-glow` | `rgba(255, 157, 78, 0.16)` | Amber depth glow |\n| `--color-automation-glow` | `rgba(196, 78, 255, 0.16)` | Magenta depth glow |\n\n- **Typography**: Technical instrument type. Display: `\"Space Grotesk\", \"Chakra Petch\", sans-serif` at 600-700. Body: `\"Inter\", system-ui, sans-serif`. Mono: `\"JetBrains Mono\", monospace` for coordinates, ranges, and IDs. Distance labels like `z=0.4m` accompany depth emphasis. KPIs `tabular-nums`.\n- **Radii & Borders**: Soft-tech: cards `rounded-lg`, inputs `rounded-md`. 1px borders, and emphasized (near) panels get a gradient left edge (cyan -> transparent) encoding \"closest to user\".\n- **Component Patterns**:\n  - **Buttons**: Flat fill with subtle vertical gradient (lighter top = nearer); primary = cyan fill, dark text. Hover raises \"z\" (translateY -1px + brighter gradient). Focus = 2px cyan outline.\n  - **Cards**: Panel depth = priority: primary cards use `bg-surface-elevated` + gradient edge, secondary cards sit \"further\" (darker, dimmer text). Hover draws a 1px wireframe contour (outline) over the card.\n  - **Badges/Status**: Depth-coded chips with a small dot: near = filled bright, mid = filled dim, far = outline only. Publishing = a dot that drifts nearer (scale 0.8 -> 1) on a loop.\n  - **Tables**: Rows tinted by column importance — the key column is brightest (\"nearest\"), supporting columns dimmer (\"further\"). Hover = contour outline on the row.\n  - **Forms/Inputs**: Flat fields, 1px borders; focused field \"comes nearer\" (brighter border + slight scale 1.01). Helper text is far-field dim.\n  - **Loading**: A depth-sweep: a soft gradient band travels down the skeleton (near-color cyan, 1.2s loop). Determinate = bar whose fill gradient shifts cyan->magenta.\n  - **Signature detail**: The cyan-near / magenta-far gradient language — priority is literally distance, and everything important glows closer.\n- **Motion & Animation**: Smooth and parallax-minded: 200-300ms ease-out; elements \"arrive from depth\" (scale 0.96 -> 1 + brightness 0.7 -> 1). Hover lifts z; leaving settles back.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Depth-map KPI: near-field panel with gradient edge -->\n<div class=\"depth-card depth-near\">\n  <span class=\"depth-label\">EARNINGS / 30d · z=0.4m</span>\n  <strong class=\"depth-kpi\">$12,480.50</strong>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-21",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

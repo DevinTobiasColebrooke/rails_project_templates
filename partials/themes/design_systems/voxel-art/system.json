@@ -1,0 +1,114 @@
+{
+  "slug": "voxel-art",
+  "number": "02",
+  "name": "Voxel Art",
+  "kind": "proposal",
+  "order": 2,
+  "vibe": "Blocky, isometric-minded 3D pixel world: every pixel is a cube face and the dark canvas glows with neon at the edges.",
+  "best_for": "Automation cockpit and Playwright run logs — robotic pipelines read like a game console.",
+  "adjectives": [
+    "blocky",
+    "precise",
+    "game-console"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The cube-lip corner and square status blocks — everything resolves to axis-aligned cubes, even the cursor.",
+  "motion": "Chunk-snappy, 60-90ms, linear or stepped easing; elements snap onto the grid rather than fading.",
+  "fonts": {
+    "display": "\"Chakra Petch\", \"Space Grotesk\", sans-serif",
+    "sans": "\"Space Grotesk\", system-ui, sans-serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 2px solid; border-radius: 0; box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.65);",
+  "texture_style": "",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#05060f",
+    "bg_surface": "#0c0f22",
+    "bg_surface_elevated": "#161a38",
+    "border_subtle": "#232a52",
+    "border_default": "#2f3766",
+    "border_focus": "#7df9ff",
+    "text_primary": "#f4f7ff",
+    "text_secondary": "#b9c2e8",
+    "text_muted": "#6b739c",
+    "color_action": "#41f0ff",
+    "color_action_hover": "#2cd6e6",
+    "color_earnings": "#4ef36b",
+    "color_earnings_hover": "#37d456",
+    "color_automation": "#b86bff",
+    "color_alert": "#ffcc00",
+    "color_danger": "#ff4d6d",
+    "color_action_glow": "rgba(65, 240, 255, 0.22)",
+    "color_earnings_glow": "rgba(78, 243, 107, 0.22)",
+    "color_automation_glow": "rgba(184, 107, 255, 0.22)"
+  },
+  "counterpart": {
+    "bg_canvas": "#eef1f9",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e2e7f5",
+    "border_subtle": "#cdd6ee",
+    "border_default": "#a9b7dc",
+    "border_focus": "#0e9fbe",
+    "text_primary": "#0a0d1f",
+    "text_secondary": "#3a4060",
+    "text_muted": "#6a7192",
+    "color_action": "#0e9fbe",
+    "color_action_hover": "#0c87a2",
+    "color_earnings": "#1f9d49",
+    "color_earnings_hover": "#17833c",
+    "color_automation": "#8a4fd8",
+    "color_alert": "#9a6b00",
+    "color_danger": "#d93a54",
+    "color_action_glow": "rgba(14, 159, 190, 0.16)",
+    "color_earnings_glow": "rgba(31, 157, 73, 0.14)",
+    "color_automation_glow": "rgba(138, 79, 216, 0.14)"
+  },
+  "schemas": [
+    {
+      "slug": "lava-core",
+      "name": "Lava Core",
+      "desc": "Hot red-orange hero with amber earnings; use dark ink labels.",
+      "overrides": {
+        "color_action": "#e8473f",
+        "color_action_hover": "#cb372f",
+        "color_earnings": "#c67c00",
+        "color_earnings_hover": "#a96900",
+        "color_automation": "#8a4fd8",
+        "color_alert": "#9a6b00",
+        "color_danger": "#c0262e",
+        "border_focus": "#e8473f",
+        "color_action_glow": "rgba(232, 71, 63, 0.16)",
+        "color_earnings_glow": "rgba(198, 124, 0, 0.14)",
+        "color_automation_glow": "rgba(138, 79, 216, 0.14)"
+      }
+    },
+    {
+      "slug": "emerald-block",
+      "name": "Emerald Block",
+      "desc": "Green-led cube with gold earnings; use dark ink labels.",
+      "overrides": {
+        "color_action": "#23b26d",
+        "color_action_hover": "#1c9759",
+        "color_earnings": "#c67c00",
+        "color_earnings_hover": "#a96900",
+        "color_automation": "#3f8ef7",
+        "color_alert": "#9a6b00",
+        "color_danger": "#c0262e",
+        "border_focus": "#23b26d",
+        "color_action_glow": "rgba(35, 178, 109, 0.16)",
+        "color_earnings_glow": "rgba(198, 124, 0, 0.14)",
+        "color_automation_glow": "rgba(63, 142, 247, 0.14)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-02 — Voxel Art\n\n- **slug**: `voxel-art`\n- **Vibe**: Blocky, isometric-minded 3D pixel world: every pixel is a cube face and the dark canvas glows with neon at the edges.\n- **Best for**: Automation cockpit and Playwright run logs — robotic pipelines read like a game console. Adjectives: blocky, precise, game-console.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#05060f` | Deep space-navy black; app canvas |\n| `--bg-surface` | `#0c0f22` | Cube-face panel fill |\n| `--bg-surface-elevated` | `#161a38` | Raised cube faces, popovers |\n| `--border-subtle` | `#232a52` | Pixel-grid hairlines |\n| `--border-default` | `#2f3766` | Standard cube-edge borders |\n| `--border-focus` | `#7df9ff` | Electric-cyan focus outline |\n| `--text-primary` | `#f4f7ff` | High-contrast text on dark faces |\n| `--text-secondary` | `#b9c2e8` | Body text |\n| `--text-muted` | `#6b739c` | Helper text, coordinates, IDs |\n| `--color-action` | `#41f0ff` | Neon-cyan primary action |\n| `--color-action-hover` | `#2cd6e6` | Action hover (deeper cyan) |\n| `--color-earnings` | `#4ef36b` | Neon-emerald earnings |\n| `--color-earnings-hover` | `#37d456` | Earnings hover (deeper green) |\n| `--color-automation` | `#b86bff` | Voxel-purple automation accents |\n| `--color-alert` | `#ffcc00` | Warnings, pending states |\n| `--color-danger` | `#ff4d6d` | Failed states, deletes |\n| `--color-action-glow` | `rgba(65, 240, 255, 0.22)` | Neon aura behind action icons |\n| `--color-earnings-glow` | `rgba(78, 243, 107, 0.22)` | Neon aura behind earnings icons |\n| `--color-automation-glow` | `rgba(184, 107, 255, 0.22)` | Neon aura behind automation icons |\n\n- **Typography**: Display: `\"Chakra Petch\", \"Space Grotesk\", sans-serif` at 600-700 with slightly wide tracking (0.02em). Sans: `\"Space Grotesk\", system-ui, sans-serif`. Mono: `\"IBM Plex Mono\", ui-monospace, monospace` — all timestamps, IDs, and log lines are mono. KPIs always `tabular-nums`.\n- **Radii & Borders**: Hard squares everywhere — `border-radius: 0`. The only exceptions: 2px on tiny chips and 4px on inputs. 1-2px borders; focus is a 2px `--border-focus` outline, never a ring.\n- **Component Patterns**:\n  - **Buttons**: Square corners, 2px border, hard 4px offset block shadow (0 blur, like a cube lip). Primary = neon fill with near-black text; hover = the offset flips to the top-left. Secondary = dark fill + neon border. Focus = 2px cyan outline with 2px gap.\n  - **Cards**: Square panels with a \"cube lip\" bottom-right corner (pseudo-element draws a 2px lighter top face + darker side face, implying isometric depth). Hover raises the lip by 2px.\n  - **Badges/Status**: Square chips with a pixel-corner notch (one corner cut). Status dot is a 2x2px square block, not a circle. Publishing = blinking square block.\n  - **Tables**: Rigid 1px grid with full column rules; header cells tinted as \"top cube faces\" (lighter); row hover = 2px left neon edge. All numbers monospace.\n  - **Forms/Inputs**: Flat square fields, 2px borders, focus = 2px neon outline. Helper text is a small mono caption below.\n  - **Loading**: A pixel cube that \"steps\" through rotation on discrete frames, or three square blocks stacking one at a time.\n  - **Signature detail**: The cube-lip corner and square status blocks — everything resolves to axis-aligned cubes, even the cursor.\n- **Motion & Animation**: Chunk-snappy, 60-90ms, `linear` or stepped easing; elements snap onto the grid rather than fading. Turbo Stream rows insert with a 2px \"block drop\" (translateY 4px to 0). No springs, no bounces.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Voxel publish log line: square edges, pixel status block, mono -->\n<div class=\"vox-log\">\n  <span class=\"vox-time\">09:42:11</span>\n  <span class=\"vox-tag vox-ok\">[PUBLISHED]</span>\n  <span class=\"vox-msg\">tiktok-8821.mp4 -> live</span>\n  <span class=\"vox-cursor\"></span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-02",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

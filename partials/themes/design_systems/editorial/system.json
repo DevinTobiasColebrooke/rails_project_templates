@@ -1,0 +1,114 @@
+{
+  "slug": "editorial",
+  "number": "14",
+  "name": "Editorial Magazine",
+  "kind": "proposal",
+  "order": 14,
+  "vibe": "High-fashion editorial print — ivory and ink, Didot-style serif display, a single red accent, and generous whitespace.",
+  "best_for": "Product show pages and monthly earnings reports — data presented like a magazine feature.",
+  "adjectives": [
+    "refined",
+    "confident",
+    "print-like"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "Oversized Didot-style serif numerals + 3px masthead rules + small-caps overlines floating in whitespace — a print feature, not an app.",
+  "motion": "Quiet and print-like — 250ms ease-in-out; content reveals with a vertical \"press\" easing (clip from top).",
+  "fonts": {
+    "display": "\"Bodoni Moda\", \"Playfair Display\", Georgia, serif",
+    "sans": "\"Inter\", \"Archivo\", system-ui, sans-serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 0; border-top: 3px solid var(--color-action);",
+  "texture_style": "",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#faf8f3",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#f3efe6",
+    "border_subtle": "#e2dccd",
+    "border_default": "#c4bba8",
+    "border_focus": "#c8102e",
+    "text_primary": "#111111",
+    "text_secondary": "#3d3d3d",
+    "text_muted": "#6f6857",
+    "color_action": "#c8102e",
+    "color_action_hover": "#a50d25",
+    "color_earnings": "#0f6b3a",
+    "color_earnings_hover": "#0c5730",
+    "color_automation": "#1f3a6e",
+    "color_alert": "#a86f1f",
+    "color_danger": "#8f1022",
+    "color_action_glow": "rgba(200, 16, 46, 0.10)",
+    "color_earnings_glow": "rgba(15, 107, 58, 0.10)",
+    "color_automation_glow": "rgba(31, 58, 110, 0.10)"
+  },
+  "counterpart": {
+    "bg_canvas": "#101010",
+    "bg_surface": "#181818",
+    "bg_surface_elevated": "#222222",
+    "border_subtle": "#2e2e2e",
+    "border_default": "#4a4a4a",
+    "border_focus": "#ff3350",
+    "text_primary": "#f5f2ea",
+    "text_secondary": "#c9c5ba",
+    "text_muted": "#8f8b80",
+    "color_action": "#df2c34",
+    "color_action_hover": "#bf2229",
+    "color_earnings": "#2f9d5e",
+    "color_earnings_hover": "#27844f",
+    "color_automation": "#6f8fc8",
+    "color_alert": "#b8860b",
+    "color_danger": "#c0283c",
+    "color_action_glow": "rgba(223, 44, 52, 0.14)",
+    "color_earnings_glow": "rgba(47, 157, 94, 0.12)",
+    "color_automation_glow": "rgba(111, 143, 200, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "bold-black",
+      "name": "Bold Black",
+      "desc": "Ink-black-led with ivory type; pure print contrast, white labels.",
+      "overrides": {
+        "color_action": "#141414",
+        "color_action_hover": "#333333",
+        "color_earnings": "#2f9d5e",
+        "color_earnings_hover": "#27844f",
+        "color_automation": "#6f8fc8",
+        "color_alert": "#b8860b",
+        "color_danger": "#c0283c",
+        "border_focus": "#141414",
+        "color_action_glow": "rgba(20, 20, 20, 0.16)",
+        "color_earnings_glow": "rgba(47, 157, 94, 0.12)",
+        "color_automation_glow": "rgba(111, 143, 200, 0.12)"
+      }
+    },
+    {
+      "slug": "ink-blue",
+      "name": "Ink Blue",
+      "desc": "Navy-led editorial with red automation; use white bold labels on navy.",
+      "overrides": {
+        "color_action": "#1f3a6e",
+        "color_action_hover": "#162c54",
+        "color_earnings": "#2f9d5e",
+        "color_earnings_hover": "#27844f",
+        "color_automation": "#df2c34",
+        "color_alert": "#b8860b",
+        "color_danger": "#c0283c",
+        "border_focus": "#1f3a6e",
+        "color_action_glow": "rgba(31, 58, 110, 0.14)",
+        "color_earnings_glow": "rgba(47, 157, 94, 0.12)",
+        "color_automation_glow": "rgba(223, 44, 52, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-14 — Editorial Magazine\n\n- **slug**: `editorial`\n- **Vibe**: High-fashion editorial print — ivory and ink, Didot-style serif display, a single red accent, and generous whitespace.\n- **Best for**: Product show pages and monthly earnings reports — data presented like a magazine feature. Adjectives: refined, confident, print-like.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#faf8f3` | Ivory paper canvas |\n| `--bg-surface` | `#ffffff` | Card and panel fill |\n| `--bg-surface-elevated` | `#f3efe6` | Raised/hover paper |\n| `--border-subtle` | `#e2dccd` | Fine hairline rules |\n| `--border-default` | `#c4bba8` | Standard print borders |\n| `--border-focus` | `#c8102e` | Editorial-red focus rule |\n| `--text-primary` | `#111111` | Ink-black headings |\n| `--text-secondary` | `#3d3d3d` | Body text |\n| `--text-muted` | `#6f6857` | Captions, bylines, fine print |\n| `--color-action` | `#c8102e` | Editorial-red primary action |\n| `--color-action-hover` | `#a50d25` | Action hover (deeper red) |\n| `--color-earnings` | `#0f6b3a` | Deep-print-green earnings |\n| `--color-earnings-hover` | `#0c5730` | Earnings hover (deeper green) |\n| `--color-automation` | `#1f3a6e` | Print-navy automation accents |\n| `--color-alert` | `#a86f1f` | Ochre warnings |\n| `--color-danger` | `#8f1022` | Dark-red destructive states |\n| `--color-action-glow` | `rgba(200, 16, 46, 0.10)` | Red tint behind action icons |\n| `--color-earnings-glow` | `rgba(15, 107, 58, 0.10)` | Green tint behind earnings icons |\n| `--color-automation-glow` | `rgba(31, 58, 110, 0.10)` | Navy tint behind automation icons |\n\n- **Typography**: Display: `\"Bodoni Moda\", \"Playfair Display\", Georgia, serif` — Didot-style high-contrast serif for KPI numerals and mastheads, 600-800 weight, tight leading. Sans: `\"Inter\", \"Archivo\", system-ui, sans-serif` for UI labels and body. Mono: `\"IBM Plex Mono\", ui-monospace, monospace` for prices, timestamps, and fine print. Overlines in uppercase sans with `letter-spacing: 0.14em`.\n- **Radii & Borders**: Sharp — `border-radius: 0`. Borders are hairline 1px rules; the masthead rule under headings is 3-4px. Dividers are thin rules with generous padding above and below.\n- **Component Patterns**:\n  - **Buttons**: Sharp rectangles, uppercase sans labels with wide tracking. Primary = red block with white text (AA-large); secondary = hairline-outlined ink; tertiary = text-only with a red underline. Focus = red underline rule.\n  - **Cards**: White with a hairline border, oversized display numeral, small-caps overline, and a thin masthead rule at top; padding is generous (`p-8`+). Hover = subtle paper lift (2px), never a glow.\n  - **Badges/Status**: Small-caps italic labels or a tiny red square bullet; publishing = pulsing red dot; published = deep green dot.\n  - **Tables**: Magazine spread style — hairlines, generous row height, oversized tabular serif numerals; header row in small caps. Row hover = red hairline above/below.\n  - **Forms/Inputs**: Baseline-only fields with a hairline rule; focus = red baseline. Labels in small caps.\n  - **Loading**: An elegant red dot pulse (\"stand by\"); determinate = a thin hairline progress rule.\n  - **Signature detail**: Oversized Didot-style serif numerals + 3px masthead rules + small-caps overlines floating in whitespace — a print feature, not an app.\n- **Motion & Animation**: Quiet and print-like — 250ms `ease-in-out`; content reveals with a vertical \"press\" easing (clip from top). Nothing bounces; hover shifts are almost imperceptible.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Editorial masthead KPI: hairline rules, oversized serif numeral -->\n<div class=\"edit-card\">\n  <span class=\"edit-overline\">EARNINGS · THIS MONTH</span>\n  <strong class=\"edit-kpi\">$8,240</strong>\n  <span class=\"edit-byline\">+22% vs. July 2026</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-14",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

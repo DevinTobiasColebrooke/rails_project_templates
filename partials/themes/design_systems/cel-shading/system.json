@@ -1,0 +1,114 @@
+{
+  "slug": "cel-shading",
+  "number": "01",
+  "name": "Cel-Shading",
+  "kind": "proposal",
+  "order": 1,
+  "vibe": "Flat, crisp anime/game-keyframe UI where every surface is a hard-edged color block with an offset ink shadow.",
+  "best_for": "Creator Studio and Ad Wizard — video-combinatorial flows feel like building a game asset.",
+  "adjectives": [
+    "playful",
+    "crisp",
+    "high-energy"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The 4px hard offset “cel shadow” on every interactive surface — the one unmistakable cue that this is cel-shaded, not soft-shadow UI.",
+  "motion": "Snappy and stepped — Turbo Stream entries “pop” in (scale 0.9→1) without opacity fades.",
+  "fonts": {
+    "display": "\"Fredoka\", \"Baloo 2\", system-ui, sans-serif",
+    "sans": "\"Nunito\", \"Inter\", system-ui, sans-serif",
+    "mono": "\"Space Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 2px solid; border-radius: 0.75rem; box-shadow: 0 4px 0 0 #0d0a1a;",
+  "texture_style": "",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#140f26",
+    "bg_surface": "#211a3a",
+    "bg_surface_elevated": "#2d2447",
+    "border_subtle": "#3a2f5c",
+    "border_default": "#4a3d70",
+    "border_focus": "#ffd54f",
+    "text_primary": "#fdfbff",
+    "text_secondary": "#c9c2e6",
+    "text_muted": "#8f86b8",
+    "color_action": "#ff6a1a",
+    "color_action_hover": "#e85a0e",
+    "color_earnings": "#ffd54f",
+    "color_earnings_hover": "#f2c21f",
+    "color_automation": "#38e1ff",
+    "color_alert": "#ffb300",
+    "color_danger": "#ff4d5e",
+    "color_action_glow": "rgba(255, 106, 26, 0.16)",
+    "color_earnings_glow": "rgba(255, 213, 79, 0.16)",
+    "color_automation_glow": "rgba(56, 225, 255, 0.16)"
+  },
+  "counterpart": {
+    "bg_canvas": "#eef1f8",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e3e8f5",
+    "border_subtle": "#d3d9ec",
+    "border_default": "#aab4d6",
+    "border_focus": "#ffd54f",
+    "text_primary": "#1a1630",
+    "text_secondary": "#44405e",
+    "text_muted": "#6f6a8c",
+    "color_action": "#ff6a1a",
+    "color_action_hover": "#e85a0e",
+    "color_earnings": "#9a7400",
+    "color_earnings_hover": "#806000",
+    "color_automation": "#067a9e",
+    "color_alert": "#b45309",
+    "color_danger": "#d93345",
+    "color_action_glow": "rgba(255, 106, 26, 0.14)",
+    "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+    "color_automation_glow": "rgba(6, 122, 158, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "ocean-pop",
+      "name": "Ocean Pop",
+      "desc": "Cool deep-blue hero with gold earnings; use dark ink labels on the blue fill.",
+      "overrides": {
+        "color_action": "#1d7ae8",
+        "color_action_hover": "#1663c2",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#067a9e",
+        "color_alert": "#b45309",
+        "color_danger": "#d93345",
+        "border_focus": "#1d7ae8",
+        "color_action_glow": "rgba(29, 122, 232, 0.14)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+        "color_automation_glow": "rgba(6, 122, 158, 0.12)"
+      }
+    },
+    {
+      "slug": "mint-arcade",
+      "name": "Mint Arcade",
+      "desc": "Mint hero with magenta automation for an arcade twist; use dark ink labels on mint.",
+      "overrides": {
+        "color_action": "#0fbf8f",
+        "color_action_hover": "#0ca37b",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#d633c4",
+        "color_alert": "#b45309",
+        "color_danger": "#d93345",
+        "border_focus": "#0fbf8f",
+        "color_action_glow": "rgba(15, 191, 143, 0.14)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+        "color_automation_glow": "rgba(214, 51, 196, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-01 — Cel-Shading\n\n- **slug**: `cel-shading`\n- **Vibe**: Flat, crisp anime/game-keyframe UI where every surface is a hard-edged color block with an offset ink shadow.\n- **Best for**: Creator Studio and Ad Wizard — video-combinatorial flows feel like building a game asset. Adjectives: playful, crisp, high-energy.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#140f26` | Deep night-sky violet; app canvas |\n| `--bg-surface` | `#211a3a` | Flat panel fill; cards, sidebars |\n| `--bg-surface-elevated` | `#2d2447` | Raised panels, popovers, hover fills |\n| `--border-subtle` | `#3a2f5c` | Hairline separation between panels |\n| `--border-default` | `#4a3d70` | Standard card/form borders |\n| `--border-focus` | `#ffd54f` | Hard yellow \"keyframe highlight\" outline |\n| `--text-primary` | `#fdfbff` | Headings and emphasis on dark fills |\n| `--text-secondary` | `#c9c2e6` | Standard body text |\n| `--text-muted` | `#8f86b8` | Helper text, dates, captions |\n| `--color-action` | `#ff6a1a` | Hero-orange primary action fills |\n| `--color-action-hover` | `#e85a0e` | Action hover (deeper orange) |\n| `--color-earnings` | `#ffd54f` | Coin-gold earnings, revenue, profit |\n| `--color-earnings-hover` | `#f2c21f` | Earnings hover (deeper gold) |\n| `--color-automation` | `#38e1ff` | Cel-cyan; Playwright/AI/terminal accents |\n| `--color-alert` | `#ffb300` | Warnings, pending, publishing pulse |\n| `--color-danger` | `#ff4d5e` | Failed status, destructive actions |\n| `--color-action-glow` | `rgba(255, 106, 26, 0.16)` | Soft tint behind action icons |\n| `--color-earnings-glow` | `rgba(255, 213, 79, 0.16)` | Soft tint behind earnings icons |\n| `--color-automation-glow` | `rgba(56, 225, 255, 0.16)` | Soft tint behind automation icons |\n\n- **Typography**: Display: `\"Fredoka\", \"Baloo 2\", system-ui, sans-serif` at 600-700 weight, tight leading. Sans: `\"Nunito\", \"Inter\", system-ui, sans-serif` at 500-700. Mono: `\"Space Mono\", ui-monospace, monospace` for timestamps and IDs. Headings use `letter-spacing: 0.01em`; numeric KPIs enforce `tabular-nums`.\n- **Radii & Borders**: Chunky-but-friendly: cards `rounded-xl` (0.75rem), buttons pill (`rounded-full`), inputs `rounded-md`. 2px borders. The signature is the **hard offset shadow**: a solid 4px shadow (`0 4px 0 0 #0d0a1a`) with zero blur — no soft shadows anywhere.\n- **Component Patterns**:\n  - **Buttons**: Primary = flat saturated fill with dark ink text (`#140f26`) + 4px hard offset shadow; hover \"presses down\" (shadow shrinks to 1px). Secondary = transparent with 2px border. Tertiary = text-only with underline on hover. Focus-visible = 2px `--border-focus` outline. Sharp-edged, never ghosted.\n  - **Cards**: Flat surface fill, hard offset shadow, 2px border. No gradients, no blur. Hover raises the offset shadow from 4px to 6px. KPI cards get a colored top \"keyframe strip\" (action/earnings/automation).\n  - **Badges/Status**: Pill with a square status dot (cel style, not round); publishing status uses the pulsing gold \"spark\". Failed = red pill with dark text.\n  - **Tables**: Two flat alternating row fills (`surface` / `surface-elevated`), no zebra glow; header row has a hard 2px underline and uppercase micro-labels. Hover = left 3px action strip.\n  - **Forms/Inputs**: Flat fills, 2px borders, no inner glow; focus = yellow border only. Error text sits inline below the field with a small square alert glyph.\n  - **Loading**: A bouncing 3-block \"sprite\" (three squares that hop in sequence, 120ms per hop). Determinate progress = segmented blocks filling one-by-one.\n  - **Signature detail**: The 4px hard offset \"cel shadow\" on every interactive surface — the one unmistakable cue that this is cel-shaded, not soft-shadow UI.\n- **Motion & Animation**: Snappy and stepped (`cubic-bezier(0.9, 0, 0.1, 1)`, 100-150ms). Turbo Stream entries \"pop\" in (scale 0.9 to 1) without opacity fades. Buttons compress on `:active` like a keyframe squash.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Cel KPI card: flat fill, 4px hard ink shadow, coin-gold KPI -->\n<div class=\"cel-card\">\n  <span class=\"cel-label\">Earnings / 30d</span>\n  <strong class=\"cel-kpi\">$12,480.50</strong>\n  <span class=\"cel-delta cel-up\">+14.2% vs last month</span>\n  <button class=\"cel-btn\">Queue Post</button>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-01",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

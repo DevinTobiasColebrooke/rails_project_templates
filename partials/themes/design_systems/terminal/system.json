@@ -1,0 +1,114 @@
+{
+  "slug": "terminal",
+  "number": "06",
+  "name": "Terminal / Green Phosphor",
+  "kind": "proposal",
+  "order": 6,
+  "vibe": "You are in the machine — a CRT terminal where every pixel is phosphor green and every word is honest log output.",
+  "best_for": "Playwright automation cockpit, posting logs, and the agency publishing feed — the “fit for purpose” theme for a product built on browser automation.",
+  "adjectives": [
+    "precise",
+    "no-nonsense",
+    "authentic"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The scanline overlay (repeating-linear-gradient at ~3px) plus the blinking block cursor and $/> prompts — unmistakably a terminal.",
+  "motion": "Instant and mechanical: new log lines “type” in (per-character 0-30ms, per-line 150ms fade); status toggles flicker once.",
+  "fonts": {
+    "display": "\"VT323\", \"IBM Plex Mono\", monospace",
+    "sans": "\"IBM Plex Mono\", ui-monospace, monospace",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid; border-radius: 0;",
+  "texture_style": "background-image: repeating-linear-gradient(0deg, rgba(70, 255, 156, 0.06) 0 1px, transparent 1px 3px);",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#050d07",
+    "bg_surface": "#0a1a10",
+    "bg_surface_elevated": "#0f2417",
+    "border_subtle": "#14331f",
+    "border_default": "#1f4d2e",
+    "border_focus": "#5cff9e",
+    "text_primary": "#b4ffc8",
+    "text_secondary": "#74d99a",
+    "text_muted": "#3f8f60",
+    "color_action": "#46ff9c",
+    "color_action_hover": "#2ce084",
+    "color_earnings": "#ffd166",
+    "color_earnings_hover": "#f2b93d",
+    "color_automation": "#6cd6ff",
+    "color_alert": "#ffb000",
+    "color_danger": "#ff6b6b",
+    "color_action_glow": "rgba(70, 255, 156, 0.18)",
+    "color_earnings_glow": "rgba(255, 209, 102, 0.14)",
+    "color_automation_glow": "rgba(108, 214, 255, 0.14)"
+  },
+  "counterpart": {
+    "bg_canvas": "#eef5ef",
+    "bg_surface": "#fbfdfb",
+    "bg_surface_elevated": "#e0ece4",
+    "border_subtle": "#cfe2d4",
+    "border_default": "#93bda1",
+    "border_focus": "#159a4b",
+    "text_primary": "#0a2814",
+    "text_secondary": "#2f5c3f",
+    "text_muted": "#5c8068",
+    "color_action": "#159a4b",
+    "color_action_hover": "#0f7f3c",
+    "color_earnings": "#9a6d00",
+    "color_earnings_hover": "#7f5a00",
+    "color_automation": "#156e9c",
+    "color_alert": "#8f5e00",
+    "color_danger": "#b3261e",
+    "color_action_glow": "rgba(21, 154, 75, 0.14)",
+    "color_earnings_glow": "rgba(154, 109, 0, 0.12)",
+    "color_automation_glow": "rgba(21, 110, 156, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "amber-phosphor",
+      "name": "Amber Phosphor",
+      "desc": "Amber-led terminal; use dark ink labels on amber.",
+      "overrides": {
+        "color_action": "#b8860b",
+        "color_action_hover": "#9a7209",
+        "color_earnings": "#9a6d00",
+        "color_earnings_hover": "#7f5a00",
+        "color_automation": "#159a4b",
+        "color_alert": "#8f5e00",
+        "color_danger": "#b3261e",
+        "border_focus": "#b8860b",
+        "color_action_glow": "rgba(184, 134, 11, 0.14)",
+        "color_earnings_glow": "rgba(154, 109, 0, 0.12)",
+        "color_automation_glow": "rgba(21, 154, 75, 0.12)"
+      }
+    },
+    {
+      "slug": "cyan-phosphor",
+      "name": "Cyan Phosphor",
+      "desc": "Cyan-led terminal; use dark ink labels on cyan.",
+      "overrides": {
+        "color_action": "#0e7490",
+        "color_action_hover": "#0c6076",
+        "color_earnings": "#9a6d00",
+        "color_earnings_hover": "#7f5a00",
+        "color_automation": "#159a4b",
+        "color_alert": "#8f5e00",
+        "color_danger": "#b3261e",
+        "border_focus": "#0e7490",
+        "color_action_glow": "rgba(14, 116, 144, 0.14)",
+        "color_earnings_glow": "rgba(154, 109, 0, 0.12)",
+        "color_automation_glow": "rgba(21, 154, 75, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-06 — Terminal / Green Phosphor\n\n- **slug**: `terminal`\n- **Vibe**: You are in the machine — a CRT terminal where every pixel is phosphor green and every word is honest log output.\n- **Best for**: Playwright automation cockpit, posting logs, and the agency publishing feed — the \"fit for purpose\" theme for a product built on browser automation. Adjectives: precise, no-nonsense, authentic.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#050d07` | Near-black CRT phosphor canvas |\n| `--bg-surface` | `#0a1a10` | Terminal panel fill |\n| `--bg-surface-elevated` | `#0f2417` | Raised panels, log focus rows |\n| `--border-subtle` | `#14331f` | Faint grid lines |\n| `--border-default` | `#1f4d2e` | Standard borders |\n| `--border-focus` | `#5cff9e` | Bright phosphor focus outline |\n| `--text-primary` | `#b4ffc8` | Bright green headings and output |\n| `--text-secondary` | `#74d99a` | Body/log text |\n| `--text-muted` | `#3f8f60` | Dimmed log lines, timestamps |\n| `--color-action` | `#46ff9c` | Phosphor-green primary action |\n| `--color-action-hover` | `#2ce084` | Action hover (deeper green) |\n| `--color-earnings` | `#ffd166` | Amber-phosphor earnings line |\n| `--color-earnings-hover` | `#f2b93d` | Earnings hover (deeper amber) |\n| `--color-automation` | `#6cd6ff` | Cyan-phosphor automation accents |\n| `--color-alert` | `#ffb000` | Amber warnings |\n| `--color-danger` | `#ff6b6b` | Red-phosphor failed states |\n| `--color-action-glow` | `rgba(70, 255, 156, 0.18)` | Green glow behind active markers |\n| `--color-earnings-glow` | `rgba(255, 209, 102, 0.14)` | Amber glow behind earnings markers |\n| `--color-automation-glow` | `rgba(108, 214, 255, 0.14)` | Cyan glow behind automation markers |\n\n- **Typography**: Mono everything. Display: `\"VT323\", \"IBM Plex Mono\", monospace` used only for very large numerals/headings (it is pixelated at small sizes). Sans and body: `\"IBM Plex Mono\", ui-monospace, monospace` at 400-600. Labels uppercase at `letter-spacing: 0.08em`. All numbers `tabular-nums`.\n- **Radii & Borders**: Square — `border-radius: 0` everywhere, except 2px on buttons. Borders are 1px. No shadows, no glows beyond token glows; the CRT effect comes from scanlines, not depth.\n- **Component Patterns**:\n  - **Buttons**: Square, 1px border, uppercase mono label. Primary = bright green fill with black text; hover inverts (dark fill, bright green text). Secondary = transparent with 1px border; focus = 1px bright border, no ring.\n  - **Cards**: Square with a 1px border and a title bar that reads `[task_id]` or `~/affiliatemanager`; subtle scanline overlay inside. No elevation — flat CRT.\n  - **Badges/Status**: Bracket chips: `[PUBLISHED]`, `[FAILED]`, `[RUNNING]` in phosphor colors; publishing = blinking block cursor after the label. Failed = red text on black, never a filled banner.\n  - **Tables**: Monospace cells, single 1px grid, header rows prefixed with `>`. Rows are log lines; hover = bright green text.\n  - **Forms/Inputs**: Single-line fields with a block underscore cursor; labels prefixed with `$` or `>`. Focus = bright green border.\n  - **Loading**: Indeterminate = blinking block cursor on a `$` prompt; determinate = a `[====>    ]` bar built from ASCII-ish segments. No spinners.\n  - **Signature detail**: The scanline overlay (repeating-linear-gradient at ~3px) plus the blinking block cursor and `$`/`>` prompts — unmistakably a terminal.\n- **Motion & Animation**: Instant and mechanical: new log lines \"type\" in (per-character 0-30ms, per-line 150ms fade), status toggles flicker once. No springs, no parallax. Everything snaps to a mono grid.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Terminal publish status: bracket chip + block cursor, mono -->\n<div class=\"term-line\">\n  <span class=\"term-time\">[09:42:11]</span>\n  <span class=\"term-tag term-ok\">PUBLISHED</span>\n  <span class=\"term-msg\">tiktok-8821.mp4 -> live · views 120</span>\n  <span class=\"term-cursor\"></span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-06",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

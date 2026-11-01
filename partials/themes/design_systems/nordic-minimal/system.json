@@ -1,0 +1,114 @@
+{
+  "slug": "nordic-minimal",
+  "number": "15",
+  "name": "Nordic Minimal",
+  "kind": "proposal",
+  "order": 15,
+  "vibe": "Scandinavian calm — near-white, soft stone grays, a muted deep blue, and airy spacing; quiet and precise.",
+  "best_for": "Settings, user flows, and daily overview screens — calm surfaces that let numbers breathe.",
+  "adjectives": [
+    "calm",
+    "precise",
+    "airy"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "The calm itself — muted deep blue on near-white, hairline separators, and generous air; nothing demands attention twice.",
+  "motion": "Slow and calm — 300ms ease-out; elements fade in with a 4px upward drift; transitions feel automatic.",
+  "fonts": {
+    "display": "\"Inter Tight\", \"Inter\", sans-serif",
+    "sans": "\"Inter\", system-ui, sans-serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 12px; box-shadow: 0 1px 3px rgba(29, 39, 51, 0.06);",
+  "texture_style": "",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#f6f6f4",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#ececea",
+    "border_subtle": "#e2e2de",
+    "border_default": "#c9c9c4",
+    "border_focus": "#3d5a80",
+    "text_primary": "#1d2733",
+    "text_secondary": "#47505c",
+    "text_muted": "#6d7580",
+    "color_action": "#3d5a80",
+    "color_action_hover": "#324a6b",
+    "color_earnings": "#3e7a5a",
+    "color_earnings_hover": "#336549",
+    "color_automation": "#5b748f",
+    "color_alert": "#b08a3e",
+    "color_danger": "#b3543f",
+    "color_action_glow": "rgba(61, 90, 128, 0.10)",
+    "color_earnings_glow": "rgba(62, 122, 90, 0.10)",
+    "color_automation_glow": "rgba(91, 116, 143, 0.10)"
+  },
+  "counterpart": {
+    "bg_canvas": "#14181f",
+    "bg_surface": "#1b2029",
+    "bg_surface_elevated": "#242b36",
+    "border_subtle": "#2d3542",
+    "border_default": "#3d4756",
+    "border_focus": "#6f95c9",
+    "text_primary": "#eef1f5",
+    "text_secondary": "#c3cad4",
+    "text_muted": "#8a94a3",
+    "color_action": "#5b80a8",
+    "color_action_hover": "#4c6d92",
+    "color_earnings": "#7cb08d",
+    "color_earnings_hover": "#66977a",
+    "color_automation": "#7a93af",
+    "color_alert": "#c9a15e",
+    "color_danger": "#c06a56",
+    "color_action_glow": "rgba(91, 128, 168, 0.12)",
+    "color_earnings_glow": "rgba(124, 176, 141, 0.10)",
+    "color_automation_glow": "rgba(122, 147, 175, 0.10)"
+  },
+  "schemas": [
+    {
+      "slug": "fjord-blue",
+      "name": "Fjord Blue",
+      "desc": "Deeper blue-led calm; use white bold labels on blue.",
+      "overrides": {
+        "color_action": "#3d7ab5",
+        "color_action_hover": "#33648f",
+        "color_earnings": "#7cb08d",
+        "color_earnings_hover": "#66977a",
+        "color_automation": "#7a93af",
+        "color_alert": "#c9a15e",
+        "color_danger": "#c06a56",
+        "border_focus": "#3d7ab5",
+        "color_action_glow": "rgba(61, 122, 181, 0.14)",
+        "color_earnings_glow": "rgba(124, 176, 141, 0.10)",
+        "color_automation_glow": "rgba(122, 147, 175, 0.10)"
+      }
+    },
+    {
+      "slug": "stone-sage",
+      "name": "Stone Sage",
+      "desc": "Sage-led northern calm; use white bold labels on sage.",
+      "overrides": {
+        "color_action": "#7a9080",
+        "color_action_hover": "#64796c",
+        "color_earnings": "#7cb08d",
+        "color_earnings_hover": "#66977a",
+        "color_automation": "#7a93af",
+        "color_alert": "#c9a15e",
+        "color_danger": "#c06a56",
+        "border_focus": "#7a9080",
+        "color_action_glow": "rgba(122, 144, 128, 0.12)",
+        "color_earnings_glow": "rgba(124, 176, 141, 0.10)",
+        "color_automation_glow": "rgba(122, 147, 175, 0.10)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-15 — Nordic Minimal\n\n- **slug**: `nordic-minimal`\n- **Vibe**: Scandinavian calm — near-white, soft stone grays, a muted deep blue, and airy spacing; quiet and precise.\n- **Best for**: Settings, user flows, and daily overview screens — calm surfaces that let numbers breathe. Adjectives: calm, precise, airy.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#f6f6f4` | Near-white stone canvas |\n| `--bg-surface` | `#ffffff` | Card and panel fill |\n| `--bg-surface-elevated` | `#ececea` | Hover/raised surfaces |\n| `--border-subtle` | `#e2e2de` | Fine hairline separators |\n| `--border-default` | `#c9c9c4` | Standard stone borders |\n| `--border-focus` | `#3d5a80` | Muted deep-blue focus |\n| `--text-primary` | `#1d2733` | Near-black blue headings |\n| `--text-secondary` | `#47505c` | Body text |\n| `--text-muted` | `#6d7580` | Captions, helper text |\n| `--color-action` | `#3d5a80` | Muted deep-blue primary action |\n| `--color-action-hover` | `#324a6b` | Action hover (darker blue) |\n| `--color-earnings` | `#3e7a5a` | Muted spruce-green earnings |\n| `--color-earnings-hover` | `#336549` | Earnings hover (deeper spruce) |\n| `--color-automation` | `#5b748f` | Slate-blue automation accents |\n| `--color-alert` | `#b08a3e` | Muted ochre warnings |\n| `--color-danger` | `#b3543f` | Muted terracotta failed states |\n| `--color-action-glow` | `rgba(61, 90, 128, 0.10)` | Blue tint behind action icons |\n| `--color-earnings-glow` | `rgba(62, 122, 90, 0.10)` | Green tint behind earnings icons |\n| `--color-automation-glow` | `rgba(91, 116, 143, 0.10)` | Slate tint behind automation icons |\n\n- **Typography**: Display: `\"Inter Tight\", \"Inter\", sans-serif` at 600-700 with slight negative tracking — precise and neutral. Sans: `\"Inter\", system-ui, sans-serif`. Mono: `\"IBM Plex Mono\", ui-monospace, monospace` for timestamps and IDs. Numerals `tabular-nums`; labels quiet, sentence-case, `letter-spacing: 0`.\n- **Radii & Borders**: Soft and quiet — cards 12px, buttons pill, inputs 10px. Borders are 1px hairlines (`--border-default`). Shadows are very soft or absent; spacing does the hierarchy work.\n- **Component Patterns**:\n  - **Buttons**: Soft pills; primary = muted blue fill with white text (AA, 6.5:1); secondary = white with 1px border; tertiary = text-only in blue. Focus = 2px `--border-focus` ring with a gap. Hover = 1px lift, no glow.\n  - **Cards**: White with a 1px hairline border and a barely-there shadow (`0 1px 3px rgba(29, 39, 51, 0.06)`); generous internal padding. Hover raises the shadow one notch.\n  - **Badges/Status**: Soft neutral pills with a small dot; publishing = slow-breathing blue dot; published = spruce dot; failed = terracotta dot. All muted, never saturated.\n  - **Tables**: Hairline separators only, generous row padding, header in semibold small caps; row hover = `--bg-surface-elevated` wash.\n  - **Forms/Inputs**: White fields with 1px border; focus = blue border. Labels sit above in secondary text; errors in terracotta below.\n  - **Loading**: Three small muted dots; determinate = a thin soft progress bar.\n  - **Signature detail**: The calm itself — muted deep blue on near-white, hairline separators, and generous air; nothing demands attention twice.\n- **Motion & Animation**: Slow and calm — 300ms `ease-out`; elements fade in with a 4px upward drift. Transitions are so gentle they feel automatic; no bounce, no snap.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Nordic KPI: near-white, hairline border, quiet blue -->\n<div class=\"nord-card\">\n  <span class=\"nord-label\">Earnings</span>\n  <strong class=\"nord-kpi\">$12,480</strong>\n  <span class=\"nord-delta\">+14.2%</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-15",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

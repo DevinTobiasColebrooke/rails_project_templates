@@ -1,0 +1,207 @@
+/* ==========================================================================
+   CRT Monitor — design system theme for Rails 8 + Tailwind CSS v4
+   Source: AffiliateManager PROPOSAL-17 (docs/blueprint/design_proposals.md)
+   System page: https://github.com/DevinTobiasColebrooke/design_systems/tree/main/systems/crt
+
+   Install:
+     1. Copy this file to  app/assets/tailwind/design_system.css
+     2. Add to app/assets/tailwind/application.css (after @import "tailwindcss";):
+          @import "./design_system.css";
+     3. Use the brand-* utilities (bg-brand-surface, text-brand-action, ...)
+        and the .ds-* component recipes below.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Token contract — native dark palette (is_dark: true)
+   Override with <html data-theme="light"> for the
+   light palette.
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-canvas: #0c0a08; /* Deepest background layer */
+  --bg-surface: #171310; /* Cards, Sidebars, Panes */
+  --bg-surface-elevated: #221c16; /* Dropdowns, hovered states */
+  --border-subtle: #30271d; /* Very light separation */
+  --border-default: #443726; /* Standard card/form borders */
+  --border-focus: #ffcf5c; /* Focus states */
+  --text-primary: #ffe9c2; /* High contrast title/text */
+  --text-secondary: #d8bf94; /* Standard body paragraph */
+  --text-muted: #947d58; /* Descriptions, helper text, dates */
+  --color-action: #ffb347; /* Primary action */
+  --color-action-hover: #e69a35; /* Action hover */
+  --color-earnings: #8fd66a; /* Earnings, Revenue, Profit */
+  --color-earnings-hover: #77bd54; /* Earnings hover */
+  --color-automation: #6cc6d8; /* Playwright, AI, Terminal accents */
+  --color-alert: #ffab4a; /* Warnings, pending states */
+  --color-danger: #ff7355; /* Error, failed status, deletes */
+  --color-action-glow: rgba(255, 179, 71, 0.20); /* Halo behind action icons */
+  --color-earnings-glow: rgba(143, 214, 106, 0.18); /* Halo behind earnings icons */
+  --color-automation-glow: rgba(108, 198, 216, 0.18); /* Halo behind automation icons */
+  --action-label: #0d0d12; /* readable text on --color-action fills */
+
+  /* Radii */
+  --radius-sm: 0.375rem; /* buttons, inputs */
+  --radius-md: 0.5rem;   /* cards, small panes */
+  --radius-lg: 0.75rem;  /* big dashboards, modals */
+}
+
+/* Light counterpart palette */
+[data-theme="light"] {
+  --bg-canvas: #f2ede3;
+  --bg-surface: #faf6ec;
+  --bg-surface-elevated: #eee7d6;
+  --border-subtle: #ddd3bd;
+  --border-default: #b8a888;
+  --border-focus: #b35c00;
+  --text-primary: #2b1f10;
+  --text-secondary: #5c4a30;
+  --text-muted: #8a775c;
+  --color-action: #b35c00;
+  --color-action-hover: #964d00;
+  --color-earnings: #2e6b34;
+  --color-earnings-hover: #255a2a;
+  --color-automation: #1f6e80;
+  --color-alert: #9a5200;
+  --color-danger: #b83a24;
+  --color-action-glow: rgba(179, 92, 0, 0.14);
+  --color-earnings-glow: rgba(46, 107, 52, 0.12);
+  --color-automation-glow: rgba(31, 110, 128, 0.12);
+  --action-label: #ffffff;
+}
+
+@theme {
+  /* Typography — CRT Monitor */
+  --font-display: "VT323", "Silkscreen", monospace;
+  --font-sans: "ChicagoFLF", "Press Start 2P", "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Brand colors bound to the raw tokens (re-skins when data-theme flips) */
+  --color-brand-canvas: var(--bg-canvas);
+  --color-brand-surface: var(--bg-surface);
+  --color-brand-surface-elevated: var(--bg-surface-elevated);
+  --color-brand-border-subtle: var(--border-subtle);
+  --color-brand-border-default: var(--border-default);
+  --color-brand-border-focus: var(--border-focus);
+  --color-brand-text-primary: var(--text-primary);
+  --color-brand-text-secondary: var(--text-secondary);
+  --color-brand-text-muted: var(--text-muted);
+  --color-brand-action: var(--color-action);
+  --color-brand-action-hover: var(--color-action-hover);
+  --color-brand-earnings: var(--color-earnings);
+  --color-brand-earnings-hover: var(--color-earnings-hover);
+  --color-brand-automation: var(--color-automation);
+  --color-brand-alert: var(--color-alert);
+  --color-brand-danger: var(--color-danger);
+  --color-brand-action-glow: var(--color-action-glow);
+  --color-brand-earnings-glow: var(--color-earnings-glow);
+  --color-brand-automation-glow: var(--color-automation-glow);
+
+  /* Named theme shadows */
+  --shadow-brand-card: 0 1px 2px rgba(0, 0, 0, 0.12);
+
+  /* Motion — Soft and analog: 200-300ms ease-out with a gentle bloom on entry (opacity 0→1, brightness 0.8→1). No hard snaps; occasionally a one-frame flicker on state change. */
+  --animate-pulse-cyan: pulse-cyan 3s infinite ease-in-out;
+  --animate-pulse-amber: pulse-amber 2.5s infinite ease-in-out;
+  --animate-slide-up-fade: slide-up-fade 0.4s ease-in-out;
+  --animate-fade-in: fade-in 0.4s ease-in-out;
+  --animate-scale-in: scale-in 0.3s ease-in-out;
+  --animate-slide-in-right: slide-in-right 0.35s ease-in-out;
+  --animate-gauge-fill: gauge-fill 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-bloom: bloom 1.2s infinite ease-in-out;
+  --animate-sheet-up: sheet-up 0.35s ease-in-out;
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px var(--color-automation)); }
+  50% { opacity: 0.5; filter: drop-shadow(0 0 8px var(--color-automation)); }
+}
+@keyframes pulse-amber {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(245, 158, 11, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px rgba(245, 158, 11, 0.7); }
+}
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes gauge-fill { from { width: 0%; } to { width: var(--gauge-target-width); } }
+@keyframes bloom {
+  0%, 100% { opacity: 0.2; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes sheet-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Component recipes — CRT Monitor
+   Card signature: border: 1px solid var(--border-default); border-radius: 1rem; box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.55);
+   ========================================================================== */
+
+.ds-card {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default); border-radius: 1rem; box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.55);
+}
+
+.ds-texture {
+  background-image: repeating-linear-gradient(0deg, rgba(255, 179, 71, 0.05) 0 1px, transparent 1px 3px);
+}
+
+.ds-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-action);
+  border-radius: 0.375rem;
+  background-color: var(--color-action);
+  color: var(--action-label);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 150ms ease-in-out;
+}
+.ds-btn-primary:hover { background-color: var(--color-action-hover); }
+.ds-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-surface), 0 0 0 4px var(--border-focus);
+}
+
+.ds-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 150ms ease-in-out, border-color 150ms ease-in-out;
+}
+.ds-btn-secondary:hover { color: var(--text-primary); border-color: var(--border-focus); }
+
+/* Fixed status colors (identical across all design systems) */
+.ds-status { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.125rem 0.5rem;
+             border-radius: 9999px; border: 1px solid; font-size: 0.6875rem; font-weight: 600; }
+.ds-status-draft      { background: rgba(107, 114, 128, 0.1); color: #6b7280; border-color: rgba(107, 114, 128, 0.2); }
+.ds-status-scheduled  { background: rgba(59, 130, 246, 0.1);  color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); }
+.ds-status-publishing { background: rgba(245, 158, 11, 0.1);  color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+.ds-status-published  { background: rgba(16, 185, 129, 0.1);  color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+.ds-status-failed     { background: rgba(239, 68, 68, 0.1);   color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
+
+/* Data correctness: all numbers are tabular */
+.ds-num { font-variant-numeric: tabular-nums; }

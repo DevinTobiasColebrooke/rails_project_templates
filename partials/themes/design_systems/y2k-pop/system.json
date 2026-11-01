@@ -1,0 +1,114 @@
+{
+  "slug": "y2k-pop",
+  "number": "16",
+  "name": "Y2K Bubblegum Pop",
+  "kind": "proposal",
+  "order": 16,
+  "vibe": "Retro-future early-2000s — pastel pink, sky blue, and lime on glossy bubbles with playful tilt and chrome-lite shine.",
+  "best_for": "Creator Studio and fun launch moments — optimistic, toy-like, social-native.",
+  "adjectives": [
+    "playful",
+    "glossy",
+    "optimistic"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "Glossy bubble surfaces + playful tilt + a chrome-lite \"Y2K shine\" (white gradient streak) across headings — plastic, optimistic, unmistakably 2003.",
+  "motion": "Bouncy and springy — 350ms with overshoot (scale 0.9 -> 1.06 -> 1); buttons squash on :active.",
+  "fonts": {
+    "display": "\"Bungee\", \"Baloo 2\", sans-serif",
+    "sans": "\"Quicksand\", \"Nunito\", system-ui, sans-serif",
+    "mono": "\"Space Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 2px solid var(--border-default); border-radius: 2rem; box-shadow: 0 6px 0 var(--border-default), inset 0 8px 12px -8px rgba(255, 255, 255, 0.9);",
+  "texture_style": "background-image: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.65) 50%, transparent 65%);",
+  "button_label": "#23203f",
+  "tokens": {
+    "bg_canvas": "#fdeef4",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#fff5fa",
+    "border_subtle": "#f4d9e4",
+    "border_default": "#e0b6c9",
+    "border_focus": "#4cc9f0",
+    "text_primary": "#23203f",
+    "text_secondary": "#4a4668",
+    "text_muted": "#756c8a",
+    "color_action": "#ff5fa2",
+    "color_action_hover": "#e84a8e",
+    "color_earnings": "#37c96b",
+    "color_earnings_hover": "#2ba85a",
+    "color_automation": "#4cc9f0",
+    "color_alert": "#ffb020",
+    "color_danger": "#e03e6e",
+    "color_action_glow": "rgba(255, 95, 162, 0.16)",
+    "color_earnings_glow": "rgba(55, 201, 107, 0.14)",
+    "color_automation_glow": "rgba(76, 201, 240, 0.14)"
+  },
+  "counterpart": {
+    "bg_canvas": "#1a1333",
+    "bg_surface": "#241b42",
+    "bg_surface_elevated": "#312661",
+    "border_subtle": "#3d3173",
+    "border_default": "#55489a",
+    "border_focus": "#6ad7ff",
+    "text_primary": "#fdf4fb",
+    "text_secondary": "#d3c7ea",
+    "text_muted": "#9a8fc0",
+    "color_action": "#ff6fa8",
+    "color_action_hover": "#e85a91",
+    "color_earnings": "#4ade80",
+    "color_earnings_hover": "#2fc46b",
+    "color_automation": "#6ad7ff",
+    "color_alert": "#ffd166",
+    "color_danger": "#ff5f8f",
+    "color_action_glow": "rgba(255, 111, 168, 0.18)",
+    "color_earnings_glow": "rgba(74, 222, 128, 0.16)",
+    "color_automation_glow": "rgba(106, 215, 255, 0.16)"
+  },
+  "schemas": [
+    {
+      "slug": "blue-rave",
+      "name": "Blue Rave",
+      "desc": "Sky-led rave with lime earnings; use dark ink labels on sky.",
+      "overrides": {
+        "color_action": "#6ad7ff",
+        "color_action_hover": "#4fc2ec",
+        "color_earnings": "#4ade80",
+        "color_earnings_hover": "#2fc46b",
+        "color_automation": "#ff6fa8",
+        "color_alert": "#ffd166",
+        "color_danger": "#ff5f8f",
+        "border_focus": "#6ad7ff",
+        "color_action_glow": "rgba(106, 215, 255, 0.18)",
+        "color_earnings_glow": "rgba(74, 222, 128, 0.16)",
+        "color_automation_glow": "rgba(255, 111, 168, 0.18)"
+      }
+    },
+    {
+      "slug": "lime-glow",
+      "name": "Lime Glow",
+      "desc": "Lime-led glow with pink earnings; use dark ink labels on lime.",
+      "overrides": {
+        "color_action": "#4ade80",
+        "color_action_hover": "#2fc46b",
+        "color_earnings": "#ff6fa8",
+        "color_earnings_hover": "#e85a91",
+        "color_automation": "#6ad7ff",
+        "color_alert": "#ffd166",
+        "color_danger": "#ff5f8f",
+        "border_focus": "#4ade80",
+        "color_action_glow": "rgba(74, 222, 128, 0.18)",
+        "color_earnings_glow": "rgba(255, 111, 168, 0.16)",
+        "color_automation_glow": "rgba(106, 215, 255, 0.16)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-16 — Y2K Bubblegum Pop\n\n- **slug**: `y2k-pop`\n- **Vibe**: Retro-future early-2000s — pastel pink, sky blue, and lime on glossy bubbles with playful tilt and chrome-lite shine.\n- **Best for**: Creator Studio and fun launch moments — optimistic, toy-like, social-native. Adjectives: playful, glossy, optimistic.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#fdeef4` | Pastel pink-white canvas |\n| `--bg-surface` | `#ffffff` | Card and bubble fill |\n| `--bg-surface-elevated` | `#fff5fa` | Raised/hover bubbles |\n| `--border-subtle` | `#f4d9e4` | Soft pastel hairlines |\n| `--border-default` | `#e0b6c9` | Standard pastel borders |\n| `--border-focus` | `#4cc9f0` | Sky-blue focus outline |\n| `--text-primary` | `#23203f` | Ink-navy headings |\n| `--text-secondary` | `#4a4668` | Body text |\n| `--text-muted` | `#756c8a` | Captions, helper text |\n| `--color-action` | `#ff5fa2` | Bubblegum-pink primary action |\n| `--color-action-hover` | `#e84a8e` | Action hover (deeper pink) |\n| `--color-earnings` | `#37c96b` | Lime-green earnings |\n| `--color-earnings-hover` | `#2ba85a` | Earnings hover (deeper lime) |\n| `--color-automation` | `#4cc9f0` | Sky-blue automation accents |\n| `--color-alert` | `#ffb020` | Candy-amber warnings |\n| `--color-danger` | `#e03e6e` | Bubblegum-red failed states |\n| `--color-action-glow` | `rgba(255, 95, 162, 0.16)` | Pink tint behind action icons |\n| `--color-earnings-glow` | `rgba(55, 201, 107, 0.14)` | Lime tint behind earnings icons |\n| `--color-automation-glow` | `rgba(76, 201, 240, 0.14)` | Sky tint behind automation icons |\n\n- **Typography**: Display: `\"Bungee\", \"Baloo 2\", sans-serif` — chunky rounded display for headings and KPI numerals, weight 400-800. Sans: `\"Quicksand\", \"Nunito\", system-ui, sans-serif` at 500-700 — friendly and round. Mono: `\"Space Mono\", ui-monospace, monospace` for timestamps. Numerals `tabular-nums`; labels uppercase with `letter-spacing: 0.06em`.\n- **Radii & Borders**: Extra bubbly — cards 24px+, buttons full pill, inputs 16px. Borders are 2px pastel; cards carry a glossy inset top highlight (`inset 0 8px 12px -8px rgba(255,255,255,0.9)`) and a 3D bottom lip shadow (0 6px 0 pastel darker).\n- **Component Patterns**:\n  - **Buttons**: Glossy bubble pills with a 3D bottom lip (solid 4px darker shadow, no blur) and inset top shine; primary = bubblegum pink with dark ink text (`#23203f`) for AA; hover bounces scale 1.03. Secondary = white with 2px pastel border. Focus = 2px sky outline.\n  - **Cards**: White bubbles with 2px pastel border, glossy top highlight, a subtle -2deg playful tilt on featured cards, and `rounded-[2rem]`. No soft shadows — plastic depth only.\n  - **Badges/Status**: Glossy bubble chips with a dot; publishing = pulsing lime \"loading\" bubble; published = sky bubble; failed = pink-red bubble. Rounded-full, never square.\n  - **Tables**: Soft pastel zebra rows inside a rounded container; header in bold rounded sans. Row hover = pastel pink wash.\n  - **Forms/Inputs**: Bubbly rounded fields with a glossy inset; focus = sky border. Labels in rounded bold sans.\n  - **Loading**: Three bouncing glossy bubbles; determinate = a segmented candy bar filling left to right.\n  - **Signature detail**: Glossy bubble surfaces + playful tilt + a chrome-lite \"Y2K shine\" (white gradient streak) across headings — plastic, optimistic, unmistakably 2003.\n- **Motion & Animation**: Bouncy and springy — 350ms with overshoot (`scale 0.9 -> 1.06 -> 1`); cards tilt further on hover; buttons squash on `:active`. Turbo Stream inserts bounce in; nothing is still for long.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Y2K KPI bubble: gloss, pastel border, playful tilt -->\n<div class=\"y2k-bubble\">\n  <span class=\"y2k-label\">EARNINGS!!</span>\n  <strong class=\"y2k-kpi\">$12,480</strong>\n  <span class=\"y2k-gloss\"></span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-16",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "cyberpunk",
+  "number": "09",
+  "name": "Cyberpunk Neo-Tokyo",
+  "kind": "proposal",
+  "order": 9,
+  "vibe": "Holographic neon city at night — deep black-navy panels with electric magenta, cyan, and yellow, glitch accents, and hologram corners.",
+  "best_for": "Posting Studio dashboard and real-time publish feed — automation that feels like a cyber deck.",
+  "adjectives": [
+    "electric",
+    "futuristic",
+    "dense"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The glitch text effect — headings carry a 1px red/cyan RGB-split text-shadow — plus the clipped holo corner. Unmistakably Neo-Tokyo.",
+  "motion": "Glitchy and fast: 80-150ms with occasional two-frame horizontal displacement on entry; Turbo Stream inserts glitch-in (translateX 2px -> -2px -> 0).",
+  "fonts": {
+    "display": "\"Orbitron\", \"Rajdhani\", sans-serif",
+    "sans": "\"Rajdhani\", \"Exo 2\", system-ui, sans-serif",
+    "mono": "\"Share Tech Mono\", \"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid; border-radius: 4px; box-shadow: 0 0 14px var(--color-action-glow);",
+  "texture_style": "background-image: repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.05) 0 1px, transparent 1px 3px);",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#060a14",
+    "bg_surface": "#0c1220",
+    "bg_surface_elevated": "#141d33",
+    "border_subtle": "#1d2a45",
+    "border_default": "#2b3d63",
+    "border_focus": "#00f0ff",
+    "text_primary": "#eef4ff",
+    "text_secondary": "#b7c3e0",
+    "text_muted": "#6f7ea3",
+    "color_action": "#00f0ff",
+    "color_action_hover": "#00c8d6",
+    "color_earnings": "#ffe600",
+    "color_earnings_hover": "#e6cf00",
+    "color_automation": "#ff2bd6",
+    "color_alert": "#ffb000",
+    "color_danger": "#ff3b5c",
+    "color_action_glow": "rgba(0, 240, 255, 0.25)",
+    "color_earnings_glow": "rgba(255, 230, 0, 0.20)",
+    "color_automation_glow": "rgba(255, 43, 214, 0.25)"
+  },
+  "counterpart": {
+    "bg_canvas": "#eef2fb",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e0e7f5",
+    "border_subtle": "#ccd8ee",
+    "border_default": "#a3b5d9",
+    "border_focus": "#0092b8",
+    "text_primary": "#0b1020",
+    "text_secondary": "#38405e",
+    "text_muted": "#66708f",
+    "color_action": "#0092b8",
+    "color_action_hover": "#007a99",
+    "color_earnings": "#b89e00",
+    "color_earnings_hover": "#9c8600",
+    "color_automation": "#c71fa8",
+    "color_alert": "#b45309",
+    "color_danger": "#d42a54",
+    "color_action_glow": "rgba(0, 146, 184, 0.20)",
+    "color_earnings_glow": "rgba(184, 158, 0, 0.16)",
+    "color_automation_glow": "rgba(199, 31, 168, 0.20)"
+  },
+  "schemas": [
+    {
+      "slug": "magenta-hacker",
+      "name": "Magenta Hacker",
+      "desc": "Magenta-led with cyan secondary; use white bold labels on magenta.",
+      "overrides": {
+        "color_action": "#c71fa8",
+        "color_action_hover": "#ac1890",
+        "color_earnings": "#b89e00",
+        "color_earnings_hover": "#9c8600",
+        "color_automation": "#0092b8",
+        "color_alert": "#b45309",
+        "color_danger": "#d42a54",
+        "border_focus": "#c71fa8",
+        "color_action_glow": "rgba(199, 31, 168, 0.22)",
+        "color_earnings_glow": "rgba(184, 158, 0, 0.16)",
+        "color_automation_glow": "rgba(0, 146, 184, 0.20)"
+      }
+    },
+    {
+      "slug": "gold-corpo",
+      "name": "Gold Corpo",
+      "desc": "Gold-led corpo with emerald earnings; use dark ink labels on gold.",
+      "overrides": {
+        "color_action": "#b8860b",
+        "color_action_hover": "#9a7209",
+        "color_earnings": "#1f8f6b",
+        "color_earnings_hover": "#197659",
+        "color_automation": "#0092b8",
+        "color_alert": "#b45309",
+        "color_danger": "#d42a54",
+        "border_focus": "#b8860b",
+        "color_action_glow": "rgba(184, 134, 11, 0.18)",
+        "color_earnings_glow": "rgba(31, 143, 107, 0.16)",
+        "color_automation_glow": "rgba(0, 146, 184, 0.20)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-09 — Cyberpunk Neo-Tokyo\n\n- **slug**: `cyberpunk`\n- **Vibe**: Holographic neon city at night — deep black-navy panels with electric magenta, cyan, and yellow, glitch accents, and hologram corners.\n- **Best for**: Posting Studio dashboard and real-time publish feed — automation that feels like a cyber deck. Adjectives: electric, futuristic, dense.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#060a14` | Deep black-navy city canvas |\n| `--bg-surface` | `#0c1220` | Holo panel fill |\n| `--bg-surface-elevated` | `#141d33` | Raised holo panels, modals |\n| `--border-subtle` | `#1d2a45` | Fine circuit hairlines |\n| `--border-default` | `#2b3d63` | Standard neon borders |\n| `--border-focus` | `#00f0ff` | Electric-cyan focus outline |\n| `--text-primary` | `#eef4ff` | High-contrast holo text |\n| `--text-secondary` | `#b7c3e0` | Body text |\n| `--text-muted` | `#6f7ea3` | Captions, timestamps, IDs |\n| `--color-action` | `#00f0ff` | Electric-cyan primary action |\n| `--color-action-hover` | `#00c8d6` | Action hover (deeper cyan) |\n| `--color-earnings` | `#ffe600` | Holographic-yellow earnings |\n| `--color-earnings-hover` | `#e6cf00` | Earnings hover (deeper yellow) |\n| `--color-automation` | `#ff2bd6` | Magenta automation accents |\n| `--color-alert` | `#ffb000` | Amber warnings |\n| `--color-danger` | `#ff3b5c` | Neon-red failed states |\n| `--color-action-glow` | `rgba(0, 240, 255, 0.25)` | Cyan aura behind action icons |\n| `--color-earnings-glow` | `rgba(255, 230, 0, 0.20)` | Yellow aura behind earnings icons |\n| `--color-automation-glow` | `rgba(255, 43, 214, 0.25)` | Magenta aura behind automation icons |\n\n- **Typography**: Display: `\"Orbitron\", \"Rajdhani\", sans-serif` at 700-900 — squared, techno, slightly wide; used for KPI numerals and section IDs. Sans: `\"Rajdhani\", \"Exo 2\", system-ui, sans-serif` at 500-700 with `letter-spacing: 0.02em`; uppercase micro-labels at 0.08em. Mono: `\"Share Tech Mono\", \"IBM Plex Mono\", ui-monospace, monospace` for log lines and hex-style IDs. Numerals `tabular-nums`.\n- **Radii & Borders**: Sharp hologram panels: 4px radius on panels, 2px on chips, pill buttons. Borders are 1px neon in `--border-default`; focus is a 2px cyan outline with a 2px gap. Signature panel corner: the top-left corner is clipped (via `clip-path`) like a cut holo-glass corner.\n- **Component Patterns**:\n  - **Buttons**: Dark fill with 1px neon border and glowing label; primary = cyan fill with near-black text (`#060a14`), hover runs a diagonal scan sweep. Secondary = transparent with magenta border. Focus = 2px `--border-focus` outline.\n  - **Cards**: Holo-glass panels (dark translucent fill) with a 1px neon border, clipped corner, and a top-left `ACC-####` holo ID tag. Headers carry a thin cyan scan line. No soft shadows — glow only.\n  - **Badges/Status**: Square chips with neon border and a square dot; publishing = blinking magenta square with RGB-split edge; published = cyan; failed = red.\n  - **Tables**: Full 1px grid with neon column rules; header row mono uppercase; row hover = glitch-style double underline (red/cyan offset).\n  - **Forms/Inputs**: Dark fields with a neon bottom rule; focus = cyan border + glow. Labels are uppercase Rajdhani.\n  - **Loading**: A horizontal scanline sweeping the panel, or glitch \"chunks\" that pop in; determinate = segmented bar filling with RGB-split segments.\n  - **Signature detail**: The glitch text effect — headings carry a 1px red/cyan RGB-split `text-shadow` — plus the clipped holo corner. Unmistakably Neo-Tokyo.\n- **Motion & Animation**: Glitchy and fast: 80-150ms with occasional two-frame horizontal displacement on entry; Turbo Stream inserts \"glitch-in\" (translateX 2px -> -2px -> 0). Hover scan sweeps; nothing floats.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Cyber holo KPI: corner-clipped panel, neon border, glitch label -->\n<div class=\"cyber-panel\">\n  <span class=\"cyber-id\">ACC-8821 // EARNINGS</span>\n  <strong class=\"cyber-kpi\">$12,480</strong>\n  <span class=\"cyber-delta\">+14.2% SYNCED</span>\n  <button class=\"cyber-btn\">Deploy Post</button>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-09",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

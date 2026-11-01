@@ -237,7 +237,7 @@ def setup_docs_readme
     *   **UI:** Pre-styled "Buy Button" partials.
 
     ### 🎨 Content & UI
-    *   **Themes:** CSS-Variable based theming system. Configurable via `config/themes.yml`.
+    *   **Themes:** A full design system installed at `app/assets/tailwind/design_system.css` (brand tokens + `.ds-*` components).
     *   **Admin Panel:** A dedicated `Admin::BaseController` and dashboard layout, distinct from the main app.
     *   **Rich Text:** ActionText (Trix) installed with Tailwind typography fixes.
     *   **SEO:** `MetaTags` and `SitemapGenerator` pre-configured.
@@ -266,14 +266,17 @@ def setup_docs_readme
     ```
 
     ### 🎨 Changing Themes
-    You don't need to touch CSS to change your color palette. Open `config/themes.yml`:
+    This app was generated with a complete design system installed at
+    `app/assets/tailwind/design_system.css` and imported from
+    `app/assets/tailwind/application.css`. It ships with a 19-token color
+    contract (surfaces, borders, text, actions, accents), typography, radii,
+    motion, and `.ds-*` component recipes. Use the `brand-*` utilities
+    (`bg-brand-surface`, `text-brand-action`, ...) everywhere.
 
-    ```yaml
-    default:
-      primary: "#4F46E5"   # Change this hex code
-      secondary: "#10B981"
-      background: "#F3F4F6"
-    ```
+    Flip to the counterpart light/dark palette with `data-theme="light"` or
+    `data-theme="dark"` on the `<html>` element. The full design brief lives in
+    `docs/design_system.md` and the machine-readable spec in
+    `docs/design_system.json`.
 
     ### 🔌 Consuming APIs
     Use the generated service pattern for clean external data fetching:
@@ -304,7 +307,8 @@ def setup_docs_readme
     | File Path | Description |
     | :--- | :--- |
     | `config/initializers/ai_config.rb` | AI Settings & WSL IP Detection |
-    | `config/themes.yml` | Color palettes for the UI |
+    | `app/assets/tailwind/design_system.css` | Design system tokens, `brand-*` utilities, and `.ds-*` components |
+    | `docs/design_system.md` | Full design brief for the installed design system |
     | `config/prompts.yml` | Centralized AI Prompt storage |
     | `config/initializers/rack_attack.rb` | Rate limiting configuration |
     | `app/controllers/admin/*` | Custom Admin panel logic |

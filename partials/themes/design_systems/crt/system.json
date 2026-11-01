@@ -1,0 +1,114 @@
+{
+  "slug": "crt",
+  "number": "17",
+  "name": "CRT Monitor",
+  "kind": "proposal",
+  "order": 17,
+  "vibe": "A curved-glass tube monitor in a 1990s office — phosphor glow, rolling scanlines, slight barrel distortion, and that soft chromatic halo around bright text.",
+  "best_for": "Posting history and the agency publishing feed — everything looks played back off a dusty tube.",
+  "adjectives": [
+    "warm",
+    "retro-physical",
+    "glowy"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The vignette + scanline + bloom triad — every surface reads as curved glass, and bright text always bleeds a little light.",
+  "motion": "Soft and analog: 200-300ms ease-out with a gentle bloom on entry (opacity 0→1, brightness 0.8→1). No hard snaps; occasionally a one-frame flicker on state change.",
+  "fonts": {
+    "display": "\"VT323\", \"Silkscreen\", monospace",
+    "sans": "\"ChicagoFLF\", \"Press Start 2P\", \"Inter\", sans-serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 1rem; box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.55);",
+  "texture_style": "background-image: repeating-linear-gradient(0deg, rgba(255, 179, 71, 0.05) 0 1px, transparent 1px 3px);",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#0c0a08",
+    "bg_surface": "#171310",
+    "bg_surface_elevated": "#221c16",
+    "border_subtle": "#30271d",
+    "border_default": "#443726",
+    "border_focus": "#ffcf5c",
+    "text_primary": "#ffe9c2",
+    "text_secondary": "#d8bf94",
+    "text_muted": "#947d58",
+    "color_action": "#ffb347",
+    "color_action_hover": "#e69a35",
+    "color_earnings": "#8fd66a",
+    "color_earnings_hover": "#77bd54",
+    "color_automation": "#6cc6d8",
+    "color_alert": "#ffab4a",
+    "color_danger": "#ff7355",
+    "color_action_glow": "rgba(255, 179, 71, 0.20)",
+    "color_earnings_glow": "rgba(143, 214, 106, 0.18)",
+    "color_automation_glow": "rgba(108, 198, 216, 0.18)"
+  },
+  "counterpart": {
+    "bg_canvas": "#f2ede3",
+    "bg_surface": "#faf6ec",
+    "bg_surface_elevated": "#eee7d6",
+    "border_subtle": "#ddd3bd",
+    "border_default": "#b8a888",
+    "border_focus": "#b35c00",
+    "text_primary": "#2b1f10",
+    "text_secondary": "#5c4a30",
+    "text_muted": "#8a775c",
+    "color_action": "#b35c00",
+    "color_action_hover": "#964d00",
+    "color_earnings": "#2e6b34",
+    "color_earnings_hover": "#255a2a",
+    "color_automation": "#1f6e80",
+    "color_alert": "#9a5200",
+    "color_danger": "#b83a24",
+    "color_action_glow": "rgba(179, 92, 0, 0.14)",
+    "color_earnings_glow": "rgba(46, 107, 52, 0.12)",
+    "color_automation_glow": "rgba(31, 110, 128, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "white-phosphor",
+      "name": "White Phosphor",
+      "desc": "P1 white-phosphor tube; use dark ink labels on the pale fill.",
+      "overrides": {
+        "color_action": "#b8d4bc",
+        "color_action_hover": "#9cbca2",
+        "color_earnings": "#8a6d00",
+        "color_earnings_hover": "#725800",
+        "color_automation": "#4d7d8f",
+        "color_alert": "#8f5e00",
+        "color_danger": "#b3261e",
+        "border_focus": "#b8d4bc",
+        "color_action_glow": "rgba(184, 212, 188, 0.18)",
+        "color_earnings_glow": "rgba(138, 109, 0, 0.12)",
+        "color_automation_glow": "rgba(77, 125, 143, 0.12)"
+      }
+    },
+    {
+      "slug": "blue-glow",
+      "name": "Blue Glow",
+      "desc": "Blue-phosphor tube with gold earnings; use dark ink labels on blue.",
+      "overrides": {
+        "color_action": "#4d8cff",
+        "color_action_hover": "#3a72d9",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#0a9fd6",
+        "color_alert": "#b45309",
+        "color_danger": "#d93345",
+        "border_focus": "#4d8cff",
+        "color_action_glow": "rgba(77, 140, 255, 0.16)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+        "color_automation_glow": "rgba(10, 159, 214, 0.14)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-17 — CRT Monitor\n\n- **slug**: `crt`\n- **Vibe**: A curved-glass tube monitor in a 1990s office — phosphor glow, rolling scanlines, slight barrel distortion, and that soft chromatic halo around bright text.\n- **Best for**: Posting history and the agency publishing feed — everything looks played back off a dusty tube. Adjectives: warm, retro-physical, glowy.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#0c0a08` | Warm near-black tube backplane |\n| `--bg-surface` | `#171310` | Panel fill on the glass |\n| `--bg-surface-elevated` | `#221c16` | Raised panels, hover fills |\n| `--border-subtle` | `#30271d` | Faint bezel hairlines |\n| `--border-default` | `#443726` | Standard card borders |\n| `--border-focus` | `#ffcf5c` | Warm phosphor focus outline |\n| `--text-primary` | `#ffe9c2` | Warm white phosphor headings |\n| `--text-secondary` | `#d8bf94` | Body text |\n| `--text-muted` | `#947d58` | Dimmed captions, timestamps |\n| `--color-action` | `#ffb347` | Warm amber action fills |\n| `--color-action-hover` | `#e69a35` | Action hover (deeper amber) |\n| `--color-earnings` | `#8fd66a` | Green-phosphor earnings |\n| `--color-earnings-hover` | `#77bd54` | Earnings hover (deeper green) |\n| `--color-automation` | `#6cc6d8` | Cyan-phosphor automation accents |\n| `--color-alert` | `#ffab4a` | Amber warnings |\n| `--color-danger` | `#ff7355` | Warm red failed states |\n| `--color-action-glow` | `rgba(255, 179, 71, 0.20)` | Amber halo behind action icons |\n| `--color-earnings-glow` | `rgba(143, 214, 106, 0.18)` | Green halo behind earnings icons |\n| `--color-automation-glow` | `rgba(108, 198, 216, 0.18)` | Cyan halo behind automation icons |\n\n- **Typography**: Display: `\"VT323\", \"Silkscreen\", monospace` for oversized numerals. Sans: `\"ChicagoFLF\", \"Press Start 2P\", \"Inter\", sans-serif` fallback at 500-700 — use sparingly, prefer mono. Mono: `\"IBM Plex Mono\", ui-monospace, monospace` for body. Headings carry a soft 1px text-shadow of `--color-action-glow` (phosphor bloom). KPIs `tabular-nums`.\n- **Radii & Borders**: Barrel-curve everywhere — cards `rounded-2xl` (1rem), buttons `rounded-lg`, inputs `rounded-md`, mimicking glass curvature. 1px borders with a faint outer glow (no hard shadows — depth comes from the tube).\n- **Component Patterns**:\n  - **Buttons**: Soft-fill with warm text and a 2px glow shadow (`0 0 8px var(--color-action-glow)`); hover intensifies the bloom. Primary = amber fill, dark text. Focus = 2px warm outline.\n  - **Cards**: Rounded panels with a subtle inset vignette (`inset 0 0 24px rgba(0,0,0,0.55)`) — the tube's dark corners. A scanline overlay (3px repeating gradient) sits inside every card.\n  - **Badges/Status**: Rounded chips with a phosphor dot; publishing pulses with a slow \"refresh flicker\" (opacity 1 -> 0.7 -> 1, 1.2s). Failed = warm red text with red glow, never a filled banner.\n  - **Tables**: Rounded outer frame, inner 1px grid; rows hover with a faint amber wash. Timestamps in mono, dimmed.\n  - **Forms/Inputs**: Rounded fields, 1px borders, inner vignette; focus = warm amber border + soft glow. Caret blinks like an electron gun.\n  - **Loading**: A horizontal bright line that \"rolls\" down the surface every 3s (refresh band); determinate = a glowing bar with bloom on the leading edge.\n  - **Signature detail**: The vignette + scanline + bloom triad — every surface reads as curved glass, and bright text always bleeds a little light.\n- **Motion & Animation**: Soft and analog: 200-300ms ease-out with a gentle bloom on entry (opacity 0 -> 1, brightness 0.8 -> 1). No hard snaps; occasionally a one-frame flicker on state change.\n- **Signature Preview Snippet**:\n\n```html\n<!-- CRT posting history row: scanlines, vignette, phosphor bloom -->\n<div class=\"crt-row\">\n  <span class=\"crt-time\">09:42:11</span>\n  <span class=\"crt-status crt-ok\">PUBLISHED</span>\n  <span class=\"crt-msg\">tiktok-8821.mp4</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-17",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

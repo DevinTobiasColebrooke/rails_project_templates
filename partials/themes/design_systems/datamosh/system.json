@@ -1,0 +1,114 @@
+{
+  "slug": "datamosh",
+  "number": "23",
+  "name": "Datamosh",
+  "kind": "proposal",
+  "order": 23,
+  "vibe": "Corrupted video compression — macroblocks smeared across the frame, RGB channels slipping out of register, and beautiful accidents where motion vectors bleed.",
+  "best_for": "Launch moments and the creator feed — glitch-art energy for surfaces that should feel alive and unstable.",
+  "adjectives": [
+    "chaotic",
+    "vivid",
+    "generative"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The channel slip — RGB-split text and smear-blocks on an otherwise clean, readable UI. Corruption decorates; it never destroys legibility.",
+  "motion": "Glitch cadence: mostly still, then a 150-250ms burst (translateX ±2px, clip-path slices, channel split) every 4-8s or on hover. Turbo Stream inserts arrive mid-glitch and resolve clean.",
+  "fonts": {
+    "display": "\"Space Grotesk\", \"Rajdhani\", sans-serif",
+    "sans": "\"Inter\", system-ui, sans-serif",
+    "mono": "\"JetBrains Mono\", monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 4px;",
+  "texture_style": "background-image: linear-gradient(90deg, rgba(255, 43, 143, 0.04) 0 24px, transparent 24px 72px), linear-gradient(0deg, rgba(0, 255, 213, 0.04) 0 16px, transparent 16px 64px);",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#07040c",
+    "bg_surface": "#120a1e",
+    "bg_surface_elevated": "#1c1130",
+    "border_subtle": "#2a1a4a",
+    "border_default": "#3f2870",
+    "border_focus": "#00ffd5",
+    "text_primary": "#f2ecff",
+    "text_secondary": "#c4b2e8",
+    "text_muted": "#7a68a8",
+    "color_action": "#ff2b8f",
+    "color_action_hover": "#e21d7a",
+    "color_earnings": "#ffe14e",
+    "color_earnings_hover": "#e6c933",
+    "color_automation": "#00ffd5",
+    "color_alert": "#ff9d2b",
+    "color_danger": "#ff3d5c",
+    "color_action_glow": "rgba(255, 43, 143, 0.22)",
+    "color_earnings_glow": "rgba(255, 225, 78, 0.18)",
+    "color_automation_glow": "rgba(0, 255, 213, 0.18)"
+  },
+  "counterpart": {
+    "bg_canvas": "#f2eef8",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e6def4",
+    "border_subtle": "#d6c8ec",
+    "border_default": "#b09ad6",
+    "border_focus": "#c42a8a",
+    "text_primary": "#1a0f2e",
+    "text_secondary": "#443a5e",
+    "text_muted": "#75688f",
+    "color_action": "#c42a8a",
+    "color_action_hover": "#a82074",
+    "color_earnings": "#9a6d00",
+    "color_earnings_hover": "#7f5a00",
+    "color_automation": "#00806a",
+    "color_alert": "#a85c0c",
+    "color_danger": "#c42a48",
+    "color_action_glow": "rgba(196, 42, 138, 0.16)",
+    "color_earnings_glow": "rgba(154, 109, 0, 0.12)",
+    "color_automation_glow": "rgba(0, 128, 106, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "vhs-ntsc",
+      "name": "VHS NTSC",
+      "desc": "NTSC test-bar accents with cyan chroma; use white bold labels on the bar blue.",
+      "overrides": {
+        "color_action": "#3a4ae0",
+        "color_action_hover": "#2c38c4",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#00b4c8",
+        "color_alert": "#b45309",
+        "color_danger": "#d42a54",
+        "border_focus": "#3a4ae0",
+        "color_action_glow": "rgba(58, 74, 224, 0.18)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+        "color_automation_glow": "rgba(0, 180, 200, 0.16)"
+      }
+    },
+    {
+      "slug": "static-ghost",
+      "name": "Static Ghost",
+      "desc": "Grayscale ghost signal with sepia and slate; corrupted but legible.",
+      "overrides": {
+        "color_action": "#4a4a5c",
+        "color_action_hover": "#38384a",
+        "color_earnings": "#7a6d3c",
+        "color_earnings_hover": "#645830",
+        "color_automation": "#6a7a8c",
+        "color_alert": "#8a5c1c",
+        "color_danger": "#a8323c",
+        "border_focus": "#4a4a5c",
+        "color_action_glow": "rgba(74, 74, 92, 0.12)",
+        "color_earnings_glow": "rgba(122, 109, 60, 0.10)",
+        "color_automation_glow": "rgba(106, 122, 140, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-23 — Datamosh\n\n- **slug**: `datamosh`\n- **Vibe**: Corrupted video compression — macroblocks smeared across the frame, RGB channels slipping out of register, and beautiful accidents where motion vectors bleed.\n- **Best for**: Launch moments and the creator feed — glitch-art energy for surfaces that should feel alive and unstable. Adjectives: chaotic, vivid, generative.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#07040c` | Corrupted frame black-violet |\n| `--bg-surface` | `#120a1e` | Panel fill with block smear |\n| `--bg-surface-elevated` | `#1c1130` | Raised panels, smeared rows |\n| `--border-subtle` | `#2a1a4a` | Macroblock hairlines |\n| `--border-default` | `#3f2870` | Standard borders |\n| `--border-focus` | `#00ffd5` | Chromatic focus outline |\n| `--text-primary` | `#f2ecff` | Clean-signal white headings |\n| `--text-secondary` | `#c4b2e8` | Body text |\n| `--text-muted` | `#7a68a8` | Compression-noise dim text |\n| `--color-action` | `#ff2b8f` | Channel-slip magenta action |\n| `--color-action-hover` | `#e21d7a` | Action hover (deeper magenta) |\n| `--color-earnings` | `#ffe14e` | Blocked-yellow earnings |\n| `--color-earnings-hover` | `#e6c933` | Earnings hover (deeper yellow) |\n| `--color-automation` | `#00ffd5` | Teal channel automation |\n| `--color-alert` | `#ff9d2b` | Bitrate-collapse amber |\n| `--color-danger` | `#ff3d5c` | Stream-failure red |\n| `--color-action-glow` | `rgba(255, 43, 143, 0.22)` | Magenta channel bleed |\n| `--color-earnings-glow` | `rgba(255, 225, 78, 0.18)` | Yellow block bleed |\n| `--color-automation-glow` | `rgba(0, 255, 213, 0.18)` | Teal channel bleed |\n\n- **Typography**: Clean type against dirty backgrounds — the contrast is the point. Display: `\"Space Grotesk\", \"Rajdhani\", sans-serif` at 600-700, occasionally RGB-split (1px red + 1px cyan text-shadow). Body: `\"Inter\", system-ui, sans-serif`. Mono: `\"JetBrains Mono\", monospace` for corruption artifacts and hex IDs. KPIs `tabular-nums`.\n- **Radii & Borders**: Sharp 4px radius. 1px borders; some borders \"break\" — a CSS mask or gradient makes 10-20% of a border's length vanish or smear, like a corrupted edge.\n- **Component Patterns**:\n  - **Buttons**: Flat saturated fills with dark text; on hover the RGB channels split (text-shadow shifts ±1px red/cyan) and a few horizontal slice-clips flicker. Focus = 2px `--border-focus` outline.\n  - **Cards**: Panels with a subtle macroblock smear (CSS: layered linear-gradients forming offset translucent rectangles at low opacity). One corner may carry a displaced \"ghost\" copy of the border.\n  - **Badges/Status**: Chips with occasional character substitution on hover (`PUBLISHED` -> `PUBL1SH3D`); status dot is a small square that occasionally displaces 2px sideways (block shift).\n  - **Tables**: Rows separated by 1px rules; every Nth row (deterministic, e.g. `:nth-child(9n)`) gets a smear overlay or slight horizontal displacement. Numbers stay clean — corruption is decoration, never data.\n  - **Forms/Inputs**: Clean fields with 1px borders; the focus ring does a quick RGB-split (2-frame flash). Error text arrives glitched-in then settles.\n  - **Loading**: A datamosh preloader: macroblocks of the previous content smear and reassemble; indeterminate = slices of color sliding horizontally at different speeds.\n  - **Signature detail**: The channel slip — RGB-split text and smear-blocks on an otherwise clean, readable UI. Corruption decorates; it never destroys legibility.\n- **Motion & Animation**: Glitch cadence: mostly still, then a 150-250ms burst (translateX ±2px, clip-path slices, channel split) every 4-8s or on hover. Turbo Stream inserts arrive mid-glitch and resolve clean.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Datamosh KPI: clean data, RGB-split heading, smear edge -->\n<div class=\"mosh-card\">\n  <span class=\"mosh-label mosh-split\">EARNINGS / 30d</span>\n  <strong class=\"mosh-kpi\">$12,480.50</strong>\n</div>\n```\n\n---\n\n## Comparison Table\n\n| Slug | Name | Vibe | is_dark | Action color | Canvas | Best for |\n|---|---|---|---|---|---|---|\n| `cel-shading` | Cel-Shading | Flat, crisp anime/game-keyframe UI with hard ink shadows | true | `#ff6a1a` | `#140f26` | Creator Studio, Ad Wizard |\n| `voxel-art` | Voxel Art | Blocky isometric pixel world, neon on deep space navy | true | `#41f0ff` | `#05060f` | Automation cockpit, Playwright logs |\n| `comic-book` | Comic Book / Graphic Novel | Bold ink outlines, halftone dots, CMYK primary pop | false | `#e6343c` | `#f6f1e3` | Earnings dashboard, campaign bursts |\n| `painterly-watercolor` | Painterly / Watercolor | Soft layered washes and warm paper, hand-painted calm | false | `#9a6234` | `#f4ead8` | Onboarding, product show pages |\n| `synthwave` | Retro Synthwave / Neon 80s | Magenta/cyan neon glow, sunset gradients, chrome | true | `#ff2bd6` | `#12051f` | Earnings dashboard after dark, launch moments |\n| `terminal` | Terminal / Green Phosphor | CRT terminal with phosphor green, scanlines, mono-everything | true | `#46ff9c` | `#050d07` | Playwright automation, publishing logs, agency feed |\n| `ukiyo-e` | Japanese Ukiyo-e / Woodblock Print | Indigo, washi paper, vermilion seals, woodblock frames | false | `#d9423a` | `#efe6cf` | Product show pages, campaign calendar |\n| `bauhaus` | Bauhaus / Geometric Modern | Primary color blocks, strict grid, Swiss typography | false | `#e63225` | `#f4f4f0` | Analytics dashboards, dense tables |\n| `cyberpunk` | Cyberpunk Neo-Tokyo | Holographic neon city, glitch accents, holo-glass panels | true | `#00f0ff` | `#060a14` | Posting Studio dashboard, real-time publish feed |\n| `art-deco` | Art Deco Noir | 1920s gold-on-black luxury, sunbursts and chevrons | true | `#d4af37` | `#0d0b09` | Earnings dashboard, campaign calendar |\n| `glassmorphism` | Glassmorphism Frosted | Frosted translucent glass over indigo-violet depth | true | `#5747e0` | `#191037` | Onboarding, posting calendar |\n| `steampunk` | Steampunk Brass | Victorian industrial, brass and copper, rivets and gauges | true | `#c9812e` | `#12100c` | Automation cockpit, Playwright run logs |\n| `brutalist` | Brutalist Raw | Stark raw HTML, heavy black borders, mono-everything | false | `#000000` | `#f5f5f0` | Agency publishing logs, power-user tables |\n| `editorial` | Editorial Magazine | High-fashion print, Didot serif, single red accent | false | `#c8102e` | `#faf8f3` | Product show pages, monthly earnings reports |\n| `nordic-minimal` | Nordic Minimal | Scandinavian calm, near-white and muted deep blue | false | `#3d5a80` | `#f6f6f4` | Settings, user flows, daily overview |\n| `y2k-pop` | Y2K Bubblegum Pop | Retro-future pastel bubbles, gloss, playful tilt | false | `#ff5fa2` | `#fdeef4` | Creator Studio, launch moments |\n| `crt` | CRT Monitor | Curved-glass tube, warm phosphor glow, scanlines and vignette | true | `#ffb347` | `#0c0a08` | Posting history, agency publishing feed |\n| `receipt` | Receipt Paper | Thermal-printer tape, mono ledger, perforations and rubber stamps | false | `#2a2a28` | `#e8e4dc` | Earnings reports, order summaries, ledgers |\n| `night-vision` | Night Vision | Gen-3 goggles, luminous green-on-black, grain, bloom and reticles | true | `#59ff8a` | `#020603` | Automation cockpit, Playwright run logs |\n| `1bit-dither` | 1-Bit Dither | Pure black and white, Bayer-dither shades, zero grays | false | `#000000` | `#f4f1ea` | Power-user tables, publishing logs |\n| `depth-map` | Depth Map | Point-cloud depth, cyan-near to magenta-far, wireframe contours | true | `#4ef0ff` | `#04070e` | Analytics dashboards, shooting board |\n| `blob-tracking` | Blob Tracking | CV motion detection, drifting blob washes, corner brackets, confidence tags | true | `#5cffb0` | `#050807` | Creator Studio, campaign overviews |\n| `datamosh` | Datamosh | Corrupted compression, macroblock smears, RGB channel slips | true | `#ff2b8f` | `#07040c` | Launch moments, creator feed |\n\n---\n\n## Mode Palettes & Color Schemas\n\nEvery proposal ships with a **counterpart-mode palette** (the opposite dark/light) and **2 alternate color schemas** (accent overrides that apply on top of whichever mode palette is active). Surfaces/text stay identical; only the accent personality changes.",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-23",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

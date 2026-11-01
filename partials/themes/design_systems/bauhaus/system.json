@@ -1,0 +1,114 @@
+{
+  "slug": "bauhaus",
+  "number": "08",
+  "name": "Bauhaus / Geometric Modern",
+  "kind": "proposal",
+  "order": 8,
+  "vibe": "Primary color blocks, a strict grid, and Swiss typography — form follows function, boldly.",
+  "best_for": "Analytics dashboards and dense tables where structure is the aesthetic.",
+  "adjectives": [
+    "rigorous",
+    "timeless",
+    "confident"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "The primary-color geometric motif (red square, yellow circle, blue triangle) as section markers, plus heavy uppercase Swiss type.",
+  "motion": "Crisp and instant — 80ms linear; Turbo Stream inserts use a geometric wipe (clip-path sweep from left) rather than fade.",
+  "fonts": {
+    "display": "\"Archivo\", \"Helvetica Neue\", Arial, sans-serif",
+    "sans": "\"Inter\", \"Helvetica Neue\", system-ui, sans-serif",
+    "mono": "\"Space Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 0; border-top: 4px solid var(--color-action);",
+  "texture_style": "",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#f4f4f0",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#ecebe4",
+    "border_subtle": "#dedcd2",
+    "border_default": "#b8b5a8",
+    "border_focus": "#0033a0",
+    "text_primary": "#141414",
+    "text_secondary": "#44423c",
+    "text_muted": "#6f6c62",
+    "color_action": "#e63225",
+    "color_action_hover": "#c92a1e",
+    "color_earnings": "#9a7b00",
+    "color_earnings_hover": "#7f6600",
+    "color_automation": "#0033a0",
+    "color_alert": "#d08a00",
+    "color_danger": "#a1121f",
+    "color_action_glow": "rgba(230, 50, 37, 0.12)",
+    "color_earnings_glow": "rgba(154, 123, 0, 0.12)",
+    "color_automation_glow": "rgba(0, 51, 160, 0.12)"
+  },
+  "counterpart": {
+    "bg_canvas": "#111111",
+    "bg_surface": "#1a1a1a",
+    "bg_surface_elevated": "#262626",
+    "border_subtle": "#2e2e2e",
+    "border_default": "#4a4a4a",
+    "border_focus": "#4d8cff",
+    "text_primary": "#f5f5f0",
+    "text_secondary": "#c7c7c0",
+    "text_muted": "#8f8f86",
+    "color_action": "#ef3d2f",
+    "color_action_hover": "#d23326",
+    "color_earnings": "#e0b400",
+    "color_earnings_hover": "#c7a100",
+    "color_automation": "#4d8cff",
+    "color_alert": "#f59e0b",
+    "color_danger": "#e02d2d",
+    "color_action_glow": "rgba(239, 61, 47, 0.16)",
+    "color_earnings_glow": "rgba(224, 180, 0, 0.14)",
+    "color_automation_glow": "rgba(77, 140, 255, 0.14)"
+  },
+  "schemas": [
+    {
+      "slug": "blue-led",
+      "name": "Blue-Led",
+      "desc": "Blue-led with red automation; use white bold labels on blue.",
+      "overrides": {
+        "color_action": "#3b82f6",
+        "color_action_hover": "#2563eb",
+        "color_earnings": "#e0b400",
+        "color_earnings_hover": "#c7a100",
+        "color_automation": "#ef3d2f",
+        "color_alert": "#f59e0b",
+        "color_danger": "#e02d2d",
+        "border_focus": "#3b82f6",
+        "color_action_glow": "rgba(59, 130, 246, 0.16)",
+        "color_earnings_glow": "rgba(224, 180, 0, 0.14)",
+        "color_automation_glow": "rgba(239, 61, 47, 0.14)"
+      }
+    },
+    {
+      "slug": "yellow-led",
+      "name": "Yellow-Led",
+      "desc": "Yellow-led with red automation; use dark ink labels on yellow.",
+      "overrides": {
+        "color_action": "#e6c200",
+        "color_action_hover": "#c7a100",
+        "color_earnings": "#ef3d2f",
+        "color_earnings_hover": "#d23326",
+        "color_automation": "#4d8cff",
+        "color_alert": "#f59e0b",
+        "color_danger": "#e02d2d",
+        "border_focus": "#e6c200",
+        "color_action_glow": "rgba(230, 194, 0, 0.16)",
+        "color_earnings_glow": "rgba(239, 61, 47, 0.14)",
+        "color_automation_glow": "rgba(77, 140, 255, 0.14)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-08 — Bauhaus / Geometric Modern\n\n- **slug**: `bauhaus`\n- **Vibe**: Primary color blocks, a strict grid, and Swiss typography — form follows function, boldly.\n- **Best for**: Analytics dashboards and dense tables where structure is the aesthetic. Adjectives: rigorous, timeless, confident.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#f4f4f0` | Off-white gallery canvas |\n| `--bg-surface` | `#ffffff` | Card and panel fill |\n| `--bg-surface-elevated` | `#ecebe4` | Raised surfaces, hover fills |\n| `--border-subtle` | `#dedcd2` | Fine grid hairlines |\n| `--border-default` | `#b8b5a8` | Standard structural borders |\n| `--border-focus` | `#0033a0` | Bauhaus-blue focus outline |\n| `--text-primary` | `#141414` | Near-black headings |\n| `--text-secondary` | `#44423c` | Body text |\n| `--text-muted` | `#6f6c62` | Captions, helper text |\n| `--color-action` | `#e63225` | Bauhaus-red primary action |\n| `--color-action-hover` | `#c92a1e` | Action hover (deeper red) |\n| `--color-earnings` | `#9a7b00` | Darkened bauhaus-yellow earnings (AA-safe) |\n| `--color-earnings-hover` | `#7f6600` | Earnings hover (deeper olive-gold) |\n| `--color-automation` | `#0033a0` | Bauhaus-blue automation accents |\n| `--color-alert` | `#d08a00` | Amber warnings |\n| `--color-danger` | `#a1121f` | Deep-red destructive states |\n| `--color-action-glow` | `rgba(230, 50, 37, 0.12)` | Red tint behind action icons |\n| `--color-earnings-glow` | `rgba(154, 123, 0, 0.12)` | Gold tint behind earnings icons |\n| `--color-automation-glow` | `rgba(0, 51, 160, 0.12)` | Blue tint behind automation icons |\n\n- **Typography**: Display: `\"Archivo\", \"Helvetica Neue\", Arial, sans-serif` at 700-800 weight, tight tracking; KPI numerals use heavy weights and `tabular-nums`. Sans: `\"Inter\", \"Helvetica Neue\", system-ui, sans-serif`. Mono: `\"Space Mono\", ui-monospace, monospace`. Micro-labels are uppercase with `letter-spacing: 0.12em` — pure Swiss grid discipline.\n- **Radii & Borders**: Sharp corners — `border-radius: 0` everywhere. 1px borders on structure; 2px rules used as deliberate geometric accents (section dividers, top strips). No shadows; hierarchy comes from contrast and geometry.\n- **Component Patterns**:\n  - **Buttons**: Square corners. Primary = solid red block with white text (bold, AA-large). Secondary = white fill with 2px ink border. Tertiary = text-only with a trailing arrow. Focus = 2px blue outline with a 2px gap. Hover = background flips to a 2px block under the label.\n  - **Cards**: White with a 1px border and an optional 4px geometric strip on top (red, yellow, or blue). No shadows, no rounding — pure blocks.\n  - **Badges/Status**: Square chips, uppercase, with a tiny square status dot. Publishing = red square pulsing; published = blue square. No pills.\n  - **Tables**: Strict grid with 1px rules and generous tabular numerals; header row is uppercase micro-type. Row hover = 2px left rule in the section color.\n  - **Forms/Inputs**: Square fields with only a 2px bottom rule; focus = 2px blue bottom rule. Labels sit above in uppercase micro-type.\n  - **Loading**: Indeterminate = red/yellow/blue segments cycling left-to-right; determinate = a straight, square progress bar filling in 1px steps.\n  - **Signature detail**: The primary-color geometric motif (red square, yellow circle, blue triangle) used as section markers and empty-state art, plus heavy uppercase Swiss type — unmistakably Bauhaus.\n- **Motion & Animation**: Crisp and instant — 80ms linear; Turbo Stream inserts use a geometric wipe (clip-path sweep from left) rather than fade. Nothing lingers; state changes snap like a press.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Bauhaus stat tile: red block accent, geometric strip, numeral -->\n<div class=\"bau-tile\">\n  <span class=\"bau-overline\">AUTOMATED POSTS</span>\n  <strong class=\"bau-kpi\">128</strong>\n  <span class=\"bau-accent bau-accent-red\"></span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-08",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

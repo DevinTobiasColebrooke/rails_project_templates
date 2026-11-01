@@ -19,7 +19,7 @@ def setup_themes_and_admin
   # 4. Setup Shared Components (Menu, Flash)
   setup_shared_views
 
-  # 5. Generate the Selected Theme Layout (PNW, Caribbean, or Default)
+  # 5. Install the Selected Design System (CSS + base layout)
   # This relies on the choice made in the Wizard
   setup_public_layout
 

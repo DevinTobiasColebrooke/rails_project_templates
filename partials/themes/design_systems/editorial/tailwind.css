@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Editorial Magazine — design system theme for Rails 8 + Tailwind CSS v4
+   Source: AffiliateManager PROPOSAL-14 (docs/blueprint/design_proposals.md)
+   System page: https://github.com/DevinTobiasColebrooke/design_systems/tree/main/systems/editorial
+
+   Install:
+     1. Copy this file to  app/assets/tailwind/design_system.css
+     2. Add to app/assets/tailwind/application.css (after @import "tailwindcss";):
+          @import "./design_system.css";
+     3. Use the brand-* utilities (bg-brand-surface, text-brand-action, ...)
+        and the .ds-* component recipes below.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Token contract — native light palette (is_dark: false)
+   Override with <html data-theme="dark"> for the
+   dark palette.
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-canvas: #faf8f3; /* Deepest background layer */
+  --bg-surface: #ffffff; /* Cards, Sidebars, Panes */
+  --bg-surface-elevated: #f3efe6; /* Dropdowns, hovered states */
+  --border-subtle: #e2dccd; /* Very light separation */
+  --border-default: #c4bba8; /* Standard card/form borders */
+  --border-focus: #c8102e; /* Focus states */
+  --text-primary: #111111; /* High contrast title/text */
+  --text-secondary: #3d3d3d; /* Standard body paragraph */
+  --text-muted: #6f6857; /* Descriptions, helper text, dates */
+  --color-action: #c8102e; /* Primary action */
+  --color-action-hover: #a50d25; /* Action hover */
+  --color-earnings: #0f6b3a; /* Earnings, Revenue, Profit */
+  --color-earnings-hover: #0c5730; /* Earnings hover */
+  --color-automation: #1f3a6e; /* Playwright, AI, Terminal accents */
+  --color-alert: #a86f1f; /* Warnings, pending states */
+  --color-danger: #8f1022; /* Error, failed status, deletes */
+  --color-action-glow: rgba(200, 16, 46, 0.10); /* Halo behind action icons */
+  --color-earnings-glow: rgba(15, 107, 58, 0.10); /* Halo behind earnings icons */
+  --color-automation-glow: rgba(31, 58, 110, 0.10); /* Halo behind automation icons */
+  --action-label: #ffffff; /* readable text on --color-action fills */
+
+  /* Radii */
+  --radius-sm: 0.375rem; /* buttons, inputs */
+  --radius-md: 0.5rem;   /* cards, small panes */
+  --radius-lg: 0.75rem;  /* big dashboards, modals */
+}
+
+/* Dark counterpart palette */
+[data-theme="dark"] {
+  --bg-canvas: #101010;
+  --bg-surface: #181818;
+  --bg-surface-elevated: #222222;
+  --border-subtle: #2e2e2e;
+  --border-default: #4a4a4a;
+  --border-focus: #ff3350;
+  --text-primary: #f5f2ea;
+  --text-secondary: #c9c5ba;
+  --text-muted: #8f8b80;
+  --color-action: #df2c34;
+  --color-action-hover: #bf2229;
+  --color-earnings: #2f9d5e;
+  --color-earnings-hover: #27844f;
+  --color-automation: #6f8fc8;
+  --color-alert: #b8860b;
+  --color-danger: #c0283c;
+  --color-action-glow: rgba(223, 44, 52, 0.14);
+  --color-earnings-glow: rgba(47, 157, 94, 0.12);
+  --color-automation-glow: rgba(111, 143, 200, 0.12);
+  --action-label: #ffffff;
+}
+
+@theme {
+  /* Typography — Editorial Magazine */
+  --font-display: "Bodoni Moda", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", "Archivo", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Brand colors bound to the raw tokens (re-skins when data-theme flips) */
+  --color-brand-canvas: var(--bg-canvas);
+  --color-brand-surface: var(--bg-surface);
+  --color-brand-surface-elevated: var(--bg-surface-elevated);
+  --color-brand-border-subtle: var(--border-subtle);
+  --color-brand-border-default: var(--border-default);
+  --color-brand-border-focus: var(--border-focus);
+  --color-brand-text-primary: var(--text-primary);
+  --color-brand-text-secondary: var(--text-secondary);
+  --color-brand-text-muted: var(--text-muted);
+  --color-brand-action: var(--color-action);
+  --color-brand-action-hover: var(--color-action-hover);
+  --color-brand-earnings: var(--color-earnings);
+  --color-brand-earnings-hover: var(--color-earnings-hover);
+  --color-brand-automation: var(--color-automation);
+  --color-brand-alert: var(--color-alert);
+  --color-brand-danger: var(--color-danger);
+  --color-brand-action-glow: var(--color-action-glow);
+  --color-brand-earnings-glow: var(--color-earnings-glow);
+  --color-brand-automation-glow: var(--color-automation-glow);
+
+  /* Named theme shadows */
+  --shadow-brand-card: 0 1px 2px rgba(0, 0, 0, 0.12);
+
+  /* Motion — Quiet and print-like — 250ms ease-in-out; content reveals with a vertical "press" easing (clip from top). */
+  --animate-pulse-cyan: pulse-cyan 3s infinite ease-in-out;
+  --animate-pulse-amber: pulse-amber 2.5s infinite ease-in-out;
+  --animate-slide-up-fade: slide-up-fade 0.4s ease-in-out;
+  --animate-fade-in: fade-in 0.4s ease-in-out;
+  --animate-scale-in: scale-in 0.3s ease-in-out;
+  --animate-slide-in-right: slide-in-right 0.35s ease-in-out;
+  --animate-gauge-fill: gauge-fill 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-bloom: bloom 1.2s infinite ease-in-out;
+  --animate-sheet-up: sheet-up 0.35s ease-in-out;
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px var(--color-automation)); }
+  50% { opacity: 0.5; filter: drop-shadow(0 0 8px var(--color-automation)); }
+}
+@keyframes pulse-amber {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(245, 158, 11, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px rgba(245, 158, 11, 0.7); }
+}
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes gauge-fill { from { width: 0%; } to { width: var(--gauge-target-width); } }
+@keyframes bloom {
+  0%, 100% { opacity: 0.2; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes sheet-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Component recipes — Editorial Magazine
+   Card signature: border: 1px solid var(--border-default); border-radius: 0; border-top: 3px solid var(--color-action);
+   ========================================================================== */
+
+.ds-card {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default); border-radius: 0; border-top: 3px solid var(--color-action);
+}
+
+.ds-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-action);
+  border-radius: 0.375rem;
+  background-color: var(--color-action);
+  color: var(--action-label);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 150ms ease-in-out;
+}
+.ds-btn-primary:hover { background-color: var(--color-action-hover); }
+.ds-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-surface), 0 0 0 4px var(--border-focus);
+}
+
+.ds-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 150ms ease-in-out, border-color 150ms ease-in-out;
+}
+.ds-btn-secondary:hover { color: var(--text-primary); border-color: var(--border-focus); }
+
+/* Fixed status colors (identical across all design systems) */
+.ds-status { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.125rem 0.5rem;
+             border-radius: 9999px; border: 1px solid; font-size: 0.6875rem; font-weight: 600; }
+.ds-status-draft      { background: rgba(107, 114, 128, 0.1); color: #6b7280; border-color: rgba(107, 114, 128, 0.2); }
+.ds-status-scheduled  { background: rgba(59, 130, 246, 0.1);  color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); }
+.ds-status-publishing { background: rgba(245, 158, 11, 0.1);  color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+.ds-status-published  { background: rgba(16, 185, 129, 0.1);  color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+.ds-status-failed     { background: rgba(239, 68, 68, 0.1);   color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
+
+/* Data correctness: all numbers are tabular */
+.ds-num { font-variant-numeric: tabular-nums; }

@@ -1,0 +1,114 @@
+{
+  "slug": "comic-book",
+  "number": "03",
+  "name": "Comic Book / Graphic Novel",
+  "kind": "proposal",
+  "order": 3,
+  "vibe": "Bold black ink outlines, halftone dot fields, and CMYK primary pop on pulp paper — every stat reads like a panel from a graphic novel.",
+  "best_for": "Earnings dashboard and campaign bursts — big, dramatic numbers.",
+  "adjectives": [
+    "loud",
+    "dramatic",
+    "unmistakable"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "The halftone dot field plus heavy ink outlines on every panel — the unmistakable print-comic texture.",
+  "motion": "Fast and theatrical: entries “POP” in with scale(0.85)→scale(1.05)→scale(1) over 200ms with a slight rotate.",
+  "fonts": {
+    "display": "\"Bangers\", \"Archivo Black\", sans-serif",
+    "sans": "\"Archivo\", \"Inter\", system-ui, sans-serif",
+    "mono": "\"Space Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 3px solid #141414; border-radius: 2px; box-shadow: 5px 5px 0 0 rgba(20, 20, 20, 0.9);",
+  "texture_style": "background-image: repeating-radial-gradient(circle at 3px 3px, rgba(20,20,20,0.14) 0 1px, transparent 1px 6px);",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#f6f1e3",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#fff9eb",
+    "border_subtle": "#cfc8b6",
+    "border_default": "#141414",
+    "border_focus": "#e6343c",
+    "text_primary": "#141414",
+    "text_secondary": "#3a3a3a",
+    "text_muted": "#6e6757",
+    "color_action": "#e6343c",
+    "color_action_hover": "#c92a31",
+    "color_earnings": "#0a9d4e",
+    "color_earnings_hover": "#0b8a44",
+    "color_automation": "#2f6bff",
+    "color_alert": "#ffb302",
+    "color_danger": "#8c1c22",
+    "color_action_glow": "rgba(230, 52, 60, 0.14)",
+    "color_earnings_glow": "rgba(10, 157, 78, 0.14)",
+    "color_automation_glow": "rgba(47, 107, 255, 0.14)"
+  },
+  "counterpart": {
+    "bg_canvas": "#141414",
+    "bg_surface": "#1e1d1b",
+    "bg_surface_elevated": "#2a2825",
+    "border_subtle": "#3a3732",
+    "border_default": "#d9d2c0",
+    "border_focus": "#ff4d5e",
+    "text_primary": "#f5efe0",
+    "text_secondary": "#c9c0aa",
+    "text_muted": "#8f8772",
+    "color_action": "#ff4d5e",
+    "color_action_hover": "#e53a4a",
+    "color_earnings": "#3ddc84",
+    "color_earnings_hover": "#2bc471",
+    "color_automation": "#6f9bff",
+    "color_alert": "#ffd54f",
+    "color_danger": "#e5313f",
+    "color_action_glow": "rgba(255, 77, 94, 0.16)",
+    "color_earnings_glow": "rgba(61, 220, 132, 0.14)",
+    "color_automation_glow": "rgba(111, 155, 255, 0.14)"
+  },
+  "schemas": [
+    {
+      "slug": "villain-purple",
+      "name": "Villain Purple",
+      "desc": "Menacing purple hero with cyan secondary; use white bold labels on purple.",
+      "overrides": {
+        "color_action": "#a855f7",
+        "color_action_hover": "#8b3ce0",
+        "color_earnings": "#ffd54f",
+        "color_earnings_hover": "#e6bc00",
+        "color_automation": "#22d3ee",
+        "color_alert": "#f59e0b",
+        "color_danger": "#ef4444",
+        "border_focus": "#a855f7",
+        "color_action_glow": "rgba(168, 85, 247, 0.18)",
+        "color_earnings_glow": "rgba(255, 213, 79, 0.14)",
+        "color_automation_glow": "rgba(34, 211, 238, 0.14)"
+      }
+    },
+    {
+      "slug": "super-blue",
+      "name": "Super Blue",
+      "desc": "Heroic blue with pink automation; use white bold labels on blue.",
+      "overrides": {
+        "color_action": "#3b82f6",
+        "color_action_hover": "#2563eb",
+        "color_earnings": "#ffd54f",
+        "color_earnings_hover": "#e6bc00",
+        "color_automation": "#f472b6",
+        "color_alert": "#f59e0b",
+        "color_danger": "#ef4444",
+        "border_focus": "#3b82f6",
+        "color_action_glow": "rgba(59, 130, 246, 0.16)",
+        "color_earnings_glow": "rgba(255, 213, 79, 0.14)",
+        "color_automation_glow": "rgba(244, 114, 182, 0.14)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-03 — Comic Book / Graphic Novel\n\n- **slug**: `comic-book`\n- **Vibe**: Bold black ink outlines, halftone dot fields, and CMYK primary pop on pulp paper — every stat reads like a panel from a graphic novel.\n- **Best for**: Earnings dashboard and campaign bursts — big, dramatic numbers. Adjectives: loud, dramatic, unmistakable.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#f6f1e3` | Pulp-paper canvas |\n| `--bg-surface` | `#ffffff` | Card and panel fill |\n| `--bg-surface-elevated` | `#fff9eb` | Hovered/raised paper highlight |\n| `--border-subtle` | `#cfc8b6` | Light ink hairlines |\n| `--border-default` | `#141414` | Heavy ink outlines (2-3px) |\n| `--border-focus` | `#e6343c` | Comic-red focus outline |\n| `--text-primary` | `#141414` | Ink-black headings and body |\n| `--text-secondary` | `#3a3a3a` | Standard body text |\n| `--text-muted` | `#6e6757` | Captions, dates, fine print |\n| `--color-action` | `#e6343c` | CMYK-red primary action |\n| `--color-action-hover` | `#c92a31` | Action hover (darker red) |\n| `--color-earnings` | `#0a9d4e` | Comic green for earnings |\n| `--color-earnings-hover` | `#0b8a44` | Earnings hover (deeper green) |\n| `--color-automation` | `#2f6bff` | CMYK-blue automation accents |\n| `--color-alert` | `#ffb302` | Comic-yellow warnings |\n| `--color-danger` | `#8c1c22` | Dark blood-red destructive states |\n| `--color-action-glow` | `rgba(230, 52, 60, 0.14)` | Halftone-red tint behind icons |\n| `--color-earnings-glow` | `rgba(10, 157, 78, 0.14)` | Halftone-green tint behind icons |\n| `--color-automation-glow` | `rgba(47, 107, 255, 0.14)` | Halftone-blue tint behind icons |\n\n- **Typography**: Display: `\"Bangers\", \"Archivo Black\", sans-serif` — always uppercase, `letter-spacing: 0.02em`, used only for KPI numerals, section headers, and CTA labels. Sans: `\"Archivo\", \"Inter\", system-ui, sans-serif`. Mono: `\"Space Mono\", ui-monospace, monospace` for timestamps. Numbers are `tabular-nums` and deliberately heavy.\n- **Radii & Borders**: Sharp and inked — cards and buttons at 2px radius; the ink border is 2-3px solid `--border-default` plus a 1px inner white \"frame\" (double-line comic panel). Buttons may tilt -1deg on hover for a \"paste-up\" feel.\n- **Component Patterns**:\n  - **Buttons**: 3px ink border + solid pop fill, uppercase Bangers label, hard offset ink shadow (4px, no blur). Primary = red fill with white bold text (large text, passes AA). Secondary = white fill + ink outline. Focus = 3px `--border-focus` outline.\n  - **Cards**: Paper-white fill, 3px ink outline + hard offset shadow, header banded with a halftone dot strip (CSS `repeating-radial-gradient`). The KPI numeral sits on the halftone field like a panel caption.\n  - **Badges/Status**: Sticker-style pills with ink border and halftone background; publishing = pulsing \"burst\" starburst; failed = red sticker with white text.\n  - **Tables**: Alternating white/cream rows with ink column rules; header row is a red banner strip with white uppercase labels. Hover = 2px left ink tick.\n  - **Forms/Inputs**: \"Lined-paper\" fields — only a 2px ink baseline under the input; focus = red baseline + small star burst in the corner.\n  - **Loading**: A comic \"POW\" starburst that pulses and scales in a 3-frame cycle; determinate progress = speech-bubble meter filling with dots.\n  - **Signature detail**: The halftone dot field + heavy ink outlines on every panel — the unmistakable print-comic texture.\n- **Motion & Animation**: Fast and theatrical: entries \"POP\" in with `scale(0.85) -> scale(1.05) -> scale(1)` over 200ms with a slight rotate; buttons smash down 2px on `:active`. Turbo Stream inserts inherit the POP.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Comic earnings hero: ink outline, halftone band, burst delta -->\n<div class=\"comic-card\">\n  <span class=\"comic-overline\">EARNINGS THIS MONTH</span>\n  <strong class=\"comic-kpi\">$8,240</strong>\n  <span class=\"comic-burst\">+22%</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-03",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

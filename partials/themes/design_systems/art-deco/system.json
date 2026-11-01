@@ -1,0 +1,114 @@
+{
+  "slug": "art-deco",
+  "number": "10",
+  "name": "Art Deco Noir",
+  "kind": "proposal",
+  "order": 10,
+  "vibe": "1920s gold-on-black luxury — geometric sunbursts, chevron lines, and champagne accents over deep noir.",
+  "best_for": "Earnings dashboard and campaign calendar — premium, quiet opulence for high-ticket affiliate reporting.",
+  "adjectives": [
+    "luxurious",
+    "geometric",
+    "refined"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "The sunburst/chevron geometric divider and gold double-line frames — pure Gatsby-era geometry on noir black.",
+  "motion": "Measured and stately — 300ms ease-in-out; content fades in with an 8px upward drift (velvet curtain feel).",
+  "fonts": {
+    "display": "\"Cinzel\", \"Marcellus\", serif",
+    "sans": "\"Cormorant Garamond\", \"EB Garamond\", Georgia, serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 0; box-shadow: inset 0 0 0 3px var(--bg-surface), inset 0 0 0 4px var(--border-default);",
+  "texture_style": "background-image: radial-gradient(circle at 92% 8%, rgba(212, 175, 55, 0.14), transparent 45%);",
+  "button_label": "#0d0d12",
+  "tokens": {
+    "bg_canvas": "#0d0b09",
+    "bg_surface": "#161310",
+    "bg_surface_elevated": "#211d18",
+    "border_subtle": "#2c261e",
+    "border_default": "#4a4134",
+    "border_focus": "#d4af37",
+    "text_primary": "#f5f0e6",
+    "text_secondary": "#cfc5b2",
+    "text_muted": "#8d8271",
+    "color_action": "#d4af37",
+    "color_action_hover": "#b8942f",
+    "color_earnings": "#e6d3a0",
+    "color_earnings_hover": "#d9c489",
+    "color_automation": "#c7d1d8",
+    "color_alert": "#c9922e",
+    "color_danger": "#a63a2e",
+    "color_action_glow": "rgba(212, 175, 55, 0.18)",
+    "color_earnings_glow": "rgba(230, 211, 160, 0.14)",
+    "color_automation_glow": "rgba(199, 209, 216, 0.12)"
+  },
+  "counterpart": {
+    "bg_canvas": "#f6f1e6",
+    "bg_surface": "#fffdf7",
+    "bg_surface_elevated": "#efe7d6",
+    "border_subtle": "#e0d5bd",
+    "border_default": "#b8a887",
+    "border_focus": "#a87f1f",
+    "text_primary": "#1c1711",
+    "text_secondary": "#4a4236",
+    "text_muted": "#7a7060",
+    "color_action": "#a87f1f",
+    "color_action_hover": "#8f6b18",
+    "color_earnings": "#a88d45",
+    "color_earnings_hover": "#937a37",
+    "color_automation": "#7b8a94",
+    "color_alert": "#8f6b18",
+    "color_danger": "#a63a2e",
+    "color_action_glow": "rgba(168, 127, 31, 0.14)",
+    "color_earnings_glow": "rgba(168, 141, 69, 0.12)",
+    "color_automation_glow": "rgba(123, 138, 148, 0.10)"
+  },
+  "schemas": [
+    {
+      "slug": "ruby-noir",
+      "name": "Ruby Noir",
+      "desc": "Ruby-led deco; use white bold labels on ruby.",
+      "overrides": {
+        "color_action": "#a63a2e",
+        "color_action_hover": "#8f2f24",
+        "color_earnings": "#a88d45",
+        "color_earnings_hover": "#937a37",
+        "color_automation": "#7b8a94",
+        "color_alert": "#8f6b18",
+        "color_danger": "#7a1f14",
+        "border_focus": "#a63a2e",
+        "color_action_glow": "rgba(166, 58, 46, 0.14)",
+        "color_earnings_glow": "rgba(168, 141, 69, 0.12)",
+        "color_automation_glow": "rgba(123, 138, 148, 0.10)"
+      }
+    },
+    {
+      "slug": "emerald-envy",
+      "name": "Emerald Envy",
+      "desc": "Emerald-led deco; use white bold labels on emerald.",
+      "overrides": {
+        "color_action": "#2e6b4f",
+        "color_action_hover": "#245640",
+        "color_earnings": "#a88d45",
+        "color_earnings_hover": "#937a37",
+        "color_automation": "#7b8a94",
+        "color_alert": "#8f6b18",
+        "color_danger": "#a63a2e",
+        "border_focus": "#2e6b4f",
+        "color_action_glow": "rgba(46, 107, 79, 0.14)",
+        "color_earnings_glow": "rgba(168, 141, 69, 0.12)",
+        "color_automation_glow": "rgba(123, 138, 148, 0.10)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-10 — Art Deco Noir\n\n- **slug**: `art-deco`\n- **Vibe**: 1920s gold-on-black luxury — geometric sunbursts, chevron lines, and champagne accents over deep noir.\n- **Best for**: Earnings dashboard and campaign calendar — premium, quiet opulence for high-ticket affiliate reporting. Adjectives: luxurious, geometric, refined.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#0d0b09` | Deep warm-black noir canvas |\n| `--bg-surface` | `#161310` | Charcoal panel fill |\n| `--bg-surface-elevated` | `#211d18` | Raised panels, modals |\n| `--border-subtle` | `#2c261e` | Fine shadow hairlines |\n| `--border-default` | `#4a4134` | Standard bronze borders |\n| `--border-focus` | `#d4af37` | Gold focus outline |\n| `--text-primary` | `#f5f0e6` | Cream headings and body |\n| `--text-secondary` | `#cfc5b2` | Standard body text |\n| `--text-muted` | `#8d8271` | Captions, dates, fine print |\n| `--color-action` | `#d4af37` | Gold primary action |\n| `--color-action-hover` | `#b8942f` | Action hover (deeper gold) |\n| `--color-earnings` | `#e6d3a0` | Champagne earnings |\n| `--color-earnings-hover` | `#d9c489` | Earnings hover (deeper champagne) |\n| `--color-automation` | `#c7d1d8` | Chrome-silver automation accents |\n| `--color-alert` | `#c9922e` | Amber-gold warnings |\n| `--color-danger` | `#a63a2e` | Dark red destructive states |\n| `--color-action-glow` | `rgba(212, 175, 55, 0.18)` | Gold tint behind action icons |\n| `--color-earnings-glow` | `rgba(230, 211, 160, 0.14)` | Champagne tint behind earnings icons |\n| `--color-automation-glow` | `rgba(199, 209, 216, 0.12)` | Silver tint behind automation icons |\n\n- **Typography**: Display: `\"Cinzel\", \"Marcellus\", serif` — Roman inscriptional caps, `letter-spacing: 0.06em`, used for headings and KPI labels. Sans/body: `\"Cormorant Garamond\", \"EB Garamond\", Georgia, serif` at 500-600 (elegant serif body). Mono: `\"IBM Plex Mono\", ui-monospace, monospace` for timestamps and IDs. Numerals `tabular-nums`; overlines in Cinzel small caps.\n- **Radii & Borders**: Sharp and architectural — 0-2px radius. Borders are thin 1px gold/bronze lines; cards use a **double-line deco frame** (outer 1px + inner hairline inset 3px). Dividers are chevron or sunburst motifs, never plain rules.\n- **Component Patterns**:\n  - **Buttons**: Rectangular, thin gold border, uppercase Cinzel label with wide tracking. Primary = gold fill with black text (`#0d0b09`); hover = champagne. Secondary = transparent with gold border; tertiary = text-only with gold underline. Focus = gold double outline.\n  - **Cards**: Noir panels with the double-line gold frame, a chevron divider under the header, and a faint sunburst watermark in the corner. No shadows; depth is implied by gold line weight.\n  - **Badges/Status**: Small gold-outlined pills with a diamond status mark (deco, not round); publishing = pulsing gold diamond; published = champagne; failed = dark red diamond.\n  - **Tables**: Noir with thin gold rules; header row in cream Cinzel caps; row hover = 1px gold left rule.\n  - **Forms/Inputs**: Fields with a single gold baseline; focus = gold double underline. Labels in small cream caps.\n  - **Loading**: A rotating sunburst fan (12 rays) or three chevrons sliding in sequence; determinate = a gold segment gauge.\n  - **Signature detail**: The sunburst/chevron geometric divider and gold double-line frames — pure Gatsby-era geometry on noir black.\n- **Motion & Animation**: Measured and stately — 300ms `ease-in-out`; content fades in with a 8px upward drift (velvet curtain feel). Status changes cross-fade; nothing pops or bounces.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Deco KPI: gold double-line frame, sunburst divider, cream type -->\n<div class=\"deco-card\">\n  <span class=\"deco-overline\">EARNINGS THIS QUARTER</span>\n  <strong class=\"deco-kpi\">$48,210</strong>\n  <span class=\"deco-sunburst\"></span>\n  <span class=\"deco-note\">+22% vs prior</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-10",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

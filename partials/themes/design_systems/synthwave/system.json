@@ -1,0 +1,114 @@
+{
+  "slug": "synthwave",
+  "number": "05",
+  "name": "Retro Synthwave / Neon 80s",
+  "kind": "proposal",
+  "order": 5,
+  "vibe": "Cruise the neon grid at midnight — magenta, cyan, purple glow, sunset gradients, and chrome trim.",
+  "best_for": "Earnings dashboard after dark and launch/flash moments that deserve spectacle.",
+  "adjectives": [
+    "electric",
+    "nostalgic",
+    "theatrical"
+  ],
+  "is_dark": true,
+  "native_mode": "dark",
+  "counterpart_mode": "light",
+  "signature": "Chrome-gradient text on primary headings plus the sunset gradient and perspective-grid horizon in empty states and marketing surfaces.",
+  "motion": "Cinematic and slow-glow: fade in with blur(8px)→blur(0), scale 1.02→1 over 350ms; neon glows pulse on hover.",
+  "fonts": {
+    "display": "\"Audiowide\", \"Orbitron\", sans-serif",
+    "sans": "\"Rajdhani\", \"Exo 2\", system-ui, sans-serif",
+    "mono": "\"Share Tech Mono\", \"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid; border-radius: 12px; border-top: 2px solid; box-shadow: 0 0 18px var(--color-action-glow), 0 0 28px var(--color-action-glow);",
+  "texture_style": "background-image: linear-gradient(90deg, #ff2bd6, #ffd319);",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#12051f",
+    "bg_surface": "#1d0b33",
+    "bg_surface_elevated": "#2a1250",
+    "border_subtle": "#3a1e66",
+    "border_default": "#532a8f",
+    "border_focus": "#ff2bd6",
+    "text_primary": "#fdf2ff",
+    "text_secondary": "#cfa8f0",
+    "text_muted": "#8d63b8",
+    "color_action": "#ff2bd6",
+    "color_action_hover": "#e21dbb",
+    "color_earnings": "#ffd319",
+    "color_earnings_hover": "#e6bc00",
+    "color_automation": "#3ce0ff",
+    "color_alert": "#ff9f1c",
+    "color_danger": "#ff3b5c",
+    "color_action_glow": "rgba(255, 43, 214, 0.35)",
+    "color_earnings_glow": "rgba(255, 211, 25, 0.30)",
+    "color_automation_glow": "rgba(60, 224, 255, 0.30)"
+  },
+  "counterpart": {
+    "bg_canvas": "#f3e8fb",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#e8dcf5",
+    "border_subtle": "#d9c9ef",
+    "border_default": "#b99adf",
+    "border_focus": "#d624b8",
+    "text_primary": "#2a0a44",
+    "text_secondary": "#5a3a7a",
+    "text_muted": "#7d6196",
+    "color_action": "#d624b8",
+    "color_action_hover": "#ba1c9f",
+    "color_earnings": "#9a7400",
+    "color_earnings_hover": "#806000",
+    "color_automation": "#0a9fd6",
+    "color_alert": "#b45309",
+    "color_danger": "#e0286e",
+    "color_action_glow": "rgba(214, 36, 184, 0.22)",
+    "color_earnings_glow": "rgba(154, 116, 0, 0.16)",
+    "color_automation_glow": "rgba(10, 159, 214, 0.18)"
+  },
+  "schemas": [
+    {
+      "slug": "cyan-horizon",
+      "name": "Cyan Horizon",
+      "desc": "Cyan-led with violet automation; use dark ink labels on cyan.",
+      "overrides": {
+        "color_action": "#0a9fd6",
+        "color_action_hover": "#0887b5",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#8a5cd6",
+        "color_alert": "#b45309",
+        "color_danger": "#e0286e",
+        "border_focus": "#0a9fd6",
+        "color_action_glow": "rgba(10, 159, 214, 0.20)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.16)",
+        "color_automation_glow": "rgba(138, 92, 214, 0.18)"
+      }
+    },
+    {
+      "slug": "violet-static",
+      "name": "Violet Static",
+      "desc": "Violet-led with magenta and cyan accents; use dark ink labels.",
+      "overrides": {
+        "color_action": "#8a2be2",
+        "color_action_hover": "#7a1fce",
+        "color_earnings": "#c99900",
+        "color_earnings_hover": "#a87f00",
+        "color_automation": "#0a9fd6",
+        "color_alert": "#b45309",
+        "color_danger": "#e0286e",
+        "border_focus": "#8a2be2",
+        "color_action_glow": "rgba(138, 43, 226, 0.22)",
+        "color_earnings_glow": "rgba(201, 153, 0, 0.16)",
+        "color_automation_glow": "rgba(10, 159, 214, 0.18)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-05 — Retro Synthwave / Neon 80s\n\n- **slug**: `synthwave`\n- **Vibe**: Cruise the neon grid at midnight — magenta, cyan, purple glow, sunset gradients, and chrome trim.\n- **Best for**: Earnings dashboard after dark and launch/flash moments that deserve spectacle. Adjectives: electric, nostalgic, theatrical.\n- **Palette** (dark theme, `is_dark: true`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#12051f` | Deep violet-black canvas |\n| `--bg-surface` | `#1d0b33` | Panel fill |\n| `--bg-surface-elevated` | `#2a1250` | Raised panels, modals |\n| `--border-subtle` | `#3a1e66` | Subtle neon hairlines |\n| `--border-default` | `#532a8f` | Standard neon borders |\n| `--border-focus` | `#ff2bd6` | Hot-magenta focus outline |\n| `--text-primary` | `#fdf2ff` | High-contrast headings |\n| `--text-secondary` | `#cfa8f0` | Body text |\n| `--text-muted` | `#8d63b8` | Captions, helper text |\n| `--color-action` | `#ff2bd6` | Hot-magenta primary action |\n| `--color-action-hover` | `#e21dbb` | Action hover (deeper magenta) |\n| `--color-earnings` | `#ffd319` | Sunset-yellow earnings |\n| `--color-earnings-hover` | `#e6bc00` | Earnings hover (deeper gold) |\n| `--color-automation` | `#3ce0ff` | Neon-cyan automation accents |\n| `--color-alert` | `#ff9f1c` | Hot-orange warnings |\n| `--color-danger` | `#ff3b5c` | Neon-red destructive states |\n| `--color-action-glow` | `rgba(255, 43, 214, 0.35)` | Strong neon aura behind action icons |\n| `--color-earnings-glow` | `rgba(255, 211, 25, 0.30)` | Strong neon aura behind earnings icons |\n| `--color-automation-glow` | `rgba(60, 224, 255, 0.30)` | Strong neon aura behind automation icons |\n\n- **Typography**: Display: `\"Audiowide\", \"Orbitron\", sans-serif` for KPI numerals and big headings — squared, futuristic, slightly wide. Sans: `\"Rajdhani\", \"Exo 2\", system-ui, sans-serif` at 500-700 with `letter-spacing: 0.02em`; uppercase micro-labels at 0.08em. Mono: `\"Share Tech Mono\", \"IBM Plex Mono\", ui-monospace, monospace` for logs and IDs. Numerals `tabular-nums`.\n- **Radii & Borders**: Rounded-but-glowy: cards 12px, buttons pill or 8px. Borders are 1-2px neon with a matching outer glow (`box-shadow: 0 0 12px`). Card tops get a 2px bright \"sunset line\" in magenta or cyan.\n- **Component Patterns**:\n  - **Buttons**: Neon fill + 2px brighter border + outer glow; near-black text (`#12051f`) for contrast. Hover intensifies the glow and raises it. Secondary = transparent fill, neon border, subtle glow. Focus = 2px `--border-focus` plus glow ring.\n  - **Cards**: Dark surfaces with a 1px neon border and soft outer glow; top edge carries the 2px sunset line. Empty states and headers may layer a perspective-grid motif.\n  - **Badges/Status**: Neon-outlined pills with a glowing dot; publishing = pulsing magenta dot with glow; published = cyan glow. All badges read as \"lit\" elements.\n  - **Tables**: Header row runs a sunset gradient strip (yellow to magenta) with dark text; zebra rows very subtle; row hover = left 3px neon bar. Numbers glow slightly at high values.\n  - **Forms/Inputs**: Dark fields, 1px neon border; focus = border brightens + soft glow. Labels in Rajdhani uppercase.\n  - **Loading**: A horizontal \"synth scanner\" line sweeping across a dark track, or three neon dots pulsing with glow in sequence.\n  - **Signature detail**: Chrome-gradient text on primary headings plus the sunset gradient + perspective grid horizon used in empty states and the login/marketing surfaces — pure 80s.\n- **Motion & Animation**: Cinematic and slow-glow: elements fade in with `opacity 0 -> 1` plus `filter: blur(8px) -> blur(0)` and scale 1.02 to 1, 350ms. Neon glows pulse on hover. No hard snaps.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Synthwave earnings tile: neon border, glow, chrome label -->\n<div class=\"syn-card\">\n  <span class=\"syn-chrome\">TODAY'S EARNINGS</span>\n  <strong class=\"syn-kpi\">$412.80</strong>\n  <span class=\"syn-grid\"></span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-05",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

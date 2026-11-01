@@ -1,0 +1,114 @@
+{
+  "slug": "1bit-dither",
+  "number": "20",
+  "name": "1-Bit Dither",
+  "kind": "proposal",
+  "order": 20,
+  "vibe": "A Macintosh-classic or Game Boy camera screen — pure black and pure white, with every shade faked by Bayer-dither dot patterns. No grays exist.",
+  "best_for": "Power-user tables, agency publishing logs, and any surface that should look like 1991 portable hardware.",
+  "adjectives": [
+    "austere",
+    "mechanical",
+    "print-like"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "Bayer-dither patterns standing in for every gray — squint and you get shades; look close and there are only two colors.",
+  "motion": "Stepped and frame-based: 80-120ms, steps(4) easing, no sub-pixel movement — things jump in 2px increments like a low-DPI screen. Blinking is a hard on/off at 1-2Hz.",
+  "fonts": {
+    "display": "\"Silkscreen\", \"Pixelify Sans\", monospace",
+    "sans": "\"IBM Plex Mono\", ui-monospace, monospace",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 2px solid #000000; border-radius: 0; box-shadow: 4px 4px 0 0 #000000;",
+  "texture_style": "background-image: repeating-conic-gradient(#000000 0% 25%, transparent 0% 50%); background-size: 4px 4px;",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#f4f1ea",
+    "bg_surface": "#ffffff",
+    "bg_surface_elevated": "#f4f1ea",
+    "border_subtle": "#d8d4c8",
+    "border_default": "#000000",
+    "border_focus": "#000000",
+    "text_primary": "#000000",
+    "text_secondary": "#000000",
+    "text_muted": "#000000",
+    "color_action": "#000000",
+    "color_action_hover": "#000000",
+    "color_earnings": "#000000",
+    "color_earnings_hover": "#000000",
+    "color_automation": "#000000",
+    "color_alert": "#000000",
+    "color_danger": "#000000",
+    "color_action_glow": "rgba(0, 0, 0, 0.06)",
+    "color_earnings_glow": "rgba(0, 0, 0, 0.06)",
+    "color_automation_glow": "rgba(0, 0, 0, 0.06)"
+  },
+  "counterpart": {
+    "bg_canvas": "#0f380f",
+    "bg_surface": "#204820",
+    "bg_surface_elevated": "#306230",
+    "border_subtle": "#2c542c",
+    "border_default": "#8bac0f",
+    "border_focus": "#9bbc0f",
+    "text_primary": "#cfe89a",
+    "text_secondary": "#93b04a",
+    "text_muted": "#5c7a2e",
+    "color_action": "#9bbc0f",
+    "color_action_hover": "#8bac0f",
+    "color_earnings": "#cde86a",
+    "color_earnings_hover": "#b4d44e",
+    "color_automation": "#7a9c4a",
+    "color_alert": "#cde86a",
+    "color_danger": "#c86a4a",
+    "color_action_glow": "rgba(155, 188, 15, 0.16)",
+    "color_earnings_glow": "rgba(205, 232, 106, 0.14)",
+    "color_automation_glow": "rgba(122, 156, 74, 0.14)"
+  },
+  "schemas": [
+    {
+      "slug": "gameboy-pea",
+      "name": "Gameboy Pea",
+      "desc": "Deep pea-soup accents; use white bold labels on the deep green.",
+      "overrides": {
+        "color_action": "#4a6624",
+        "color_action_hover": "#3c541c",
+        "color_earnings": "#6b5900",
+        "color_earnings_hover": "#574800",
+        "color_automation": "#2e5c46",
+        "color_alert": "#7a5c00",
+        "color_danger": "#8a2e1c",
+        "border_focus": "#4a6624",
+        "color_action_glow": "rgba(74, 102, 36, 0.12)",
+        "color_earnings_glow": "rgba(107, 89, 0, 0.12)",
+        "color_automation_glow": "rgba(46, 92, 70, 0.12)"
+      }
+    },
+    {
+      "slug": "newsprint",
+      "name": "Newsprint",
+      "desc": "Ink-on-newsprint with sepia and slate accents; pure print contrast.",
+      "overrides": {
+        "color_action": "#000000",
+        "color_action_hover": "#333333",
+        "color_earnings": "#5c4a1c",
+        "color_earnings_hover": "#4a3c16",
+        "color_automation": "#1c3a5c",
+        "color_alert": "#7a4a10",
+        "color_danger": "#7a1c14",
+        "border_focus": "#000000",
+        "color_action_glow": "rgba(0, 0, 0, 0.06)",
+        "color_earnings_glow": "rgba(92, 74, 28, 0.08)",
+        "color_automation_glow": "rgba(28, 58, 92, 0.08)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-20 — 1-Bit Dither\n\n- **slug**: `1bit-dither`\n- **Vibe**: A Macintosh-classic or Game Boy camera screen — pure black and pure white, with every shade faked by Bayer-dither dot patterns. No grays exist.\n- **Best for**: Power-user tables, agency publishing logs, and any surface that should look like 1991 portable hardware. Adjectives: austere, mechanical, print-like.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#f4f1ea` | Paper-white LCD backdrop |\n| `--bg-surface` | `#ffffff` | Pure white panel |\n| `--bg-surface-elevated` | `#f4f1ea` | Dither-pattern panel (50% checker) |\n| `--border-subtle` | `#d8d4c8` | Hairline (rendered as 1px dotted) |\n| `--border-default` | `#000000` | Pure black borders |\n| `--border-focus` | `#000000` | Black focus outline (double-strike) |\n| `--text-primary` | `#000000` | Pure black text |\n| `--text-secondary` | `#000000` | Black text at 70% dither (pattern) |\n| `--text-muted` | `#000000` | Black text at 30% dither (pattern) |\n| `--color-action` | `#000000` | Black primary fills (white text) |\n| `--color-action-hover` | `#000000` | Hover = inverted (black↔white) |\n| `--color-earnings` | `#000000` | Black + 50% dither highlight |\n| `--color-earnings-hover` | `#000000` | Hover = solid black |\n| `--color-automation` | `#000000` | Black + 25% dither accents |\n| `--color-alert` | `#000000` | Black, blinking 1Hz |\n| `--color-danger` | `#000000` | Black, inverted field |\n| `--color-action-glow` | `rgba(0, 0, 0, 0.06)` | 6% checker tint (only \"glow\") |\n| `--color-earnings-glow` | `rgba(0, 0, 0, 0.06)` | 6% checker tint |\n| `--color-automation-glow` | `rgba(0, 0, 0, 0.06)` | 6% checker tint |\n\n- **Typography**: Bitmap-flavored system: Display: `\"Silkscreen\", \"Pixelify Sans\", monospace` for headings. Body: `\"IBM Plex Mono\", ui-monospace, monospace`. Uppercase labels, `letter-spacing: 0.06em`. No font-weight games — hierarchy via dither density and size only. KPIs `tabular-nums`.\n- **Radii & Borders**: Zero radius anywhere. Borders are 1-3px solid black; the 2px \"double border\" (outer 2px + inner 1px with 2px gap) marks selected/active surfaces, like classic Mac chrome.\n- **Component Patterns**:\n  - **Buttons**: Rectangular, 2px black border. Primary = solid black with white text; hover inverts to outline style. Active = shifted 2px down-right with the shadow collapsing (classic Mac press). Focus = 2px black outline with 2px gap.\n  - **Cards**: White panels with 2px black border and a 4px hard offset black shadow; \"elevated\" surfaces use a 50% Bayer checker pattern instead of a lighter gray.\n  - **Badges/Status**: Square chips: filled black = active, 50% dither = pending, outline only = done. Status dot is a 4x4px black square. Blinking = attention.\n  - **Tables**: 1px black grid, header row uses the 25% dither pattern as its background. Row hover = full-row dither wash. Numbers right-aligned mono.\n  - **Forms/Inputs**: White field, 2px black border, block cursor. Focus = double-strike border (3px). Disabled = 50% dither text.\n  - **Loading**: A marching-ants border (animated dashed outline) or a classic watch-cursor alternation. Determinate = black bar filling in 8px \"pixel\" steps.\n  - **Signature detail**: Bayer-dither patterns standing in for every gray — squint and you get shades; look close and there are only two colors.\n- **Motion & Animation**: Stepped and frame-based: 80-120ms, `steps(4)` easing, no sub-pixel movement — things jump in 2px increments like a low-DPI screen. Blinking is a hard on/off at 1-2Hz.\n- **Signature Preview Snippet**:\n\n```html\n<!-- 1-bit KPI: dithered emphasis, hard border, offset shadow -->\n<div class=\"bit-card\">\n  <span class=\"bit-label\">EARNINGS/30D</span>\n  <strong class=\"bit-kpi\">$12,480</strong>\n  <span class=\"bit-delta bit-dither-50\">+14.2%</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-20",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

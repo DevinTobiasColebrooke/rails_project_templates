@@ -1,0 +1,114 @@
+{
+  "slug": "receipt",
+  "number": "18",
+  "name": "Receipt Paper",
+  "kind": "proposal",
+  "order": 18,
+  "vibe": "A thermal-printer roll — narrow mono columns, faint thermal-gray text, perforated edges, and everything slightly warm-smelling and ephemeral.",
+  "best_for": "Earnings reports, order summaries, and ledger views — data as a printed transaction tape.",
+  "adjectives": [
+    "ephemeral",
+    "tactile",
+    "transactional"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "The sawtooth perforation + dotted leaders + rubber stamps — unmistakably a receipt, not a dashboard.",
+  "motion": "Printer-feed timing: rows appear top-down with 40-80ms stagger, slight translateY(-4px)→0; stamps land with a quick scale 1.15→1 “thump”.",
+  "fonts": {
+    "display": "\"Courier Prime\", \"IBM Plex Mono\", ui-monospace, monospace",
+    "sans": "\"Courier Prime\", \"IBM Plex Mono\", ui-monospace, monospace",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px dashed var(--border-default); border-radius: 0;",
+  "texture_style": "background-image: linear-gradient(rgba(42, 42, 40, 0.04) 1px, transparent 1px); background-size: 100% 80px;",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#e8e4dc",
+    "bg_surface": "#faf7f0",
+    "bg_surface_elevated": "#ffffff",
+    "border_subtle": "#e6e0d2",
+    "border_default": "#c9c2ae",
+    "border_focus": "#2a2a28",
+    "text_primary": "#2a2a28",
+    "text_secondary": "#55534c",
+    "text_muted": "#8a877c",
+    "color_action": "#2a2a28",
+    "color_action_hover": "#4a4a46",
+    "color_earnings": "#1f6e43",
+    "color_earnings_hover": "#175a36",
+    "color_automation": "#3a5a8c",
+    "color_alert": "#a8622a",
+    "color_danger": "#a8322a",
+    "color_action_glow": "rgba(42, 42, 40, 0.08)",
+    "color_earnings_glow": "rgba(31, 110, 67, 0.10)",
+    "color_automation_glow": "rgba(58, 90, 140, 0.10)"
+  },
+  "counterpart": {
+    "bg_canvas": "#161512",
+    "bg_surface": "#22211c",
+    "bg_surface_elevated": "#2c2b24",
+    "border_subtle": "#3a382e",
+    "border_default": "#57544a",
+    "border_focus": "#d8d4c8",
+    "text_primary": "#f0eee6",
+    "text_secondary": "#c2bfb2",
+    "text_muted": "#8a877c",
+    "color_action": "#f0eee6",
+    "color_action_hover": "#d4d1c4",
+    "color_earnings": "#6fd893",
+    "color_earnings_hover": "#54bd7a",
+    "color_automation": "#7da8e0",
+    "color_alert": "#e0a45c",
+    "color_danger": "#e0655c",
+    "color_action_glow": "rgba(240, 238, 230, 0.10)",
+    "color_earnings_glow": "rgba(111, 216, 147, 0.12)",
+    "color_automation_glow": "rgba(125, 168, 224, 0.12)"
+  },
+  "schemas": [
+    {
+      "slug": "green-bar",
+      "name": "Green Bar",
+      "desc": "Dot-matrix green-bar ledger paper; use white labels on the green.",
+      "overrides": {
+        "color_action": "#2e8b57",
+        "color_action_hover": "#247246",
+        "color_earnings": "#9a7400",
+        "color_earnings_hover": "#806000",
+        "color_automation": "#3a5a8c",
+        "color_alert": "#a8622a",
+        "color_danger": "#a8322a",
+        "border_focus": "#2e8b57",
+        "color_action_glow": "rgba(46, 139, 87, 0.14)",
+        "color_earnings_glow": "rgba(154, 116, 0, 0.12)",
+        "color_automation_glow": "rgba(58, 90, 140, 0.12)"
+      }
+    },
+    {
+      "slug": "carbon-copy",
+      "name": "Carbon Copy",
+      "desc": "Blue carbon-paper transfer with green totals; use white labels on the blue.",
+      "overrides": {
+        "color_action": "#3a5a8c",
+        "color_action_hover": "#2e4872",
+        "color_earnings": "#1f6e43",
+        "color_earnings_hover": "#175a36",
+        "color_automation": "#7d5cc9",
+        "color_alert": "#a8622a",
+        "color_danger": "#a8322a",
+        "border_focus": "#3a5a8c",
+        "color_action_glow": "rgba(58, 90, 140, 0.14)",
+        "color_earnings_glow": "rgba(31, 110, 67, 0.12)",
+        "color_automation_glow": "rgba(125, 92, 201, 0.12)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-18 — Receipt Paper\n\n- **slug**: `receipt`\n- **Vibe**: A thermal-printer roll — narrow mono columns, faint thermal-gray text, perforated edges, and everything slightly warm-smelling and ephemeral.\n- **Best for**: Earnings reports, order summaries, and ledger views — data as a printed transaction tape. Adjectives: ephemeral, tactile, transactional.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#e8e4dc` | Counter-top backdrop behind the tape |\n| `--bg-surface` | `#faf7f0` | Thermal paper fill |\n| `--bg-surface-elevated` | `#ffffff` | Pristine paper (popovers) |\n| `--border-subtle` | `#e6e0d2` | Perforation hairlines |\n| `--border-default` | `#c9c2ae` | Paper edge / fold lines |\n| `--border-focus` | `#2a2a28` | Ink-black focus outline |\n| `--text-primary` | `#2a2a28` | Thermal ink black |\n| `--text-secondary` | `#55534c` | Body text |\n| `--text-muted` | `#8a877c` | Faded thermal gray (aged print) |\n| `--color-action` | `#2a2a28` | Ink-black primary actions |\n| `--color-action-hover` | `#4a4a46` | Action hover (smeared ink) |\n| `--color-earnings` | `#1f6e43` | Green \"PAID\" stamp ink |\n| `--color-earnings-hover` | `#175a36` | Earnings hover (deeper stamp) |\n| `--color-automation` | `#3a5a8c` | Blue rubber-stamp accents |\n| `--color-alert` | `#a8622a` | Rust \"REFUND\" stamp ink |\n| `--color-danger` | `#a8322a` | Red \"VOID\" stamp ink |\n| `--color-action-glow` | `rgba(42, 42, 40, 0.08)` | Ink bleed tint |\n| `--color-earnings-glow` | `rgba(31, 110, 67, 0.10)` | Green stamp tint |\n| `--color-automation-glow` | `rgba(58, 90, 140, 0.10)` | Blue stamp tint |\n\n- **Typography**: Mono everything, like a dot-matrix head. Display and body: `\"Courier Prime\", \"IBM Plex Mono\", ui-monospace, monospace` at 400-700. All-caps labels with wide `letter-spacing: 0.12em`. Totals in bold; amounts `tabular-nums` with right alignment.\n- **Radii & Borders**: None — the tape is a rectangle. Cards get sawtooth perforated top/bottom edges (CSS zigzag via `linear-gradient` triangles). Borders are dashed hairlines (perforation), 1px.\n- **Component Patterns**:\n  - **Buttons**: Rectangle, 1px solid ink border, uppercase mono label. Primary = ink-black fill with paper-white text; hover looks like double-strike (bolder, slight blur). Focus = 2px ink outline.\n  - **Cards**: Paper strips with sawtooth edges top and bottom; content is left-aligned mono lines like `1x TIKTOK POST ......... $12.00`. A faint horizontal fold crease every ~80px.\n  - **Badges/Status**: Rubber-stamp style: rotated (-6deg) bordered uppercase text like `PAID`, `PENDING`, `VOID` in stamp inks. No fills — stamp outline only.\n  - **Tables**: Pure mono ledger: dotted-leader rows (`label ..... value`), no grid, totals row separated by a dashed 2px rule. Header = small caps.\n  - **Forms/Inputs**: Underline-only fields on paper (no box); labels uppercase mono; focus = solid ink underline. Error = red `VOID`-style stamp next to the field.\n  - **Loading**: The paper \"feeds\": content slides up one line at a time (mono rows appearing with a 60ms stagger, like printer output).\n  - **Signature detail**: The sawtooth perforation + dotted leaders + rubber stamps — unmistakably a receipt, not a dashboard.\n- **Motion & Animation**: Printer-feed timing: rows appear top-down with 40-80ms stagger, slight translateY(-4px) -> 0; no fades to black — paper doesn't glow. Stamps land with a quick scale 1.15 -> 1 \"thump\".\n- **Signature Preview Snippet**:\n\n```html\n<!-- Receipt earnings tape: dotted leaders, stamp, perforation -->\n<div class=\"receipt-strip\">\n  <div class=\"receipt-line\"><span>TIKTOK POST</span><span>.... $12.00</span></div>\n  <div class=\"receipt-line\"><span>IG REEL</span><span>........ $8.50</span></div>\n  <div class=\"receipt-total\">TOTAL ... $20.50</div>\n  <span class=\"receipt-stamp receipt-paid\">PAID</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-18",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}

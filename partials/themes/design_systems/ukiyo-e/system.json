@@ -1,0 +1,114 @@
+{
+  "slug": "ukiyo-e",
+  "number": "07",
+  "name": "Japanese Ukiyo-e / Woodblock Print",
+  "kind": "proposal",
+  "order": 7,
+  "vibe": "The great wave of data — indigo, washi paper, and vermilion seals composed like a woodblock print.",
+  "best_for": "Product show pages and the campaign calendar — calm, disciplined surfaces with artful accents.",
+  "adjectives": [
+    "serene",
+    "disciplined",
+    "artful"
+  ],
+  "is_dark": false,
+  "native_mode": "light",
+  "counterpart_mode": "dark",
+  "signature": "The vermilion hanko seal used as the logo mark and status stamp, plus double-line frames and washi texture — a print, not a screen.",
+  "motion": "Slow and ceremonial: entries use a “paper-turn” feel (400ms, slight rotateX, fade); Turbo Stream updates wipe in with a vertical “iris” reveal.",
+  "fonts": {
+    "display": "\"Shippori Mincho B1\", \"Noto Serif JP\", Georgia, serif",
+    "sans": "\"Zen Kaku Gothic New\", \"Inter\", system-ui, sans-serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+  },
+  "card_style": "border: 1px solid var(--border-default); border-radius: 2px; box-shadow: inset 0 0 0 3px var(--bg-surface), inset 0 0 0 4px var(--border-default);",
+  "texture_style": "",
+  "button_label": "#ffffff",
+  "tokens": {
+    "bg_canvas": "#efe6cf",
+    "bg_surface": "#f7f1e0",
+    "bg_surface_elevated": "#fffaf0",
+    "border_subtle": "#ddd0b0",
+    "border_default": "#b7a37c",
+    "border_focus": "#d9423a",
+    "text_primary": "#20263f",
+    "text_secondary": "#4c4f63",
+    "text_muted": "#6f6c5e",
+    "color_action": "#d9423a",
+    "color_action_hover": "#bd342e",
+    "color_earnings": "#2e6b4f",
+    "color_earnings_hover": "#245640",
+    "color_automation": "#2f5d9e",
+    "color_alert": "#c98a1b",
+    "color_danger": "#a22f2f",
+    "color_action_glow": "rgba(217, 66, 58, 0.14)",
+    "color_earnings_glow": "rgba(46, 107, 79, 0.14)",
+    "color_automation_glow": "rgba(47, 93, 158, 0.14)"
+  },
+  "counterpart": {
+    "bg_canvas": "#161b2e",
+    "bg_surface": "#1e2438",
+    "bg_surface_elevated": "#2a3148",
+    "border_subtle": "#363e57",
+    "border_default": "#4c5574",
+    "border_focus": "#e0604a",
+    "text_primary": "#f0e8d2",
+    "text_secondary": "#c7c2ae",
+    "text_muted": "#8d8c7a",
+    "color_action": "#c9422c",
+    "color_action_hover": "#ae3826",
+    "color_earnings": "#7fae6a",
+    "color_earnings_hover": "#6b9957",
+    "color_automation": "#6f95cf",
+    "color_alert": "#d9a03c",
+    "color_danger": "#c95c4a",
+    "color_action_glow": "rgba(201, 66, 44, 0.16)",
+    "color_earnings_glow": "rgba(127, 174, 106, 0.14)",
+    "color_automation_glow": "rgba(111, 149, 207, 0.14)"
+  },
+  "schemas": [
+    {
+      "slug": "gold-leaf",
+      "name": "Gold Leaf",
+      "desc": "Gold-led nocturnal print; use cream bold labels on gold.",
+      "overrides": {
+        "color_action": "#d9a03c",
+        "color_action_hover": "#c28a2b",
+        "color_earnings": "#7fae6a",
+        "color_earnings_hover": "#6b9957",
+        "color_automation": "#6f95cf",
+        "color_alert": "#b8860b",
+        "color_danger": "#c95c4a",
+        "border_focus": "#d9a03c",
+        "color_action_glow": "rgba(217, 160, 60, 0.16)",
+        "color_earnings_glow": "rgba(127, 174, 106, 0.14)",
+        "color_automation_glow": "rgba(111, 149, 207, 0.14)"
+      }
+    },
+    {
+      "slug": "spring-blossom",
+      "name": "Spring Blossom",
+      "desc": "Sakura pink-led with green and indigo; use cream bold labels.",
+      "overrides": {
+        "color_action": "#e87d9e",
+        "color_action_hover": "#cf6687",
+        "color_earnings": "#7fae6a",
+        "color_earnings_hover": "#6b9957",
+        "color_automation": "#6f95cf",
+        "color_alert": "#d9a03c",
+        "color_danger": "#c95c4a",
+        "border_focus": "#e87d9e",
+        "color_action_glow": "rgba(232, 125, 158, 0.16)",
+        "color_earnings_glow": "rgba(127, 174, 106, 0.14)",
+        "color_automation_glow": "rgba(111, 149, 207, 0.14)"
+      }
+    }
+  ],
+  "doc": "### PROPOSAL-07 — Japanese Ukiyo-e / Woodblock Print\n\n- **slug**: `ukiyo-e`\n- **Vibe**: The great wave of data — indigo, washi paper, and vermilion seals composed like a woodblock print.\n- **Best for**: Product show pages and the campaign calendar — calm, disciplined surfaces with artful accents. Adjectives: serene, disciplined, artful.\n- **Palette** (light theme, `is_dark: false`):\n\n| Token | Value | Usage |\n|---|---|---|\n| `--bg-canvas` | `#efe6cf` | Washi-paper canvas |\n| `--bg-surface` | `#f7f1e0` | Lighter washi panel fill |\n| `--bg-surface-elevated` | `#fffaf0` | Raised paper, modals |\n| `--border-subtle` | `#ddd0b0` | Fine ink hairlines |\n| `--border-default` | `#b7a37c` | Standard woodblock borders |\n| `--border-focus` | `#d9423a` | Vermilion focus outline |\n| `--text-primary` | `#20263f` | Indigo-ink headings |\n| `--text-secondary` | `#4c4f63` | Body text |\n| `--text-muted` | `#6f6c5e` | Captions, dates, fine print |\n| `--color-action` | `#d9423a` | Vermilion primary action |\n| `--color-action-hover` | `#bd342e` | Action hover (deeper vermilion) |\n| `--color-earnings` | `#2e6b4f` | Ukiyo-e green earnings |\n| `--color-earnings-hover` | `#245640` | Earnings hover (deeper green) |\n| `--color-automation` | `#2f5d9e` | Indigo-blue automation accents |\n| `--color-alert` | `#c98a1b` | Gold/ochre warnings |\n| `--color-danger` | `#a22f2f` | Dark vermilion destructive states |\n| `--color-action-glow` | `rgba(217, 66, 58, 0.14)` | Vermilion tint behind action icons |\n| `--color-earnings-glow` | `rgba(46, 107, 79, 0.14)` | Green tint behind earnings icons |\n| `--color-automation-glow` | `rgba(47, 93, 158, 0.14)` | Indigo tint behind automation icons |\n\n- **Typography**: Display: `\"Shippori Mincho B1\", \"Noto Serif JP\", Georgia, serif` — a modulated, bookish serif for headings. Sans: `\"Zen Kaku Gothic New\", \"Inter\", system-ui, sans-serif` for body. Mono: `\"IBM Plex Mono\", ui-monospace, monospace` for timestamps and IDs. Minimal tracking; numerals `tabular-nums`.\n- **Radii & Borders**: Small and crisp — 2px radius on cards and buttons. Borders are 1px thin ink lines. Cards use the **double-line woodblock frame**: a 1px outer border plus a second 1px inner border inset 3px.\n- **Component Patterns**:\n  - **Buttons**: Rectangular, thin 1px border. Primary = vermilion fill with white text (AA-large, bold). Secondary = outlined in ink with indigo text. Tertiary = text with a small vermilion square before it. Focus = 2px vermilion outline with a 2px gap.\n  - **Cards**: Washi-paper fill with the double-line frame; an optional faint woodgrain/watermark (SVG noise at 3% opacity) in one corner. No shadows — print is flat.\n  - **Badges/Status**: Seal-stamp badges — small squares with rounded corners (hanko style) in vermilion, indigo, or green; white text. Publishing = indigo seal with a soft breathe.\n  - **Tables**: Thin 1px grid lines; header row has a subtle indigo wash; row hover = 1px vermilion left tick. Numbers feel like printed ledger figures.\n  - **Forms/Inputs**: Bordered boxes with 1px ink lines; focus = vermilion bottom rule. Labels in small, slightly tracked sans.\n  - **Loading**: A brush-stroke bar that sweeps left to right, or a small \"wave\" motif that gently undulates.\n  - **Signature detail**: The vermilion hanko seal used as the logo mark and status stamp, plus double-line frames and washi texture — a print, not a screen.\n- **Motion & Animation**: Slow and ceremonial: entries use a \"paper-turn\" feel (400ms, slight rotateX, fade), and Turbo Stream updates wipe in with a vertical \"iris\" reveal. Nothing bounces.\n- **Signature Preview Snippet**:\n\n```html\n<!-- Ukiyo-e calendar day: woodblock frame + vermilion seal -->\n<div class=\"ukiyo-frame\">\n  <span class=\"ukiyo-day\">MON · 12</span>\n  <span class=\"ukiyo-count\">3 posts queued</span>\n  <span class=\"ukiyo-seal\">稿</span>\n</div>\n```",
+  "source": {
+    "project": "AffiliateManager",
+    "file": "app/controllers/design_proposals_controller.rb",
+    "ref": "PROPOSAL-07",
+    "doc": "docs/blueprint/design_proposals.md"
+  }
+}
